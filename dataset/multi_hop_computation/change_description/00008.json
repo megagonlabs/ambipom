@@ -1,0 +1,153 @@
+{
+  "query": "Population difference (2020) between the birth cities of the US Open Men's Singles tennis champions of 2004 and 2016.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the winner of the Wimbledon Women's Doubles in 2030.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "champion_2004"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the US Open Men's Singles champion of 2016.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "champion_2016"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth city of champion_2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "champion_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_city_2004"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth city of champion_2016.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "champion_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_city_2016"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the population of birth_city_2004 in 2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_city_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_2004"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the population of birth_city_2016 in 2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_city_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_2016"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between population_2004 and population_2016.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "population_2004",
+          "value": ""
+        },
+        {
+          "variable": "population_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "champion_2004",
+      "dest_input": "champion_2004"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "champion_2016",
+      "dest_input": "champion_2016"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_city_2004",
+      "dest_input": "birth_city_2004"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_city_2016",
+      "dest_input": "birth_city_2016"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "population_2004",
+      "dest_input": "population_2004"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "population_2016",
+      "dest_input": "population_2016"
+    }
+  ]
+}

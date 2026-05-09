@@ -1,0 +1,199 @@
+{
+  "query": "Length difference (km) of the longest river in the birth countries of the Fields Medal winners of 2006 and 2018.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find any one Fields Medal winner from 2006.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "fields_medal_winner_2006"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find any one Fields Medal winner from 2018.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "fields_medal_winner_2018"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of fields_medal_winner_2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "fields_medal_winner_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2006"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of fields_medal_winner_2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "fields_medal_winner_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2018"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Identify the rivers in birth_country_2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "rivers_list_2006"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the longest river in birth_country_2018 and record its length in km.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "longest_river_length_2018"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Determine the length in km of each river in rivers_list_2006.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "rivers_list_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "rivers_lengths_2006"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Select the longest river from rivers_lengths_2006.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "rivers_lengths_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "longest_river_length_2006"
+      ],
+      "prereq": [
+        -2
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the absolute difference between longest_river_length_2006 and longest_river_length_2018.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "longest_river_length_2006",
+          "value": ""
+        },
+        {
+          "variable": "longest_river_length_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "length_difference_km"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "fields_medal_winner_2006",
+      "dest_input": "fields_medal_winner_2006"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "fields_medal_winner_2018",
+      "dest_input": "fields_medal_winner_2018"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2006",
+      "dest_input": "birth_country_2006"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2018",
+      "dest_input": "birth_country_2018"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 9,
+      "src_output": "longest_river_length_2018",
+      "dest_input": "longest_river_length_2018"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "rivers_list_2006",
+      "dest_input": "rivers_list_2006"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "rivers_lengths_2006",
+      "dest_input": "rivers_lengths_2006"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 9,
+      "src_output": "longest_river_length_2006",
+      "dest_input": "longest_river_length_2006"
+    }
+  ]
+}

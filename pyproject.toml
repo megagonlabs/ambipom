@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ambipom"
+version = "1.0.0"
+description = "AMBIPOM: a human-LLM collaborative planning system and dataset for orchestrated multi-agent systems."
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+license = { file = "LICENSE" }
+dependencies = [
+    "fastapi==0.116.2",
+    "uvicorn==0.35.0",
+    "openai==1.108.1",
+    "networkx==3.4.2",
+    "pydantic==2.11.9",
+    "sympy==1.14.0",
+    "fireworks-ai==0.19.19",
+    "requests==2.32.5",
+    "beautifulsoup4>=4.12",
+]
+
+[project.optional-dependencies]
+# Install with: pip install -e ".[experiment]"
+experiment = [
+    "sentence-transformers>=3.0",   # SS metric in experiment/evaluate.py
+    "tqdm",                          # progress bars (optional)
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

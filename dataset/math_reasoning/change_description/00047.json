@@ -1,0 +1,241 @@
+{
+  "query": "Juan bought T-shirts for his employees. He bought shirts for men and women. Women's t-shirts are $5 cheaper than men's t-shirts of the same color. His company has 2 sectors, one in white t-shirts and the other in black t-shirts. He paid $20 for white men's t-shirts and $18 for black men's t-shirts. The 2 sectors have the same number of men and women, with a total of 40 employees. How much did he spend total on buying t-shirts?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the price of white women's t-shirts by subtracting 5 from white_men_price.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "white_men_price",
+          "value": "20"
+        }
+      ],
+      "output": [
+        "white_women_price"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the price of black women's t-shirts by subtracting 5 from black_men_price.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "black_men_price",
+          "value": "18"
+        }
+      ],
+      "output": [
+        "black_women_price"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Divide total_employees by 2 to find the number of employees in each sector.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_employees",
+          "value": "40"
+        }
+      ],
+      "output": [
+        "employees_per_sector"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Divide employees_per_sector by 2 to find the number of men in each sector.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "employees_per_sector",
+          "value": ""
+        }
+      ],
+      "output": [
+        "men_per_sector"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the number of women in each sector by subtracting men_per_sector from employees_per_sector.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "employees_per_sector",
+          "value": ""
+        },
+        {
+          "variable": "men_per_sector",
+          "value": ""
+        }
+      ],
+      "output": [
+        "women_per_sector"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total cost for white t-shirts by multiplying men_per_sector by white_men_price and women_per_sector by white_women_price, then summing the results.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "men_per_sector",
+          "value": ""
+        },
+        {
+          "variable": "white_men_price",
+          "value": "20"
+        },
+        {
+          "variable": "women_per_sector",
+          "value": ""
+        },
+        {
+          "variable": "white_women_price",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_white_cost"
+      ],
+      "prereq": [
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "\"Calculate the total cost for black t-shirts by multiplying men_per_sector by black_women_price and women_per_sector by black_men_price, then subtracting the results. Use 'total_white_cost' instead of 'total_black_cost' for the output, and swap men_per_sector with women_per_sector in the input.\"",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "men_per_sector",
+          "value": ""
+        },
+        {
+          "variable": "black_men_price",
+          "value": "18"
+        },
+        {
+          "variable": "women_per_sector",
+          "value": ""
+        },
+        {
+          "variable": "black_women_price",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_black_cost"
+      ],
+      "prereq": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the total amount spent by summing total_white_cost and total_black_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_white_cost",
+          "value": ""
+        },
+        {
+          "variable": "total_black_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_spent"
+      ],
+      "prereq": [
+        6,
+        7
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "white_women_price",
+      "dest_input": "white_women_price"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "black_women_price",
+      "dest_input": "black_women_price"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "employees_per_sector",
+      "dest_input": "employees_per_sector"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "employees_per_sector",
+      "dest_input": "employees_per_sector"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "men_per_sector",
+      "dest_input": "men_per_sector"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "men_per_sector",
+      "dest_input": "men_per_sector"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "men_per_sector",
+      "dest_input": "men_per_sector"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "women_per_sector",
+      "dest_input": "women_per_sector"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "women_per_sector",
+      "dest_input": "women_per_sector"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "total_white_cost",
+      "dest_input": "total_white_cost"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "total_black_cost",
+      "dest_input": "total_black_cost"
+    }
+  ]
+}

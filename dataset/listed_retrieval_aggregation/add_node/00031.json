@@ -1,0 +1,197 @@
+{
+  "query": "What is the average number of chapters in the debut novels of the Booker Prize winners in {2011}, {2017}, {2008}? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Booker Prize winner for the year 2011.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2011"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner for the year 2017.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2017"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Booker Prize winner for the year 2008.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2008"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Identify the debut novel of the author winner_2011.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2011",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_novel_2011"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Identify the debut novel of the author winner_2017.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_novel_2017"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the number of chapters in the debut novel debut_novel_2008.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "debut_novel_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_2008"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Look up the number of chapters in the debut novel debut_novel_2011.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "debut_novel_2011",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_2011"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Look up the number of chapters in the debut novel debut_novel_2017.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "debut_novel_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_2017"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Compute the average of chapters_2011, chapters_2017, and chapters_2008.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "chapters_2011",
+          "value": ""
+        },
+        {
+          "variable": "chapters_2017",
+          "value": ""
+        },
+        {
+          "variable": "chapters_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_chapters"
+      ],
+      "prereq": [
+        7,
+        8,
+        9
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_2011",
+      "dest_input": "winner_2011"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2017",
+      "dest_input": "winner_2017"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2008",
+      "dest_input": "debut_novel_2008"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "debut_novel_2011",
+      "dest_input": "debut_novel_2011"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "debut_novel_2017",
+      "dest_input": "debut_novel_2017"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 9,
+      "src_output": "chapters_2011",
+      "dest_input": "chapters_2011"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 9,
+      "src_output": "chapters_2017",
+      "dest_input": "chapters_2017"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 9,
+      "src_output": "chapters_2008",
+      "dest_input": "chapters_2008"
+    }
+  ]
+}

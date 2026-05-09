@@ -1,0 +1,151 @@
+{
+  "query": "Find the Pulitzer Prize for Fiction winners for {1960}, {1965}, {1970}. What is the average birth year of these winners? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Pulitzer Prize for Fiction winner for 1960.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1960"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Pulitzer Prize for Fiction winner for 1965.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1965"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Pulitzer Prize for Fiction winner for 1970.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1970"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Look up the birth year of the winner_1965.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1965",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_1965"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the birth year of the winner_1970.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1970",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_1970"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Compute the average of birth_year_1960, birth_year_1965, and birth_year_1970.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_year_1960",
+          "value": ""
+        },
+        {
+          "variable": "birth_year_1965",
+          "value": ""
+        },
+        {
+          "variable": "birth_year_1970",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_birth_year"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Research and provide the birth year of the individual who won in 1960 using the auction results.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1960",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_1960"
+      ],
+      "prereq": [
+        1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 8,
+      "src_output": "winner_1960",
+      "dest_input": "winner_1960"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_1965",
+      "dest_input": "winner_1965"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_1970",
+      "dest_input": "winner_1970"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "birth_year_1965",
+      "dest_input": "birth_year_1965"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "birth_year_1970",
+      "dest_input": "birth_year_1970"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 7,
+      "src_output": "birth_year_1960",
+      "dest_input": "birth_year_1960"
+    }
+  ]
+}

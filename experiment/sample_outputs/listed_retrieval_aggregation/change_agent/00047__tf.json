@@ -1,0 +1,220 @@
+{
+  "query": "Find the Booker Prize winners for {1972}, {1982}, {1992}. What is the average number of years between each winner's birth and their prize year? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Booker Prize winner for 1972.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1972"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner for 1982.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1982"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Booker Prize winner for 1992.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1992"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Look up the birth year of winner_1982.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1982",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_1982"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the birth year of winner_1992.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1992",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_1992"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the number of years between birth_year_1972 and 1972.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_year_1972",
+          "value": ""
+        }
+      ],
+      "output": [
+        "years_1972"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the number of years between birth_year_1982 and 1982.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_year_1982",
+          "value": ""
+        }
+      ],
+      "output": [
+        "years_1982"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the number of years between birth_year_1992 and 1992.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_year_1992",
+          "value": ""
+        }
+      ],
+      "output": [
+        "years_1992"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Compute the average of years_1972, years_1982, and years_1992.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "years_1972",
+          "value": ""
+        },
+        {
+          "variable": "years_1982",
+          "value": ""
+        },
+        {
+          "variable": "years_1992",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_years"
+      ],
+      "prereq": [
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the birth year of winner_1972 using available data.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "winner_1972",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_1972"
+      ],
+      "prereq": [
+        1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 11,
+      "src_output": "winner_1972",
+      "dest_input": "winner_1972"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_1982",
+      "dest_input": "winner_1982"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_1992",
+      "dest_input": "winner_1992"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "birth_year_1982",
+      "dest_input": "birth_year_1982"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 9,
+      "src_output": "birth_year_1992",
+      "dest_input": "birth_year_1992"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 10,
+      "src_output": "years_1972",
+      "dest_input": "years_1972"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 10,
+      "src_output": "years_1982",
+      "dest_input": "years_1982"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 10,
+      "src_output": "years_1992",
+      "dest_input": "years_1992"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 7,
+      "src_output": "birth_year_1972",
+      "dest_input": "birth_year_1972"
+    }
+  ]
+}

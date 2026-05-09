@@ -1,0 +1,154 @@
+{
+  "query": "Find the Booker Prize winners for {2008}, {2009}, {2010}. What is the sum of the number of pages in their winning novels (first editions)? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Booker Prize winner and winning novel for 2008.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2008",
+        "novel_2008"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner and winning novel for 2009.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2009",
+        "novel_2009"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Booker Prize winner and winning novel for 2010.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2010",
+        "novel_2010"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Look up the page count of the first edition of novel_2008.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2008"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the page count of the first edition of novel_2009.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_2009",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2009"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the sum of pages_2008, pages_2009, and pages_2010.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pages_2008",
+          "value": ""
+        },
+        {
+          "variable": "pages_2009",
+          "value": ""
+        },
+        {
+          "variable": "pages_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_pages"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the page count of the first edition of novel_2010 using available data.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "novel_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2010"
+      ],
+      "prereq": [
+        3
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "novel_2008",
+      "dest_input": "novel_2008"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "novel_2009",
+      "dest_input": "novel_2009"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "novel_2010",
+      "dest_input": "novel_2010"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "pages_2008",
+      "dest_input": "pages_2008"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "pages_2009",
+      "dest_input": "pages_2009"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 7,
+      "src_output": "pages_2010",
+      "dest_input": "pages_2010"
+    }
+  ]
+}

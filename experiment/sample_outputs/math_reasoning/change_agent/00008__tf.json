@@ -1,0 +1,158 @@
+{
+  "query": "Ishmael was monitoring whales out at sea for conservation purposes. Each time he takes a trip to sea, he sees a different group of whales. On his first trip, he counts 28 male whales and twice as many female whales. On his second trip, he sees 8 baby whales, each travelling with their parents. On his third trip, he counts half as many male whales as the first trip and the same number of female whales as on the first trip. In total, how many whales were out at sea during Ishmael’s monitoring?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of female whales on the first trip using the formula: female_whales_first_trip = 2 * male_whales_first_trip.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "male_whales_first_trip",
+          "value": "28"
+        }
+      ],
+      "output": [
+        "female_whales_first_trip"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of whales on the second trip using the formula: total_whales_second_trip = 3 * baby_whales_second_trip.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "baby_whales_second_trip",
+          "value": "8"
+        }
+      ],
+      "output": [
+        "total_whales_second_trip"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total number of whales on the first trip using the formula: total_whales_first_trip = male_whales_first_trip + female_whales_first_trip.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "male_whales_first_trip",
+          "value": "28"
+        },
+        {
+          "variable": "female_whales_first_trip",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_whales_first_trip"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total number of whales on the third trip using the formula: total_whales_third_trip = male_whales_third_trip + female_whales_first_trip.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "male_whales_third_trip",
+          "value": ""
+        },
+        {
+          "variable": "female_whales_first_trip",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_whales_third_trip"
+      ],
+      "prereq": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total number of whales seen during all trips using the formula: total_whales_all_trips = total_whales_first_trip + total_whales_second_trip + total_whales_third_trip.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_whales_first_trip",
+          "value": ""
+        },
+        {
+          "variable": "total_whales_second_trip",
+          "value": ""
+        },
+        {
+          "variable": "total_whales_third_trip",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_whales_all_trips"
+      ],
+      "prereq": [
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the number of male whales on the third trip using the formula: male_whales_third_trip = male_whales_first_trip / 2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "male_whales_first_trip",
+          "value": "28"
+        }
+      ],
+      "output": [
+        "male_whales_third_trip"
+      ],
+      "prereq": []
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "female_whales_first_trip",
+      "dest_input": "female_whales_first_trip"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "female_whales_first_trip",
+      "dest_input": "female_whales_first_trip"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "total_whales_second_trip",
+      "dest_input": "total_whales_second_trip"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "total_whales_first_trip",
+      "dest_input": "total_whales_first_trip"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "total_whales_third_trip",
+      "dest_input": "total_whales_third_trip"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 5,
+      "src_output": "male_whales_third_trip",
+      "dest_input": "male_whales_third_trip"
+    }
+  ]
+}

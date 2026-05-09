@@ -1,0 +1,314 @@
+{
+  "query": "What is the average stadium capacity of the five largest NFL stadiums?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five largest NFL stadiums by seating capacity.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "largest_stadiums"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first stadium from largest_stadiums.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "largest_stadiums",
+          "value": ""
+        }
+      ],
+      "output": [
+        "stadium_1_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second stadium from largest_stadiums.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "largest_stadiums",
+          "value": ""
+        }
+      ],
+      "output": [
+        "stadium_2_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the third stadium from largest_stadiums.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "largest_stadiums",
+          "value": ""
+        }
+      ],
+      "output": [
+        "stadium_3_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the name of the fourth stadium from largest_stadiums.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "largest_stadiums",
+          "value": ""
+        }
+      ],
+      "output": [
+        "stadium_4_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the name of the fifth stadium from largest_stadiums.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "largest_stadiums",
+          "value": ""
+        }
+      ],
+      "output": [
+        "stadium_5_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Look up the official seating capacity of stadium_1_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "stadium_1_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "stadium_1_capacity"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Look up the official seating capacity of stadium_2_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "stadium_2_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "stadium_2_capacity"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Look up the official seating capacity of stadium_3_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "stadium_3_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "stadium_3_capacity"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Look up the official seating capacity of stadium_4_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "stadium_4_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "stadium_4_capacity"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Look up the official seating capacity of stadium_5_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "stadium_5_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "stadium_5_capacity"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Calculate the average of stadium_1_capacity, stadium_2_capacity, stadium_3_capacity, stadium_4_capacity, and stadium_5_capacity.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "stadium_1_capacity",
+          "value": ""
+        },
+        {
+          "variable": "stadium_2_capacity",
+          "value": ""
+        },
+        {
+          "variable": "stadium_3_capacity",
+          "value": ""
+        },
+        {
+          "variable": "stadium_4_capacity",
+          "value": ""
+        },
+        {
+          "variable": "stadium_5_capacity",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_capacity"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "largest_stadiums",
+      "dest_input": "largest_stadiums"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "largest_stadiums",
+      "dest_input": "largest_stadiums"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "largest_stadiums",
+      "dest_input": "largest_stadiums"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "largest_stadiums",
+      "dest_input": "largest_stadiums"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "largest_stadiums",
+      "dest_input": "largest_stadiums"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "stadium_1_name",
+      "dest_input": "stadium_1_name"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "stadium_2_name",
+      "dest_input": "stadium_2_name"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "stadium_3_name",
+      "dest_input": "stadium_3_name"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "stadium_4_name",
+      "dest_input": "stadium_4_name"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "stadium_5_name",
+      "dest_input": "stadium_5_name"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 12,
+      "src_output": "stadium_1_capacity",
+      "dest_input": "stadium_1_capacity"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 12,
+      "src_output": "stadium_2_capacity",
+      "dest_input": "stadium_2_capacity"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 12,
+      "src_output": "stadium_3_capacity",
+      "dest_input": "stadium_3_capacity"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 12,
+      "src_output": "stadium_4_capacity",
+      "dest_input": "stadium_4_capacity"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 12,
+      "src_output": "stadium_5_capacity",
+      "dest_input": "stadium_5_capacity"
+    }
+  ]
+}

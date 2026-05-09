@@ -1,0 +1,153 @@
+{
+  "query": "Height difference (m) between the highest peaks of the birth countries of the Tour de France winners of 2008 and 2017.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the winner of the Tour de France in 2008.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2008"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the winner of the Tour de France in 2017.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2017"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of the winner_2008.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2008"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the winner_2017.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2017"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the highest mountain peak's elevation in birth_country_2008 in meters.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "highest_peak_2008"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the highest mountain peak's elevation in birth_country_2017 in meters.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "highest_peak_2017"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between highest_peak_2008 and highest_peak_2017.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "highest_peak_2008",
+          "value": ""
+        },
+        {
+          "variable": "highest_peak_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2008",
+      "dest_input": "winner_2008"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2017",
+      "dest_input": "winner_2017"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2008",
+      "dest_input": "birth_country_2008"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2017",
+      "dest_input": "birth_country_2017"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "highest_peak_2008",
+      "dest_input": "highest_peak_2008"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "highest_peak_2017",
+      "dest_input": "highest_peak_2017"
+    }
+  ]
+}

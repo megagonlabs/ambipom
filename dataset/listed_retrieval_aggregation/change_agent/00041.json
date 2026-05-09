@@ -1,0 +1,151 @@
+{
+  "query": "Find the Hugo Award for Best Novel winners for {2010}, {2013}, {2016}. What is the average number of pages of the winning novels (first editions)? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Hugo Award for Best Novel winner for 2010.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2010"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Hugo Award for Best Novel winner for 2013.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2013"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Hugo Award for Best Novel winner for 2016.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2016"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Look up the page count of the novel winner_2010 (first edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2010"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the page count of the novel winner_2013 (first edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2013",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2013"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the page count of the novel winner_2016 (first edition).",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2016"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Compute the average of pages_2010, pages_2013, and pages_2016.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pages_2010",
+          "value": ""
+        },
+        {
+          "variable": "pages_2013",
+          "value": ""
+        },
+        {
+          "variable": "pages_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_pages"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_2010",
+      "dest_input": "winner_2010"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2013",
+      "dest_input": "winner_2013"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2016",
+      "dest_input": "winner_2016"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "pages_2010",
+      "dest_input": "pages_2010"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "pages_2013",
+      "dest_input": "pages_2013"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "pages_2016",
+      "dest_input": "pages_2016"
+    }
+  ]
+}

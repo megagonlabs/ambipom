@@ -1,0 +1,130 @@
+{
+  "query": "Difference in number of Michelin 3-star restaurants (2020) in the birth countries of the Cannes Palme d'Or directors of 2005 and 2018.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Cannes Palme d'Or director of 2005.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "director_2005"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Cannes Palme d'Or director of 2018.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "director_2018"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of director_2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2005"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of director_2018 and count the number of Michelin 3-star restaurants in the country as of 2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "restaurants_2018"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the number of Michelin 3-star restaurants in country_2005 as of 2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "restaurants_2005"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the absolute difference between restaurants_2005 and restaurants_2018.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "restaurants_2005",
+          "value": ""
+        },
+        {
+          "variable": "restaurants_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "director_2005",
+      "dest_input": "director_2005"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "director_2018",
+      "dest_input": "director_2018"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "country_2005",
+      "dest_input": "country_2005"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "restaurants_2005",
+      "dest_input": "restaurants_2005"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "restaurants_2018",
+      "dest_input": "restaurants_2018"
+    }
+  ]
+}

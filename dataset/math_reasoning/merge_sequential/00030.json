@@ -1,0 +1,223 @@
+{
+  "query": "Alani's family decided that the children should write stories of any kind. They were then required to read all of the stories they'd written to the family at the end of the weekend. Alani wrote 20 stories in the first week, her brother Braylen wrote 40 stories, and her sister Margot wrote 60 stories. If they each doubled the number of stories they'd written in the first week in the second week, calculate the total number of stories they wrote altogether.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total number of stories Alani wrote in the second week by doubling the number of stories she wrote in the first week.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "alani_first_week_stories",
+          "value": "20"
+        }
+      ],
+      "output": [
+        "alani_second_week_stories"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of stories Braylen wrote in the second week by doubling the number of stories he wrote in the first week.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "braylen_first_week_stories",
+          "value": "40"
+        }
+      ],
+      "output": [
+        "braylen_second_week_stories"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total number of stories Margot wrote in the second week by doubling the number of stories she wrote in the first week.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "margot_first_week_stories",
+          "value": "60"
+        }
+      ],
+      "output": [
+        "margot_second_week_stories"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Determine the number of stories Alani wrote in the first week.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "alani_first_week_stories",
+          "value": "20"
+        }
+      ],
+      "output": [
+        "first_week_total"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Extract the number of stories Alani wrote in the second week.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "alani_second_week_stories",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_week_total"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total number of stories Braylen wrote over both weeks.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "braylen_first_week_stories",
+          "value": "40"
+        },
+        {
+          "variable": "braylen_second_week_stories",
+          "value": ""
+        }
+      ],
+      "output": [
+        "braylen_total_stories"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the total number of stories Margot wrote over both weeks.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "margot_first_week_stories",
+          "value": "60"
+        },
+        {
+          "variable": "margot_second_week_stories",
+          "value": ""
+        }
+      ],
+      "output": [
+        "margot_total_stories"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the total number of stories Alani wrote over both weeks.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "first_week_total",
+          "value": ""
+        },
+        {
+          "variable": "second_week_total",
+          "value": ""
+        }
+      ],
+      "output": [
+        "alani_total_stories"
+      ],
+      "prereq": [
+        -1,
+        -2
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the total number of stories written by Alani, Braylen, and Margot over both weeks.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "alani_total_stories",
+          "value": ""
+        },
+        {
+          "variable": "braylen_total_stories",
+          "value": ""
+        },
+        {
+          "variable": "margot_total_stories",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_stories"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "alani_second_week_stories",
+      "dest_input": "alani_second_week_stories"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "braylen_second_week_stories",
+      "dest_input": "braylen_second_week_stories"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 7,
+      "src_output": "margot_second_week_stories",
+      "dest_input": "margot_second_week_stories"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 9,
+      "src_output": "braylen_total_stories",
+      "dest_input": "braylen_total_stories"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 9,
+      "src_output": "margot_total_stories",
+      "dest_input": "margot_total_stories"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 8,
+      "src_output": "first_week_total",
+      "dest_input": "first_week_total"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "second_week_total",
+      "dest_input": "second_week_total"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 9,
+      "src_output": "alani_total_stories",
+      "dest_input": "alani_total_stories"
+    }
+  ]
+}

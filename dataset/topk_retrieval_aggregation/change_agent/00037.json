@@ -1,0 +1,314 @@
+{
+  "query": "What is the combined installed renewable energy capacity of the five leading countries in renewable energy?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five countries with the most installed renewable energy capacity.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_countries"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the first country from top_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the second country from top_countries.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "top_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the third country from top_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the fourth country from top_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the fifth country from top_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the installed renewable energy capacity in GW for country_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capacity_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the installed renewable energy capacity in GW for country_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capacity_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the installed renewable energy capacity in GW for country_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capacity_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the installed renewable energy capacity in GW for country_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capacity_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Find the installed renewable energy capacity in GW for country_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capacity_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Calculate the sum of capacity_1, capacity_2, capacity_3, capacity_4, and capacity_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "capacity_1",
+          "value": ""
+        },
+        {
+          "variable": "capacity_2",
+          "value": ""
+        },
+        {
+          "variable": "capacity_3",
+          "value": ""
+        },
+        {
+          "variable": "capacity_4",
+          "value": ""
+        },
+        {
+          "variable": "capacity_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_capacity"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_countries",
+      "dest_input": "top_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_countries",
+      "dest_input": "top_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_countries",
+      "dest_input": "top_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "top_countries",
+      "dest_input": "top_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "top_countries",
+      "dest_input": "top_countries"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "country_1",
+      "dest_input": "country_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "country_2",
+      "dest_input": "country_2"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "country_3",
+      "dest_input": "country_3"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "country_4",
+      "dest_input": "country_4"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "country_5",
+      "dest_input": "country_5"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 12,
+      "src_output": "capacity_1",
+      "dest_input": "capacity_1"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 12,
+      "src_output": "capacity_2",
+      "dest_input": "capacity_2"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 12,
+      "src_output": "capacity_3",
+      "dest_input": "capacity_3"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 12,
+      "src_output": "capacity_4",
+      "dest_input": "capacity_4"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 12,
+      "src_output": "capacity_5",
+      "dest_input": "capacity_5"
+    }
+  ]
+}

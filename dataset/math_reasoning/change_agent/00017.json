@@ -1,0 +1,159 @@
+{
+  "query": "Paul needed to buy some new clothes for work.  He had a 10% off coupon that he could use on his entire purchase after any other discounts.  Paul bought 4 dress shirts at $15.00 apiece, 2 pairs of pants that each cost $40.00.  He found a suit for $150.00 and 2 sweaters for $30.00 each.  When he got to the register, the clerk told him that the store was offering 20% off of everything in the store.  After the discounts and the coupon, how much did Paul spend on his new clothes?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total cost of the dress shirts by multiplying the number of shirts by the price per shirt.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_shirts",
+          "value": "4"
+        },
+        {
+          "variable": "price_per_shirt",
+          "value": "15.00"
+        }
+      ],
+      "output": [
+        "total_shirt_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total cost of the pants by multiplying the number of pants by the price per pair.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_pants",
+          "value": "2"
+        },
+        {
+          "variable": "price_per_pant",
+          "value": "40.00"
+        }
+      ],
+      "output": [
+        "total_pant_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total cost of the sweaters by multiplying the number of sweaters by the price per sweater.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "number_of_sweaters",
+          "value": "2"
+        },
+        {
+          "variable": "price_per_sweater",
+          "value": "30.00"
+        }
+      ],
+      "output": [
+        "total_sweater_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Add the total_shirt_cost, total_pant_cost, total_sweater_cost, and the cost of the suit to find the total initial cost before any discounts.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_shirt_cost",
+          "value": ""
+        },
+        {
+          "variable": "total_pant_cost",
+          "value": ""
+        },
+        {
+          "variable": "total_sweater_cost",
+          "value": ""
+        },
+        {
+          "variable": "suit_cost",
+          "value": "150.00"
+        }
+      ],
+      "output": [
+        "initial_total_cost"
+      ],
+      "prereq": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the cost after the store discount by applying a 20% discount to the initial_total_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "initial_total_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "cost_after_store_discount"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the final cost by applying a 10% coupon discount to the cost_after_store_discount.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "cost_after_store_discount",
+          "value": ""
+        }
+      ],
+      "output": [
+        "final_cost"
+      ],
+      "prereq": [
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "total_shirt_cost",
+      "dest_input": "total_shirt_cost"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "total_pant_cost",
+      "dest_input": "total_pant_cost"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "total_sweater_cost",
+      "dest_input": "total_sweater_cost"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "initial_total_cost",
+      "dest_input": "initial_total_cost"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "cost_after_store_discount",
+      "dest_input": "cost_after_store_discount"
+    }
+  ]
+}

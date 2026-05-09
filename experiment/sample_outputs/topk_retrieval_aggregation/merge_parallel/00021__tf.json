@@ -1,0 +1,194 @@
+{
+  "query": "What is the combined film count of the three most prolific Academy Award–winning directors?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the three directors with the most Academy Award wins for directing.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_directors"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the total number of feature films directed by director_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "films_directed_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second director from top_directors.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_directors",
+          "value": ""
+        }
+      ],
+      "output": [
+        "director_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the third director from top_directors.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_directors",
+          "value": ""
+        }
+      ],
+      "output": [
+        "director_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the total number of feature films directed by director_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "films_directed_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the total number of feature films directed by director_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "films_directed_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the sum of films_directed_1, films_directed_2, and films_directed_3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "films_directed_1",
+          "value": ""
+        },
+        {
+          "variable": "films_directed_2",
+          "value": ""
+        },
+        {
+          "variable": "films_directed_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_films"
+      ],
+      "prereq": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Extract the name of the director from the first element of top_directors.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_directors",
+          "value": ""
+        }
+      ],
+      "output": [
+        "director_1"
+      ],
+      "prereq": [
+        1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_directors",
+      "dest_input": "top_directors"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_directors",
+      "dest_input": "top_directors"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 10,
+      "src_output": "top_directors",
+      "dest_input": "top_directors"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 9,
+      "src_output": "films_directed_1",
+      "dest_input": "films_directed_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 7,
+      "src_output": "director_2",
+      "dest_input": "director_2"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 8,
+      "src_output": "director_3",
+      "dest_input": "director_3"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 9,
+      "src_output": "films_directed_2",
+      "dest_input": "films_directed_2"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 9,
+      "src_output": "films_directed_3",
+      "dest_input": "films_directed_3"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "query": "At the gym, every day, there are 300 towels laid out for guest use.  Each guest is given 1 towel during their visit.  The gym is open from 10:00 a.m. to 2:00 p.m. In the first hour, 50 guests enter the gym.  In the second hour, 20% more guests enter than during the first hour.  In the third hour, 25% more guests enter than in the second hour.  In the fourth hour, one third more guests enter than in the third hour.  In total, how many towels do they need to wash that evening?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of guests entering in the second hour by increasing the first_hour_guests by 20%.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "first_hour_guests",
+          "value": "50"
+        }
+      ],
+      "output": [
+        "second_hour_guests"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the number of guests entering in the third hour by increasing the second_hour_guests by 25%.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "second_hour_guests",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_hour_guests"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Calculate the number of guests entering in the fourth hour by increasing the third_hour_guests by one third.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "third_hour_guests",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fourth_hour_guests"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Determine the total number of towels needed to wash, which is equal to total_guests.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "total_guests",
+          "value": ""
+        }
+      ],
+      "output": [
+        "towels_to_wash"
+      ],
+      "prereq": [
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "second_hour_guests",
+      "dest_input": "second_hour_guests"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 3,
+      "src_output": "third_hour_guests",
+      "dest_input": "third_hour_guests"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "third_hour_guests",
+      "dest_input": "total_guests"
+    }
+  ]
+}

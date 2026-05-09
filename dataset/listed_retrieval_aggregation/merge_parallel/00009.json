@@ -1,0 +1,231 @@
+{
+  "query": "Find the Pulitzer Prize for Fiction winners for {1970}, {1975}, {1980}. What is the average number of letters in their surnames? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Pulitzer Prize for Fiction winner for 1970.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1970"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Pulitzer Prize for Fiction winner for 1975.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1975"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Pulitzer Prize for Fiction winner for 1980.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1980"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Isolate the surname of the winner from winner_1970.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_1970",
+          "value": ""
+        }
+      ],
+      "output": [
+        "surname_1970"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Isolate the surname of the winner from winner_1975.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_1975",
+          "value": ""
+        }
+      ],
+      "output": [
+        "surname_1975"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Isolate the surname of the winner from winner_1980.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_1980",
+          "value": ""
+        }
+      ],
+      "output": [
+        "surname_1980"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Count the number of letters in surname_1970.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "surname_1970",
+          "value": ""
+        }
+      ],
+      "output": [
+        "letters_1970"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Count the number of letters in surname_1975.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "surname_1975",
+          "value": ""
+        }
+      ],
+      "output": [
+        "letters_1975"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Count the number of letters in surname_1980.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "surname_1980",
+          "value": ""
+        }
+      ],
+      "output": [
+        "letters_1980"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Calculate the sum of letters_1970, letters_1975, and letters_1980.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "letters_1970",
+          "value": ""
+        },
+        {
+          "variable": "letters_1975",
+          "value": ""
+        },
+        {
+          "variable": "letters_1980",
+          "value": ""
+        }
+      ],
+      "output": [
+        "sum_letters"
+      ],
+      "prereq": [
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Divide sum_letters by 3 to get the average.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "sum_letters",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_letters"
+      ],
+      "prereq": [
+        -1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_1970",
+      "dest_input": "winner_1970"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_1975",
+      "dest_input": "winner_1975"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_1980",
+      "dest_input": "winner_1980"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "surname_1970",
+      "dest_input": "surname_1970"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "surname_1975",
+      "dest_input": "surname_1975"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 9,
+      "src_output": "surname_1980",
+      "dest_input": "surname_1980"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 10,
+      "src_output": "letters_1975",
+      "dest_input": "letters_1970"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "letters_1975",
+      "dest_input": "sum_letters"
+    }
+  ]
+}

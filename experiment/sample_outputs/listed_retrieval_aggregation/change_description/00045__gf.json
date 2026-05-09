@@ -1,0 +1,166 @@
+{
+  "query": "Find the Nobel Literature Prize winners for {2009}, {2013}, {2017}. What is the average year they published their debut novel? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Prize in Literature winner for 2009.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2009"
+        }
+      ],
+      "output": [
+        "winner_2009"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Prize in Literature winner for 2013.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2013"
+        }
+      ],
+      "output": [
+        "winner_2013"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Nobel Prize in Literature winner for 2017.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2017"
+        }
+      ],
+      "output": [
+        "winner_2017"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Find the debut novel and its year of publication for winner_2009.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_year_2009"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the debut novel and its year of publication for winner_2013.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_year_2013"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the debut novel and its year of publication for winner_2017.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_year_2017"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Compute the average of debut_year_2009, debut_year_2013, and debut_year_2017.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "debut_year_2009",
+          "value": ""
+        },
+        {
+          "variable": "debut_year_2013",
+          "value": ""
+        },
+        {
+          "variable": "debut_year_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_debut_year"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_2009",
+      "dest_input": "winner"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2013",
+      "dest_input": "winner"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2017",
+      "dest_input": "winner"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "debut_year_2009",
+      "dest_input": "debut_year_2009"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "debut_year_2013",
+      "dest_input": "debut_year_2013"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "debut_year_2017",
+      "dest_input": "debut_year_2017"
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "query": "Average age at which the Nobel Literature Prize winners of {2001}, {2006}, {2011} received their prize. Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Prize in Literature winner for the year 2001.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2001"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Prize in Literature winner for the year 2006.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2006"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Nobel Prize in Literature winner for the year 2011.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2011"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Look up the birth year of the Nobel Prize in Literature winner for 2001.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2001",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_2001"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the birth year of the Nobel Prize in Literature winner for 2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_2006"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the birth year of the Nobel Prize in Literature winner for 2011.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2011",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_2011"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the age of the Nobel Prize in Literature winner for 2001 by subtracting birth_year_2001 from 2001 and verify the birth year is valid.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_year_2001",
+          "value": ""
+        }
+      ],
+      "output": [
+        "age_2001"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the age of the Nobel Prize in Literature winner for 2006 by subtracting birth_year_2006 from 2006.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_year_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "age_2006"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Calculate the age of the Nobel Prize in Literature winner for 2011 by subtracting birth_year_2011 from 2011.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_year_2011",
+          "value": ""
+        }
+      ],
+      "output": [
+        "age_2011"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the average of age_2001, age_2006, and age_2011.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "age_2001",
+          "value": ""
+        },
+        {
+          "variable": "age_2006",
+          "value": ""
+        },
+        {
+          "variable": "age_2011",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_age"
+      ],
+      "prereq": [
+        7,
+        9,
+        10
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_2001",
+      "dest_input": "winner_2001"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2006",
+      "dest_input": "winner_2006"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2011",
+      "dest_input": "winner_2011"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "birth_year_2001",
+      "dest_input": "birth_year_2001"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 9,
+      "src_output": "birth_year_2006",
+      "dest_input": "birth_year_2006"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 10,
+      "src_output": "birth_year_2011",
+      "dest_input": "birth_year_2011"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 11,
+      "src_output": "age_2001",
+      "dest_input": "age_2001"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "age_2006",
+      "dest_input": "age_2006"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "age_2011",
+      "dest_input": "age_2011"
+    }
+  ]
+}

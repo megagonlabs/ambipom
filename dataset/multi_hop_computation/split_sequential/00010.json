@@ -1,0 +1,130 @@
+{
+  "query": "Founding year difference between the universities where the Nobel Medicine/Physiology laureates of 2005 and 2015 conducted their prize-winning research.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Medicine laureate of 2005.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "laureate_2005"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Medicine laureate of 2015.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "laureate_2015"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the institution where laureate_2005 conducted their prize-winning research.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "laureate_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "institution_2005"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the institution where laureate_2015 conducted their prize-winning research and then look up the founding year of that institution.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "laureate_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "founding_year_2015"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the founding year of institution_2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "institution_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "founding_year_2005"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the absolute difference between founding_year_2005 and founding_year_2015.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "founding_year_2005",
+          "value": ""
+        },
+        {
+          "variable": "founding_year_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "laureate_2005",
+      "dest_input": "laureate_2005"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "laureate_2015",
+      "dest_input": "laureate_2015"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "institution_2005",
+      "dest_input": "institution_2005"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "founding_year_2005",
+      "dest_input": "founding_year_2005"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "founding_year_2015",
+      "dest_input": "founding_year_2015"
+    }
+  ]
+}

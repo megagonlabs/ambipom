@@ -1,0 +1,176 @@
+{
+  "query": "Difference in number of satellites launched cumulatively (through 2020) by the birth countries of the Turing Award winners of 2008 and 2018.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the ACM Turing Award winner of 2008.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2008"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the ACM Turing Award winner of 2018.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2018"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Search for information about winner_2008.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_info"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of winner_2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2018"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the birth country from country_info.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "country_info",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2008"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the cumulative number of satellites launched by country_2018 through 2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "satellites_2018"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Look up the cumulative number of satellites launched by country_2008 through 2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "satellites_2008"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between satellites_2008 and satellites_2018.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "satellites_2008",
+          "value": ""
+        },
+        {
+          "variable": "satellites_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "satellite_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2008",
+      "dest_input": "winner_2008"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2018",
+      "dest_input": "winner_2018"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "country_2018",
+      "dest_input": "country_2018"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "satellites_2008",
+      "dest_input": "satellites_2008"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "satellites_2018",
+      "dest_input": "satellites_2018"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "country_info",
+      "dest_input": "country_info"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "country_2008",
+      "dest_input": "country_2008"
+    }
+  ]
+}

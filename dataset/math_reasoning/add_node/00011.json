@@ -1,0 +1,143 @@
+{
+  "query": "Lola plays basketball on her school team. Her team scored twice at many points at their last home game than their first away game. At the second away game, they scored eighteen points more than the previous away game. At the third away game, they scored two more points than at their second. If Lola’s team scored 62 points at their last home game, how many points do they have to score in their next game to bring their cumulative points up to four times the score from their last home game?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the score of the first away game using the equation: home_game_score = 2 * first_away_game_score.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "home_game_score",
+          "value": "62"
+        }
+      ],
+      "output": [
+        "first_away_game_score"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the target cumulative score by multiplying home_game_score by four.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "home_game_score",
+          "value": "62"
+        }
+      ],
+      "output": [
+        "target_cumulative_score"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the score of the second away game by adding eighteen to the first_away_game_score.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "first_away_game_score",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_away_game_score"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total cumulative score by summing home_game_score, first_away_game_score, second_away_game_score, and third_away_game_score.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "home_game_score",
+          "value": "62"
+        },
+        {
+          "variable": "first_away_game_score",
+          "value": ""
+        },
+        {
+          "variable": "second_away_game_score",
+          "value": ""
+        },
+        {
+          "variable": "third_away_game_score",
+          "value": ""
+        }
+      ],
+      "output": [
+        "cumulative_score"
+      ],
+      "prereq": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the score needed in the next game by subtracting cumulative_score from target_cumulative_score.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "cumulative_score",
+          "value": ""
+        },
+        {
+          "variable": "target_cumulative_score",
+          "value": ""
+        }
+      ],
+      "output": [
+        "next_game_score"
+      ],
+      "prereq": [
+        4,
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "first_away_game_score",
+      "dest_input": "first_away_game_score"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "first_away_game_score",
+      "dest_input": "first_away_game_score"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "target_cumulative_score",
+      "dest_input": "target_cumulative_score"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "second_away_game_score",
+      "dest_input": "second_away_game_score"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "second_away_game_score",
+      "dest_input": "third_away_game_score"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "cumulative_score",
+      "dest_input": "cumulative_score"
+    }
+  ]
+}

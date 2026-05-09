@@ -1,0 +1,291 @@
+{
+  "query": "What is the average number of employees of the five largest companies in the world by revenue?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five largest companies in the world by annual revenue.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "largest_companies"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first company from largest_companies.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "largest_companies",
+          "value": ""
+        }
+      ],
+      "output": [
+        "company_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second company from largest_companies.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "largest_companies",
+          "value": ""
+        }
+      ],
+      "output": [
+        "company_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the third company from largest_companies.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "largest_companies",
+          "value": ""
+        }
+      ],
+      "output": [
+        "company_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the name of the fourth company from largest_companies.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "largest_companies",
+          "value": ""
+        }
+      ],
+      "output": [
+        "company_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the name of the fifth company from largest_companies and find the number of employees for that company.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "largest_companies",
+          "value": ""
+        }
+      ],
+      "output": [
+        "employees_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the number of employees for company_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "company_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "employees_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the number of employees for company_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "company_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "employees_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the number of employees for company_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "company_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "employees_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the number of employees for company_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "company_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "employees_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the average of employees_1, employees_2, employees_3, employees_4, and employees_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "employees_1",
+          "value": ""
+        },
+        {
+          "variable": "employees_2",
+          "value": ""
+        },
+        {
+          "variable": "employees_3",
+          "value": ""
+        },
+        {
+          "variable": "employees_4",
+          "value": ""
+        },
+        {
+          "variable": "employees_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_employees"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "largest_companies",
+      "dest_input": "largest_companies"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "largest_companies",
+      "dest_input": "largest_companies"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "largest_companies",
+      "dest_input": "largest_companies"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "largest_companies",
+      "dest_input": "largest_companies"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "largest_companies",
+      "dest_input": "largest_companies"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "company_1",
+      "dest_input": "company_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "company_2",
+      "dest_input": "company_2"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "company_3",
+      "dest_input": "company_3"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "company_4",
+      "dest_input": "company_4"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 11,
+      "src_output": "employees_1",
+      "dest_input": "employees_1"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "employees_2",
+      "dest_input": "employees_2"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "employees_3",
+      "dest_input": "employees_3"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "employees_4",
+      "dest_input": "employees_4"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "employees_5",
+      "dest_input": "employees_5"
+    }
+  ]
+}

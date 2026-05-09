@@ -1,0 +1,291 @@
+{
+  "query": "What is the total prize money awarded at the five richest horse racing events in the world?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five horse racing events with the highest total prize money in the world.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_five_events"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the second event from top_five_events.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_five_events",
+          "value": ""
+        }
+      ],
+      "output": [
+        "event_2_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the third event from top_five_events.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_five_events",
+          "value": ""
+        }
+      ],
+      "output": [
+        "event_3_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the fourth event from top_five_events.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_five_events",
+          "value": ""
+        }
+      ],
+      "output": [
+        "event_4_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the name of the fifth event from top_five_events.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_five_events",
+          "value": ""
+        }
+      ],
+      "output": [
+        "event_5_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the total prize money for event_1_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "event_1_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "event_1_prize"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the total prize money for event_2_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "event_2_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "event_2_prize"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the total prize money for event_3_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "event_3_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "event_3_prize"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the total prize money for event_4_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "event_4_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "event_4_prize"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the total prize money for event_5_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "event_5_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "event_5_prize"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the sum of event_1_prize, event_2_prize, event_3_prize, event_4_prize, and event_5_prize.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "event_1_prize",
+          "value": ""
+        },
+        {
+          "variable": "event_2_prize",
+          "value": ""
+        },
+        {
+          "variable": "event_3_prize",
+          "value": ""
+        },
+        {
+          "variable": "event_4_prize",
+          "value": ""
+        },
+        {
+          "variable": "event_5_prize",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_prize_money"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_five_events",
+      "dest_input": "top_five_events"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_five_events",
+      "dest_input": "top_five_events"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_five_events",
+      "dest_input": "top_five_events"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "top_five_events",
+      "dest_input": "top_five_events"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "top_five_events",
+      "dest_input": "event_1_name"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "event_2_name",
+      "dest_input": "event_2_name"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "event_3_name",
+      "dest_input": "event_3_name"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "event_4_name",
+      "dest_input": "event_4_name"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "event_5_name",
+      "dest_input": "event_5_name"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "event_1_prize",
+      "dest_input": "event_1_prize"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 11,
+      "src_output": "event_2_prize",
+      "dest_input": "event_2_prize"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "event_3_prize",
+      "dest_input": "event_3_prize"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "event_4_prize",
+      "dest_input": "event_4_prize"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "event_5_prize",
+      "dest_input": "event_5_prize"
+    }
+  ]
+}

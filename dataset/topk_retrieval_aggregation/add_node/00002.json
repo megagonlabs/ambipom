@@ -1,0 +1,291 @@
+{
+  "query": "What is the average minimum wage (in USD) of the five richest countries by total GDP?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five countries with the highest total GDP.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_gdp_countries"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first country from top_gdp_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_gdp_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second country from top_gdp_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_gdp_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the third country from top_gdp_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_gdp_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the name of the fifth country from top_gdp_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_gdp_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the national minimum wage in USD for country_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "min_wage_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the national minimum wage in USD for country_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "min_wage_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the national minimum wage in USD for country_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "min_wage_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the national minimum wage in USD for country_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "min_wage_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the national minimum wage in USD for country_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "min_wage_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the average of min_wage_1, min_wage_2, min_wage_3, min_wage_4, and min_wage_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "min_wage_1",
+          "value": ""
+        },
+        {
+          "variable": "min_wage_2",
+          "value": ""
+        },
+        {
+          "variable": "min_wage_3",
+          "value": ""
+        },
+        {
+          "variable": "min_wage_4",
+          "value": ""
+        },
+        {
+          "variable": "min_wage_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_min_wage"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_gdp_countries",
+      "dest_input": "top_gdp_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_gdp_countries",
+      "dest_input": "top_gdp_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_gdp_countries",
+      "dest_input": "top_gdp_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "top_gdp_countries",
+      "dest_input": "top_gdp_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "top_gdp_countries",
+      "dest_input": "country_4"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "country_1",
+      "dest_input": "country_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "country_2",
+      "dest_input": "country_2"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "country_3",
+      "dest_input": "country_3"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "country_5",
+      "dest_input": "country_5"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 11,
+      "src_output": "min_wage_1",
+      "dest_input": "min_wage_1"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "min_wage_2",
+      "dest_input": "min_wage_2"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "min_wage_3",
+      "dest_input": "min_wage_3"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "min_wage_4",
+      "dest_input": "min_wage_4"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "min_wage_5",
+      "dest_input": "min_wage_5"
+    }
+  ]
+}

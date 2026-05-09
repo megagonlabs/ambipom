@@ -1,0 +1,190 @@
+{
+  "query": "A mother is serving pizza at her son's birthday party.  After buying 5 pizzas, she must decide how many slices to divide each pizza into so that everyone at the party ends up with an equal number of slices.  There are a total of 20 children at the party, and she can choose to divide each pizza into either 6, 8, or 10 slices.  Assuming she does not want to throw away any pizza, how should many slices should she choose to divide the pizzas into to make sure everyone receives an equal amount?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total number of slices if each pizza is divided into 6 slices.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_pizzas",
+          "value": "5"
+        },
+        {
+          "variable": "slices_per_pizza",
+          "value": "6"
+        }
+      ],
+      "output": [
+        "total_slices_6"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of slices if each pizza is divided into 8 slices.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_pizzas",
+          "value": "5"
+        },
+        {
+          "variable": "slices_per_pizza",
+          "value": "8"
+        }
+      ],
+      "output": [
+        "total_slices_8"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total number of slices if each pizza is divided into 10 slices.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "number_of_pizzas",
+          "value": "5"
+        },
+        {
+          "variable": "slices_per_pizza",
+          "value": "10"
+        }
+      ],
+      "output": [
+        "total_slices_10"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Determine if total_slices_6 can be evenly divided by number_of_children.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_slices_6",
+          "value": ""
+        },
+        {
+          "variable": "number_of_children",
+          "value": "20"
+        }
+      ],
+      "output": [
+        "is_divisible_6"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Determine if total_slices_8 can be evenly divided by number_of_children.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_slices_8",
+          "value": ""
+        },
+        {
+          "variable": "number_of_children",
+          "value": "20"
+        }
+      ],
+      "output": [
+        "is_divisible_8"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Determine if total_slices_10 can be evenly divided by number_of_children.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_slices_10",
+          "value": ""
+        },
+        {
+          "variable": "number_of_children",
+          "value": "20"
+        }
+      ],
+      "output": [
+        "is_divisible_10"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Select the slices_per_pizza option that results in an equal distribution of slices among the children without any remainder.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "is_divisible_6",
+          "value": ""
+        },
+        {
+          "variable": "is_divisible_8",
+          "value": ""
+        },
+        {
+          "variable": "is_divisible_10",
+          "value": ""
+        }
+      ],
+      "output": [
+        "optimal_slices_per_pizza"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "total_slices_6",
+      "dest_input": "total_slices_6"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "total_slices_8",
+      "dest_input": "total_slices_8"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "total_slices_10",
+      "dest_input": "total_slices_10"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "is_divisible_6",
+      "dest_input": "is_divisible_6"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "is_divisible_8",
+      "dest_input": "is_divisible_8"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "is_divisible_10",
+      "dest_input": "is_divisible_10"
+    }
+  ]
+}

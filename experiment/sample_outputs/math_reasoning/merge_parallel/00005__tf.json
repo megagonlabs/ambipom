@@ -1,0 +1,223 @@
+{
+  "query": "Colby loves going to the movies and every month his parents give him $150 to spend at the movies. Tickets for Fridays and Saturdays cost $10. Tickets for any other day cost $7. Popcorn costs $8 and boxes of candy cost $2. It is the last day of the month and it's a Friday. He wants to make sure he gets a popcorn and box of candy that night. How many movies can he see if he already saw 5 movies on a Friday or Saturday, 8 movies on other days, had 2 tubs of popcorn, and four boxes of candy that month?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total cost of movies seen on Fridays and Saturdays. Use friday_saturday_movies and friday_saturday_ticket_price.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "friday_saturday_movies",
+          "value": "5"
+        },
+        {
+          "variable": "friday_saturday_ticket_price",
+          "value": "10"
+        }
+      ],
+      "output": [
+        "friday_saturday_movies_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total cost of movies seen on other days. Use other_days_movies and other_days_ticket_price.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "other_days_movies",
+          "value": "8"
+        },
+        {
+          "variable": "other_days_ticket_price",
+          "value": "7"
+        }
+      ],
+      "output": [
+        "other_days_movies_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total cost of popcorn. Use popcorn_count and popcorn_price.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "popcorn_count",
+          "value": "2"
+        },
+        {
+          "variable": "popcorn_price",
+          "value": "8"
+        }
+      ],
+      "output": [
+        "popcorn_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total cost of candy. Use candy_count and candy_price.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "candy_count",
+          "value": "4"
+        },
+        {
+          "variable": "candy_price",
+          "value": "2"
+        }
+      ],
+      "output": [
+        "candy_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the cost for one more movie, popcorn, and candy on a Friday. Use friday_saturday_ticket_price, popcorn_price, and candy_price.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "friday_saturday_ticket_price",
+          "value": "10"
+        },
+        {
+          "variable": "popcorn_price",
+          "value": "8"
+        },
+        {
+          "variable": "candy_price",
+          "value": "2"
+        }
+      ],
+      "output": [
+        "one_more_movie_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total spent so far. Use friday_saturday_movies_cost, other_days_movies_cost, popcorn_cost, and candy_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "friday_saturday_movies_cost",
+          "value": ""
+        },
+        {
+          "variable": "other_days_movies_cost",
+          "value": ""
+        },
+        {
+          "variable": "popcorn_cost",
+          "value": ""
+        },
+        {
+          "variable": "candy_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_spent_so_far"
+      ],
+      "prereq": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Determine how many more movies Colby can see. Use remaining_budget and one_more_movie_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "remaining_budget",
+          "value": ""
+        },
+        {
+          "variable": "one_more_movie_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "additional_movies"
+      ],
+      "prereq": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Retrieve the monthly budget and compute the remaining budget by subtracting total_spent_so_far from the monthly budget.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "monthly_budget",
+          "value": "150"
+        },
+        {
+          "variable": "total_spent_so_far",
+          "value": ""
+        }
+      ],
+      "output": [
+        "remaining_budget"
+      ],
+      "prereq": [
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "friday_saturday_movies_cost",
+      "dest_input": "friday_saturday_movies_cost"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "other_days_movies_cost",
+      "dest_input": "other_days_movies_cost"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "popcorn_cost",
+      "dest_input": "popcorn_cost"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "candy_cost",
+      "dest_input": "candy_cost"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "one_more_movie_cost",
+      "dest_input": "one_more_movie_cost"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 10,
+      "src_output": "total_spent_so_far",
+      "dest_input": "monthly_budget"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 10,
+      "src_output": "total_spent_so_far",
+      "dest_input": "total_spent_so_far"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "query": "Kimberly loves gumballs and will trade almost anything she owns for them. A friend knows that Kim has a bunch of shiny new earrings that she loves. She agrees to give Kim 9 gumballs for each pair of earrings. On the first day, Kim brings her 3 pairs of earrings. On the second she brings her twice as many. On the third day, she brings 1 less than she brought on the second day. If Kim eats 3 gumballs a day, how many days will the gumballs last?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of pairs of earrings Kim brings on the second day by multiplying the number of pairs on the first day by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pairs_first_day",
+          "value": "3"
+        }
+      ],
+      "output": [
+        "pairs_second_day"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of gumballs Kim receives by multiplying the total number of pairs of earrings by 9.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_pairs",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_gumballs"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Calculate the number of pairs of earrings Kim brings on the third day by subtracting 1 from the number of pairs on the second day.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pairs_second_day",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pairs_third_day"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total number of pairs of earrings Kim brings on the first day.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pairs_first_day",
+          "value": "3"
+        }
+      ],
+      "output": [
+        "total_pairs_first_day"
+      ],
+      "prereq": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total number of pairs of earrings Kim brings on the second and third days combined.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pairs_second_day",
+          "value": ""
+        },
+        {
+          "variable": "pairs_third_day",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_pairs_second_third_day"
+      ],
+      "prereq": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Sum the total pairs over the first, second, and third days to get the overall total.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_pairs_first_day",
+          "value": ""
+        },
+        {
+          "variable": "total_pairs_second_third_day",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_pairs"
+      ],
+      "prereq": [
+        -1,
+        -2
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the number of days the gumballs will last by dividing the total number of gumballs by the number of gumballs Kim eats per day.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_gumballs",
+          "value": ""
+        },
+        {
+          "variable": "gumballs_per_day",
+          "value": "3"
+        }
+      ],
+      "output": [
+        "days_gumballs_last"
+      ],
+      "prereq": [
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "pairs_second_day",
+      "dest_input": "pairs_second_day"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "pairs_second_day",
+      "dest_input": "pairs_first_day"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "pairs_second_day",
+      "dest_input": "pairs_second_day"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "pairs_second_day",
+      "dest_input": "total_pairs_first_day"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "total_gumballs",
+      "dest_input": "total_gumballs"
+    }
+  ]
+}

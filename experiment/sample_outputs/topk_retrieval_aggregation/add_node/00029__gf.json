@@ -1,0 +1,314 @@
+{
+  "query": "What is the average IMDb rating of the films that won the Palme d'Or at Cannes in the last five years?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Palme d'Or winners from the last five Cannes Film Festivals.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "palme_dor_winners"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 12,
+      "task": "Extract the film title from the first Palme d'Or winner.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "palme_dor_winners",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_title_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "task": "Extract the film title from the second Palme d'Or winner.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "palme_dor_winners",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_title_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the film title from the third Palme d'Or winner.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "palme_dor_winners",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_title_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the film title from the fourth Palme d'Or winner.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "palme_dor_winners",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_title_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the film title from the fifth Palme d'Or winner.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "palme_dor_winners",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_title_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the IMDb rating for the film with the title film_title_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "film_title_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "imdb_rating_1"
+      ],
+      "prereq": [
+        12
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the IMDb rating for the film with the title film_title_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "film_title_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "imdb_rating_2"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the IMDb rating for the film with the title film_title_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "film_title_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "imdb_rating_3"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the IMDb rating for the film with the title film_title_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "film_title_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "imdb_rating_4"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the IMDb rating for the film with the title film_title_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "film_title_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "imdb_rating_5"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the average of imdb_rating_1, imdb_rating_2, imdb_rating_3, imdb_rating_4, and imdb_rating_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "imdb_rating_1",
+          "value": ""
+        },
+        {
+          "variable": "imdb_rating_2",
+          "value": ""
+        },
+        {
+          "variable": "imdb_rating_3",
+          "value": ""
+        },
+        {
+          "variable": "imdb_rating_4",
+          "value": ""
+        },
+        {
+          "variable": "imdb_rating_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_imdb_rating"
+      ],
+      "prereq": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "palme_dor_winners",
+      "dest_input": "palme_dor_winners"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "palme_dor_winners",
+      "dest_input": "palme_dor_winners"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "palme_dor_winners",
+      "dest_input": "palme_dor_winners"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "palme_dor_winners",
+      "dest_input": "palme_dor_winners"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 12,
+      "src_output": "palme_dor_winners",
+      "dest_input": "palme_dor_winners"
+    },
+    {
+      "src_node": 12,
+      "dest_node": 6,
+      "src_output": "film_title_1",
+      "dest_input": "film_title_1"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "film_title_2",
+      "dest_input": "film_title_2"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "film_title_3",
+      "dest_input": "film_title_3"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "film_title_4",
+      "dest_input": "film_title_4"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "film_title_5",
+      "dest_input": "film_title_5"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "imdb_rating_1",
+      "dest_input": "imdb_rating_1"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 11,
+      "src_output": "imdb_rating_2",
+      "dest_input": "imdb_rating_2"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "imdb_rating_3",
+      "dest_input": "imdb_rating_3"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "imdb_rating_4",
+      "dest_input": "imdb_rating_4"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "imdb_rating_5",
+      "dest_input": "imdb_rating_5"
+    }
+  ]
+}

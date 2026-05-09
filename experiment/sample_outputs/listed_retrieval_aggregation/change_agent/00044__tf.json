@@ -1,0 +1,155 @@
+{
+  "query": "What is the distance in kilometers between the capital cities of the home countries of the Booker Prize winners in {1988} and {1999}? Return one integer.",
+  "nodes": [
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner for 1999.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1999"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Identify the home country of the winner_1988.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1988",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_1988"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Identify the home country of the winner_1999.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1999",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_1999"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the capital city and geographic coordinates of country_1988.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_1988",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_1988",
+        "coordinates_1988"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the capital city and geographic coordinates of country_1999.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_1999",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_1999",
+        "coordinates_1999"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the great-circle distance in kilometers between coordinates_1988 and coordinates_1999. Round to the nearest integer.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "coordinates_1988",
+          "value": ""
+        },
+        {
+          "variable": "coordinates_1999",
+          "value": ""
+        }
+      ],
+      "output": [
+        "distance_km"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the Booker Prize winner for 1988.",
+      "agent_name": "code",
+      "input": [],
+      "output": [
+        "winner_1988"
+      ],
+      "prereq": []
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_1999",
+      "dest_input": "winner_1999"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "country_1988",
+      "dest_input": "country_1988"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "country_1999",
+      "dest_input": "country_1999"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "coordinates_1988",
+      "dest_input": "coordinates_1988"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "coordinates_1999",
+      "dest_input": "coordinates_1999"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 3,
+      "src_output": "winner_1988",
+      "dest_input": "winner_1988"
+    }
+  ]
+}

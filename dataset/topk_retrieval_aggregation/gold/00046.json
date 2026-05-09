@@ -1,0 +1,314 @@
+{
+  "query": "What is the average top speed of the five fastest land animals?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five fastest land animals.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "fastest_land_animals"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first fastest land animal from fastest_land_animals.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "fastest_land_animals",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_fastest_animal"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second fastest land animal from fastest_land_animals.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "fastest_land_animals",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_fastest_animal"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the third fastest land animal from fastest_land_animals.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "fastest_land_animals",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_fastest_animal"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the name of the fourth fastest land animal from fastest_land_animals.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "fastest_land_animals",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fourth_fastest_animal"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the name of the fifth fastest land animal from fastest_land_animals.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "fastest_land_animals",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fifth_fastest_animal"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the top speed in km/h of first_fastest_animal.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "first_fastest_animal",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_animal_speed"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the top speed in km/h of second_fastest_animal.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "second_fastest_animal",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_animal_speed"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the top speed in km/h of third_fastest_animal.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "third_fastest_animal",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_animal_speed"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the top speed in km/h of fourth_fastest_animal.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "fourth_fastest_animal",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fourth_animal_speed"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Find the top speed in km/h of fifth_fastest_animal.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "fifth_fastest_animal",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fifth_animal_speed"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Calculate the average of first_animal_speed, second_animal_speed, third_animal_speed, fourth_animal_speed, and fifth_animal_speed.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "first_animal_speed",
+          "value": ""
+        },
+        {
+          "variable": "second_animal_speed",
+          "value": ""
+        },
+        {
+          "variable": "third_animal_speed",
+          "value": ""
+        },
+        {
+          "variable": "fourth_animal_speed",
+          "value": ""
+        },
+        {
+          "variable": "fifth_animal_speed",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_top_speed"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "fastest_land_animals",
+      "dest_input": "fastest_land_animals"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "fastest_land_animals",
+      "dest_input": "fastest_land_animals"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "fastest_land_animals",
+      "dest_input": "fastest_land_animals"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "fastest_land_animals",
+      "dest_input": "fastest_land_animals"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "fastest_land_animals",
+      "dest_input": "fastest_land_animals"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "first_fastest_animal",
+      "dest_input": "first_fastest_animal"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "second_fastest_animal",
+      "dest_input": "second_fastest_animal"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "third_fastest_animal",
+      "dest_input": "third_fastest_animal"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "fourth_fastest_animal",
+      "dest_input": "fourth_fastest_animal"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "fifth_fastest_animal",
+      "dest_input": "fifth_fastest_animal"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 12,
+      "src_output": "first_animal_speed",
+      "dest_input": "first_animal_speed"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 12,
+      "src_output": "second_animal_speed",
+      "dest_input": "second_animal_speed"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 12,
+      "src_output": "third_animal_speed",
+      "dest_input": "third_animal_speed"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 12,
+      "src_output": "fourth_animal_speed",
+      "dest_input": "fourth_animal_speed"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 12,
+      "src_output": "fifth_animal_speed",
+      "dest_input": "fifth_animal_speed"
+    }
+  ]
+}

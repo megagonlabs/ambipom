@@ -1,0 +1,151 @@
+{
+  "query": "What is the average number of pages of the Hugo Award for Best Novel winners in {1995}, {2000}, {2005} (first editions)? Return one number.",
+  "nodes": [
+    {
+      "id": 2,
+      "task": "Find the Hugo Award for Best Novel winner for the year 2000.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2000"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Hugo Award for Best Novel winner for the year 2005.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2005"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Look up the page count of the first published edition of the novel winner_2000.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2000",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2000"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the page count of the first published edition of the novel winner_2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2005"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the title of the novel that won the Hugo Award for Best Novel in 1995.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "title_1995"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 8,
+      "task": "Search for the page count of the first published edition of the novel titled title_1995.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "title_1995",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_1995"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the average of pages_1995, pages_2000, and pages_2005.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pages_1995",
+          "value": ""
+        },
+        {
+          "variable": "pages_2000",
+          "value": ""
+        },
+        {
+          "variable": "pages_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_pages"
+      ],
+      "prereq": [
+        -2,
+        4,
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2000",
+      "dest_input": "winner_2000"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "winner_2005",
+      "dest_input": "winner_2005"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "pages_2000",
+      "dest_input": "pages_2000"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 9,
+      "src_output": "pages_2005",
+      "dest_input": "pages_2005"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "title_1995",
+      "dest_input": "title_1995"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 9,
+      "src_output": "pages_1995",
+      "dest_input": "pages_1995"
+    }
+  ]
+}

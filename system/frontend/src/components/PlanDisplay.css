@@ -1,0 +1,139 @@
+/* components/PlanDisplay.css */
+.plan-display {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--bg-app);
+  /* Container-query setup: header-center wraps below at narrow widths (see @container rule below). */
+  container-type: inline-size;
+  container-name: plan-area;
+}
+
+.plan-display-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: white;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--bp-typography-color-muted);
+}
+
+.header-left .bp6-icon {
+  color: var(--bp-typography-color-muted);
+}
+
+.header-left h3 {
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--bp-typography-color-default);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.plan-stats {
+  font-size: var(--fs-md);
+  color: var(--bp-typography-color-muted);
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 8px;
+}
+
+/* Container query: when plan area is narrow, push header-center
+   (history + undo/redo) onto a second line below header-left and header-right. */
+@container plan-area (max-width: 750px) {
+  .header-center {
+    order: 3;
+    flex: 1 1 100%;
+  }
+
+  .header-right {
+    order: 2;
+  }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  row-gap: 4px;
+  column-gap: 8px;
+  padding-left: 8px;
+}
+
+/* Allow toolbar to wrap at the SAME breakpoint as the top header. */
+@container plan-area (max-width: 900px) {
+  .header-controls {
+    flex-wrap: wrap;
+  }
+}
+
+.plan-canvas-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-app);
+  background-image: radial-gradient(
+    circle,
+    var(--border-subtle) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+}
+
+.plan-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.1s ease-out;
+}
+
+/* Edge styling (let React Flow's default z-index put nodes above edges) */
+.react-flow__connection-line {
+  stroke: var(--edge-color) !important;
+  stroke-width: 2px !important;
+}
+
+.react-flow__edge path {
+  stroke: var(--edge-color) !important;
+  stroke-width: 2px !important;
+}
+
+.react-flow__edge.selected path {
+  stroke: var(--bp-intent-success-rest) !important;
+  stroke-width: 5px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .plan-display-header {
+    padding: 12px 16px;
+  }
+
+  .header-left h3 {
+    font-size: 1rem;
+  }
+}

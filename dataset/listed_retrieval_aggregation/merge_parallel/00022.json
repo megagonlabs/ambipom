@@ -1,0 +1,165 @@
+{
+  "query": "What is the total number of chapters across all four books of the Earthsea Cycle by Ursula K. Le Guin (original editions)? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "List the first four books of the Earthsea Cycle: A Wizard of Earthsea, The Tombs of Atuan, The Farthest Shore, Tehanu.",
+      "agent_name": "commonsense",
+      "input": [],
+      "output": [
+        "book_list"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Look up the chapter count of A Wizard of Earthsea.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "book_name",
+          "value": "A Wizard of Earthsea"
+        }
+      ],
+      "output": [
+        "wizard_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Look up the chapter count of The Tombs of Atuan.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "book_name",
+          "value": "The Tombs of Atuan"
+        }
+      ],
+      "output": [
+        "atuan_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Look up the chapter count of The Farthest Shore.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "book_name",
+          "value": "The Farthest Shore"
+        }
+      ],
+      "output": [
+        "shore_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the chapter count of Tehanu.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "book_name",
+          "value": "Tehanu"
+        }
+      ],
+      "output": [
+        "tehanu_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Sum the wizard_chapters and atuan_chapters to calculate partial_sum1.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "wizard_chapters",
+          "value": ""
+        },
+        {
+          "variable": "atuan_chapters",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_sum1"
+      ],
+      "prereq": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Sum the shore_chapters and tehanu_chapters to calculate partial_sum2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "shore_chapters",
+          "value": ""
+        },
+        {
+          "variable": "tehanu_chapters",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_sum2"
+      ],
+      "prereq": [
+        4,
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "book_list",
+      "dest_input": "book_name"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "book_list",
+      "dest_input": "book_name"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "book_list",
+      "dest_input": "book_name"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "book_list",
+      "dest_input": "book_name"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "tehanu_chapters",
+      "dest_input": "wizard_chapters"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "tehanu_chapters",
+      "dest_input": "shore_chapters"
+    }
+  ]
+}

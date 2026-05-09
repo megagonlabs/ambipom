@@ -1,0 +1,151 @@
+{
+  "query": "What is the average birth year of the Booker Prize winners from {1969}, {1979}, {1989}? Return one number.",
+  "nodes": [
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner for the year 1979.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1979"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Booker Prize winner for the year 1989.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1989"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Look up the birth year of the winner_1979.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1979",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_1979"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the birth year of the winner_1989.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1989",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_1989"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the name of the Booker Prize winner for the year 1969.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_name_1969"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 8,
+      "task": "Research the birth year of the winner_name_1969.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_name_1969",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_1969"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the average of birth_year_1969, birth_year_1979, and birth_year_1989.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_year_1969",
+          "value": ""
+        },
+        {
+          "variable": "birth_year_1979",
+          "value": ""
+        },
+        {
+          "variable": "birth_year_1989",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_birth_year"
+      ],
+      "prereq": [
+        -2,
+        4,
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_1979",
+      "dest_input": "winner_1979"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "winner_1989",
+      "dest_input": "winner_1989"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "birth_year_1979",
+      "dest_input": "birth_year_1979"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 9,
+      "src_output": "birth_year_1989",
+      "dest_input": "birth_year_1989"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "winner_name_1969",
+      "dest_input": "winner_name_1969"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 9,
+      "src_output": "birth_year_1969",
+      "dest_input": "birth_year_1969"
+    }
+  ]
+}

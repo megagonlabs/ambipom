@@ -1,0 +1,159 @@
+{
+  "query": "Jake is watching a new show, and is worried about how much time he has spent watching it. He spent half the day on Monday watching his show, 4 hours on Tuesday watching his show, a quarter of the day on Wednesday watching his show, and he spent half as much time watching the show on Thursday as he had done in total throughout the previous few days. On Friday, he finally finished watching it. If the entire show is 52 hours long, how many hours did Jake watch on Friday?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total hours Jake watched on Monday given he spent half the day watching.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "hours_in_a_day",
+          "value": "24"
+        }
+      ],
+      "output": [
+        "monday_hours"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total hours Jake watched on Wednesday given he spent a quarter of the day watching.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "hours_in_a_day",
+          "value": "24"
+        }
+      ],
+      "output": [
+        "wednesday_hours"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total hours Jake watched from Monday to Wednesday.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "monday_hours",
+          "value": ""
+        },
+        {
+          "variable": "tuesday_hours",
+          "value": "4"
+        },
+        {
+          "variable": "wednesday_hours",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_hours_monday_to_wednesday"
+      ],
+      "prereq": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the hours Jake watched on Thursday by subtracting the total hours watched from Monday to Wednesday from a fixed value of 20. Use Jake's known total weekly hours to update the record instead of the placeholder, overwriting the data.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_hours_monday_to_wednesday",
+          "value": ""
+        }
+      ],
+      "output": [
+        "thursday_hours"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total hours Jake watched from Monday to Thursday.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_hours_monday_to_wednesday",
+          "value": ""
+        },
+        {
+          "variable": "thursday_hours",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_hours_monday_to_thursday"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the hours Jake watched on Friday given the entire show is 52 hours long.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_hours_monday_to_thursday",
+          "value": ""
+        },
+        {
+          "variable": "total_show_hours",
+          "value": "52"
+        }
+      ],
+      "output": [
+        "friday_hours"
+      ],
+      "prereq": [
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "monday_hours",
+      "dest_input": "monday_hours"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 3,
+      "src_output": "wednesday_hours",
+      "dest_input": "wednesday_hours"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "total_hours_monday_to_wednesday",
+      "dest_input": "total_hours_monday_to_wednesday"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "total_hours_monday_to_wednesday",
+      "dest_input": "total_hours_monday_to_wednesday"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "thursday_hours",
+      "dest_input": "thursday_hours"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "total_hours_monday_to_thursday",
+      "dest_input": "total_hours_monday_to_thursday"
+    }
+  ]
+}

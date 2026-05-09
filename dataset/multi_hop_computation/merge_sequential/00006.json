@@ -1,0 +1,176 @@
+{
+  "query": "Number-of-official-languages difference between the birth countries of the World Chess Champions who held the title in 2004 and 2018.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the World Chess Champion in 2004.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "champion_2004"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the World Chess Champion in 2018.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "champion_2018"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of champion_2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "champion_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2004"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Search online for the full name of champion_2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "champion_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "champion_full_name_2018"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the number of official languages recognized in birth_country_2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "official_languages_2004"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the birth country of champion_full_name_2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "champion_full_name_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2018"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Count the number of official languages recognized in birth_country_2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "official_languages_2018"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between official_languages_2004 and official_languages_2018.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "official_languages_2004",
+          "value": ""
+        },
+        {
+          "variable": "official_languages_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "language_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "champion_2004",
+      "dest_input": "champion_2004"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "champion_2018",
+      "dest_input": "champion_2018"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2004",
+      "dest_input": "birth_country_2004"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "official_languages_2004",
+      "dest_input": "official_languages_2004"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "official_languages_2018",
+      "dest_input": "official_languages_2018"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "champion_full_name_2018",
+      "dest_input": "champion_full_name_2018"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "birth_country_2018",
+      "dest_input": "birth_country_2018"
+    }
+  ]
+}

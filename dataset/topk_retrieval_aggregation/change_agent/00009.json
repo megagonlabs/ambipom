@@ -1,0 +1,200 @@
+{
+  "query": "What is the combined number of Grand Slam tennis titles won by the top three all-time leaders in men's Grand Slam wins?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the top three male tennis players with the most Grand Slam titles.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_three_players"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first player from top_three_players.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_three_players",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_player"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second player from top_three_players.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_three_players",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_player"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the third player from top_three_players.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_three_players",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_player"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the total number of Grand Slam titles won by first_player.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "first_player",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_player_titles"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the total number of Grand Slam titles won by second_player.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "second_player",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_player_titles"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the total number of Grand Slam titles won by third_player.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "third_player",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_player_titles"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the sum of first_player_titles, second_player_titles, and third_player_titles.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "first_player_titles",
+          "value": ""
+        },
+        {
+          "variable": "second_player_titles",
+          "value": ""
+        },
+        {
+          "variable": "third_player_titles",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_grand_slam_titles"
+      ],
+      "prereq": [
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_three_players",
+      "dest_input": "top_three_players"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_three_players",
+      "dest_input": "top_three_players"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_three_players",
+      "dest_input": "top_three_players"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "first_player",
+      "dest_input": "first_player"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "second_player",
+      "dest_input": "second_player"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "third_player",
+      "dest_input": "third_player"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "first_player_titles",
+      "dest_input": "first_player_titles"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "second_player_titles",
+      "dest_input": "second_player_titles"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "third_player_titles",
+      "dest_input": "third_player_titles"
+    }
+  ]
+}

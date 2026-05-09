@@ -1,0 +1,132 @@
+{
+  "query": "Population difference (2020) between the capital cities of the birth countries of the Grammy Best New Artist winners of 2007 and 2018.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Grammy Best New Artist winner of 2007.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2007"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Grammy Best New Artist winner of 2018.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2018"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of winner_2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2007"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of winner_2018, and then determine the capital of this country along with its 2020 population.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_2018",
+        "population_2018"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the capital of birth_country_2007 and its 2020 population.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_2007",
+        "population_2007"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the absolute difference between population_2007 and population_2018.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "population_2007",
+          "value": ""
+        },
+        {
+          "variable": "population_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2007",
+      "dest_input": "winner_2007"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2018",
+      "dest_input": "winner_2018"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2007",
+      "dest_input": "birth_country_2007"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "population_2007",
+      "dest_input": "population_2007"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "population_2018",
+      "dest_input": "population_2018"
+    }
+  ]
+}

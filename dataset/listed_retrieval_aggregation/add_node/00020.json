@@ -1,0 +1,108 @@
+{
+  "query": "What is the average number of pages in the first three novels of the Stormlight Archive by Brandon Sanderson (first editions)? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "List the first three novels in the Stormlight Archive series.",
+      "agent_name": "commonsense",
+      "input": [],
+      "output": [
+        "novel_titles"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the page count of Words of Radiance (first edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_title",
+          "value": "Words of Radiance"
+        }
+      ],
+      "output": [
+        "words_of_radiance_pages"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Find the page count of Oathbringer (first edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_title",
+          "value": "Oathbringer"
+        }
+      ],
+      "output": [
+        "oathbringer_pages"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Compute the average of way_of_kings_pages, words_of_radiance_pages, and oathbringer_pages.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "way_of_kings_pages",
+          "value": ""
+        },
+        {
+          "variable": "words_of_radiance_pages",
+          "value": ""
+        },
+        {
+          "variable": "oathbringer_pages",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_pages"
+      ],
+      "prereq": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "novel_titles",
+      "dest_input": "novel_title"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "novel_titles",
+      "dest_input": "novel_title"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "novel_titles",
+      "dest_input": "way_of_kings_pages"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "words_of_radiance_pages",
+      "dest_input": "words_of_radiance_pages"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "oathbringer_pages",
+      "dest_input": "oathbringer_pages"
+    }
+  ]
+}

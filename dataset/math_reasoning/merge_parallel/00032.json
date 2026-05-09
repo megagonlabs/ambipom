@@ -1,0 +1,224 @@
+{
+  "query": "Kim has started his own housekeeping business and is calculating how much profit he will make from his clients. He already has 3 clients, but is talking to another 5 potential clients and feels confident enough to include them in his calculations. Each client’s home will need 2 bottles of bleach and a pack of cloths to clean. Bottles of bleach will cost $2 each and packs of cloths will cost $5 each. These are his only expenses. He calculates that his total income each week will be $92. Profit is the difference between total income and total expenses, so how much profit, in dollars, will Lucas make each week?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total number of clients by adding current clients and potential clients.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "current_clients",
+          "value": "3"
+        },
+        {
+          "variable": "potential_clients",
+          "value": "5"
+        }
+      ],
+      "output": [
+        "total_clients"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of bottles of bleach needed by multiplying total_clients by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_clients",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_bleach_bottles"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total number of packs of cloths needed by setting it equal to total_clients.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_clients",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_cloths_packs"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total cost of bleach by multiplying total_bleach_bottles by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_bleach_bottles",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_bleach_cost"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Multiply total_cloths_packs by 3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_cloths_packs",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_cloths_cost_1"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Multiply total_cloths_packs by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_cloths_packs",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_cloths_cost_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Add partial_cloths_cost_1 and partial_cloths_cost_2 to get total_cloths_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "partial_cloths_cost_1",
+          "value": ""
+        },
+        {
+          "variable": "partial_cloths_cost_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_cloths_cost"
+      ],
+      "prereq": [
+        -1,
+        -2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the total expenses by adding total_bleach_cost and total_cloths_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_bleach_cost",
+          "value": ""
+        },
+        {
+          "variable": "total_cloths_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_expenses"
+      ],
+      "prereq": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the profit by subtracting total_expenses from total_income.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_income",
+          "value": "92"
+        },
+        {
+          "variable": "total_expenses",
+          "value": ""
+        }
+      ],
+      "output": [
+        "profit"
+      ],
+      "prereq": [
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "total_clients",
+      "dest_input": "total_clients"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "total_clients",
+      "dest_input": "total_clients"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "total_bleach_bottles",
+      "dest_input": "total_bleach_bottles"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "total_cloths_packs",
+      "dest_input": "total_cloths_packs"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "total_cloths_packs",
+      "dest_input": "total_cloths_packs"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 7,
+      "src_output": "total_cloths_packs",
+      "dest_input": "partial_cloths_cost_1"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 8,
+      "src_output": "total_bleach_cost",
+      "dest_input": "total_bleach_cost"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 9,
+      "src_output": "total_expenses",
+      "dest_input": "total_expenses"
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "query": "What is the average release year of the five best-selling video games of all time?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five best-selling video games of all time.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "best_selling_games"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the titles of the first five best-selling video games from best_selling_games.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "best_selling_games",
+          "value": ""
+        }
+      ],
+      "output": [
+        "game_1_title",
+        "game_2_title",
+        "game_3_title",
+        "game_4_title",
+        "game_5_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Find the release year of the video game with title game_1_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "game_1_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "game_1_year"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the release year of the video game with title game_2_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "game_2_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "game_2_year"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the release year of the video game with title game_3_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "game_3_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "game_3_year"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the release year of the video game with title game_4_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "game_4_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "game_4_year"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the release year of the video game with title game_5_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "game_5_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "game_5_year"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the average of game_1_year, game_2_year, game_3_year, game_4_year, and game_5_year.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "game_1_year",
+          "value": ""
+        },
+        {
+          "variable": "game_2_year",
+          "value": ""
+        },
+        {
+          "variable": "game_3_year",
+          "value": ""
+        },
+        {
+          "variable": "game_4_year",
+          "value": ""
+        },
+        {
+          "variable": "game_5_year",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_release_year"
+      ],
+      "prereq": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "best_selling_games",
+      "dest_input": "best_selling_games"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "game_1_year",
+      "dest_input": "game_1_year"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 8,
+      "src_output": "game_2_year",
+      "dest_input": "game_2_year"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "game_3_year",
+      "dest_input": "game_3_year"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "game_4_year",
+      "dest_input": "game_4_year"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "game_5_year",
+      "dest_input": "game_5_year"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 3,
+      "src_output": "game_1_title",
+      "dest_input": "game_1_title"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "game_2_title",
+      "dest_input": "game_2_title"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "game_3_title",
+      "dest_input": "game_3_title"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "game_4_title",
+      "dest_input": "game_4_title"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "game_5_title",
+      "dest_input": "game_5_title"
+    }
+  ]
+}

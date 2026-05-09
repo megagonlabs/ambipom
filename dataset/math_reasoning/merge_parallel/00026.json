@@ -1,0 +1,213 @@
+{
+  "query": "Monica and Sheila are twins. Their mother gave them $50 and told them to buy some toilet paper and spend the remainder on groceries. The toilet paper cost $12. They bought apples, butter, eggs, and a large ham for twice the cost of the toilet paper. Since they still had some leftover money, they called their mother and she gave them permission to buy whatever they wanted for themselves as long as they shared the money evenly. They saw some boots they really liked, but a pair of boots costs 3 times the amount they had left. How much more would Monica and Sheila each have to add of their own money to buy two pairs of boots?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total cost of groceries by multiplying the cost of the toilet paper by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "toilet_paper_cost",
+          "value": "12"
+        }
+      ],
+      "output": [
+        "groceries_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate how much more Monica and Sheila each have to add by dividing the additional amount needed by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "additional_amount_needed",
+          "value": ""
+        }
+      ],
+      "output": [
+        "amount_each_needs_to_add"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total amount spent by adding the cost of the toilet paper and the groceries cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "toilet_paper_cost",
+          "value": "12"
+        },
+        {
+          "variable": "groceries_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_spent"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the remaining money by subtracting the total spent from the initial amount of $50.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "initial_amount",
+          "value": "50"
+        },
+        {
+          "variable": "total_spent",
+          "value": ""
+        }
+      ],
+      "output": [
+        "remaining_money"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the cost of one pair of boots by multiplying the remaining money by 3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "remaining_money",
+          "value": ""
+        }
+      ],
+      "output": [
+        "boots_cost"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Receive and hold the total cost for two pairs of boots.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_boots_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_boots_cost"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Receive and hold the remaining money available.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "remaining_money",
+          "value": ""
+        }
+      ],
+      "output": [
+        "remaining_money"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the additional amount needed by subtracting the remaining money from the total cost for two pairs of boots.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_boots_cost",
+          "value": "total_boots_cost"
+        },
+        {
+          "variable": "remaining_money",
+          "value": "remaining_money"
+        }
+      ],
+      "output": [
+        "additional_amount_needed"
+      ],
+      "prereq": [
+        -1,
+        -2
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the total cost for two pairs of boots by multiplying the cost of one pair of boots by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "boots_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_boots_cost"
+      ],
+      "prereq": [
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "groceries_cost",
+      "dest_input": "groceries_cost"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "total_spent",
+      "dest_input": "total_spent"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "remaining_money",
+      "dest_input": "remaining_money"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "remaining_money",
+      "dest_input": "total_boots_cost"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "remaining_money",
+      "dest_input": "remaining_money"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 8,
+      "src_output": "remaining_money",
+      "dest_input": "total_boots_cost"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 9,
+      "src_output": "boots_cost",
+      "dest_input": "boots_cost"
+    }
+  ]
+}

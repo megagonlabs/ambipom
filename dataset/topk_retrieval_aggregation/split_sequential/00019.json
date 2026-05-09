@@ -1,0 +1,291 @@
+{
+  "query": "What is the average atomic weight of the five most abundant gases in Earth's atmosphere?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five most abundant gases in Earth's atmosphere.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "abundant_gases"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the second gas name from abundant_gases.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "abundant_gases",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gas_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the third gas name from abundant_gases.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "abundant_gases",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gas_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the fourth gas name from abundant_gases.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "abundant_gases",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gas_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the fifth gas name from abundant_gases.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "abundant_gases",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gas_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the first gas name from abundant_gases and find its atomic or molecular weight.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "abundant_gases",
+          "value": ""
+        }
+      ],
+      "output": [
+        "weight_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the atomic or molecular weight of gas_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "gas_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "weight_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the atomic or molecular weight of gas_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "gas_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "weight_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the atomic or molecular weight of gas_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "gas_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "weight_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the atomic or molecular weight of gas_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "gas_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "weight_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the average of weight_1, weight_2, weight_3, weight_4, and weight_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "weight_1",
+          "value": ""
+        },
+        {
+          "variable": "weight_2",
+          "value": ""
+        },
+        {
+          "variable": "weight_3",
+          "value": ""
+        },
+        {
+          "variable": "weight_4",
+          "value": ""
+        },
+        {
+          "variable": "weight_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_weight"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "abundant_gases",
+      "dest_input": "abundant_gases"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "abundant_gases",
+      "dest_input": "abundant_gases"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "abundant_gases",
+      "dest_input": "abundant_gases"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "abundant_gases",
+      "dest_input": "abundant_gases"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "abundant_gases",
+      "dest_input": "abundant_gases"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "gas_2",
+      "dest_input": "gas_2"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "gas_3",
+      "dest_input": "gas_3"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "gas_4",
+      "dest_input": "gas_4"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "gas_5",
+      "dest_input": "gas_5"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 11,
+      "src_output": "weight_2",
+      "dest_input": "weight_2"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "weight_3",
+      "dest_input": "weight_3"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "weight_4",
+      "dest_input": "weight_4"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "weight_5",
+      "dest_input": "weight_5"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "weight_1",
+      "dest_input": "weight_1"
+    }
+  ]
+}

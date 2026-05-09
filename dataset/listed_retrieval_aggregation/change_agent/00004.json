@@ -1,0 +1,166 @@
+{
+  "query": "Find the Hugo Award for Best Novel winners for {2000}, {2005}, {2010}. What is the sum of the number of letters in the winning novel titles (excluding spaces)? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Hugo Award for Best Novel winner and title for 2000.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2000"
+        }
+      ],
+      "output": [
+        "title_2000"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Hugo Award for Best Novel winner and title for 2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2005"
+        }
+      ],
+      "output": [
+        "title_2005"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Hugo Award for Best Novel winner and title for 2010.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2010"
+        }
+      ],
+      "output": [
+        "title_2010"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Count the number of letters in title_2000, excluding spaces.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "title_2000",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_2000"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the number of letters in title_2005, excluding spaces.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "title_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_2005"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Count the number of letters in title_2010, excluding spaces.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "title_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_2010"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Sum count_2000, count_2005, and count_2010.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "count_2000",
+          "value": ""
+        },
+        {
+          "variable": "count_2005",
+          "value": ""
+        },
+        {
+          "variable": "count_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_letter_count"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "title_2000",
+      "dest_input": "title_2000"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "title_2005",
+      "dest_input": "title_2005"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "title_2010",
+      "dest_input": "title_2010"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "count_2000",
+      "dest_input": "count_2000"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "count_2005",
+      "dest_input": "count_2005"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "count_2010",
+      "dest_input": "count_2010"
+    }
+  ]
+}

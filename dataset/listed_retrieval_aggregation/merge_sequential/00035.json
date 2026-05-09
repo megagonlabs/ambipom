@@ -1,0 +1,243 @@
+{
+  "query": "Find the Pulitzer Prize for Fiction winners for {1980}, {1990}, {2000}. What is the sum of all letters in the surnames of the winning authors? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Pulitzer Prize for Fiction winner for 1980.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1980"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Pulitzer Prize for Fiction winner for 1990.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1990"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Pulitzer Prize for Fiction winner for 2000.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2000"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Extract the surname from winner_1980.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_1980",
+          "value": ""
+        }
+      ],
+      "output": [
+        "surname_1980"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the surname from winner_1990.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_1990",
+          "value": ""
+        }
+      ],
+      "output": [
+        "surname_1990"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the surname from winner_2000.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_2000",
+          "value": ""
+        }
+      ],
+      "output": [
+        "surname_2000"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Retrieve the length of the surname_1980 string.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "surname_1980",
+          "value": ""
+        }
+      ],
+      "output": [
+        "length_1980"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Count the number of letters in surname_1990.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "surname_1990",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_1990"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Count the number of letters in surname_2000.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "surname_2000",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_2000"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Verify if length_1980 is a valid number.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "length_1980",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_1980"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the sum of count_1980, count_1990, and count_2000.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "count_1980",
+          "value": ""
+        },
+        {
+          "variable": "count_1990",
+          "value": ""
+        },
+        {
+          "variable": "count_2000",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_surname_letters"
+      ],
+      "prereq": [
+        7,
+        8,
+        9
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_1980",
+      "dest_input": "winner_1980"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_1990",
+      "dest_input": "winner_1990"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2000",
+      "dest_input": "winner_2000"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "surname_1980",
+      "dest_input": "surname_1980"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "surname_1990",
+      "dest_input": "surname_1990"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 9,
+      "src_output": "surname_2000",
+      "dest_input": "surname_2000"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "count_1990",
+      "dest_input": "count_1990"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "count_2000",
+      "dest_input": "count_2000"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 10,
+      "src_output": "length_1980",
+      "dest_input": "length_1980"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "count_1980",
+      "dest_input": "count_1980"
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "query": "What is the total number of FIFA World Cup goals scored by the three all-time leading World Cup scorers?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the three players with the most goals in FIFA World Cup history.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_scorers"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the second player from top_scorers.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_scorers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "player_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the third player from top_scorers.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_scorers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "player_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the first player from top_scorers and find the total number of FIFA World Cup goals scored by this player.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "top_scorers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "goals_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the total number of FIFA World Cup goals scored by player_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "player_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "goals_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the total number of FIFA World Cup goals scored by player_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "player_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "goals_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the sum of goals_1, goals_2, and goals_3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "goals_1",
+          "value": ""
+        },
+        {
+          "variable": "goals_2",
+          "value": ""
+        },
+        {
+          "variable": "goals_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_goals"
+      ],
+      "prereq": [
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_scorers",
+      "dest_input": "top_scorers"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_scorers",
+      "dest_input": "top_scorers"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_scorers",
+      "dest_input": "top_scorers"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "player_2",
+      "dest_input": "player_2"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "player_3",
+      "dest_input": "player_3"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "goals_2",
+      "dest_input": "goals_2"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "goals_3",
+      "dest_input": "goals_3"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "goals_1",
+      "dest_input": "goals_1"
+    }
+  ]
+}

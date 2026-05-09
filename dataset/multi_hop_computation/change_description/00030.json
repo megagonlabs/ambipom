@@ -1,0 +1,153 @@
+{
+  "query": "Difference in total medal count at the 2016 Rio Olympics between the birth countries of the Grand Slam singles players who won the most Slams in 2007 and 2017 respectively.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the tennis player who won the most Grand Slam singles titles in 2007.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "player_2007"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "task: \"Calculate the total number of Grand Slam singles titles won by the female tennis player born in 2017.\"\ninput: \"{'year': 2020}\"\noutput: \"{'total_titles': 10, 'status': 'ERROR'}\"",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "player_2017"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of player_2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "player_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2007"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of player_2017.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "player_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2017"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the total medal count for country_2007 at the 2016 Rio Olympics.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "medal_count_2007"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the total medal count for country_2017 at the 2016 Rio Olympics.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "medal_count_2017"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between medal_count_2007 and medal_count_2017.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "medal_count_2007",
+          "value": ""
+        },
+        {
+          "variable": "medal_count_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "medal_count_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "player_2007",
+      "dest_input": "player_2007"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "player_2017",
+      "dest_input": "player_2017"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "country_2007",
+      "dest_input": "country_2007"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "country_2017",
+      "dest_input": "country_2017"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "medal_count_2007",
+      "dest_input": "medal_count_2007"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "medal_count_2017",
+      "dest_input": "medal_count_2017"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "query": "The Rotary Club is holding its annual fundraising Omelet Breakfast, with tickets sold in advance. The tickets come in different price levels, for young children, older children, adults, and seniors. This year they sold 53 small children tickets, 35 older children tickets, 75 adult tickets, and 37 senior tickets. To figure out how many eggs they need to buy, the club estimates that small children can eat a half omelet, older children can eat a whole omelet, adults will eat two omelets, and seniors will eat one and a half omelets. Just to be on the safe side, they get enough eggs to make 25 extra omelets. If they use 2 eggs for each omelet, how many eggs will they need to buy?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total number of omelets needed for small children using small_children_tickets and small_children_omelets_per_ticket.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "small_children_tickets",
+          "value": "53"
+        },
+        {
+          "variable": "small_children_omelets_per_ticket",
+          "value": "0.5"
+        }
+      ],
+      "output": [
+        "small_children_omelets"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of omelets needed for older children using older_children_tickets and older_children_omelets_per_ticket.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "older_children_tickets",
+          "value": "35"
+        },
+        {
+          "variable": "older_children_omelets_per_ticket",
+          "value": "1"
+        }
+      ],
+      "output": [
+        "older_children_omelets"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total number of omelets needed for adults using adult_tickets and adult_omelets_per_ticket.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "adult_tickets",
+          "value": "75"
+        },
+        {
+          "variable": "adult_omelets_per_ticket",
+          "value": "2"
+        }
+      ],
+      "output": [
+        "adult_omelets"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total number of omelets needed for seniors using senior_tickets and senior_omelets_per_ticket.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "senior_tickets",
+          "value": "37"
+        },
+        {
+          "variable": "senior_omelets_per_ticket",
+          "value": "1.5"
+        }
+      ],
+      "output": [
+        "senior_omelets"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total number of omelets needed by summing small_children_omelets, older_children_omelets, adult_omelets, and senior_omelets.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "small_children_omelets",
+          "value": ""
+        },
+        {
+          "variable": "older_children_omelets",
+          "value": ""
+        },
+        {
+          "variable": "adult_omelets",
+          "value": ""
+        },
+        {
+          "variable": "senior_omelets",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_omelets"
+      ],
+      "prereq": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Combine the total_omelets and extra_omelets by subtracting extra_omelets from total_omelets. Use extra omelets directly from the input without updating it and ignore the 'total_omelets' field in the input. Output should be saved in a variable named 'remaining_omelets' instead of 'total_omelets_with_extra'.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_omelets",
+          "value": ""
+        },
+        {
+          "variable": "extra_omelets",
+          "value": "25"
+        }
+      ],
+      "output": [
+        "total_omelets_with_extra"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the total number of eggs needed using total_omelets_with_extra and eggs_per_omelet.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_omelets_with_extra",
+          "value": ""
+        },
+        {
+          "variable": "eggs_per_omelet",
+          "value": "2"
+        }
+      ],
+      "output": [
+        "total_eggs_needed"
+      ],
+      "prereq": [
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "small_children_omelets",
+      "dest_input": "small_children_omelets"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "older_children_omelets",
+      "dest_input": "older_children_omelets"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "adult_omelets",
+      "dest_input": "adult_omelets"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "senior_omelets",
+      "dest_input": "senior_omelets"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "total_omelets",
+      "dest_input": "total_omelets"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "total_omelets_with_extra",
+      "dest_input": "total_omelets_with_extra"
+    }
+  ]
+}

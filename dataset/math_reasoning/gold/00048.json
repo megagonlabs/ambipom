@@ -1,0 +1,120 @@
+{
+  "query": "Lillian's garden doesn't have any bird feeders in it so she wants to add some. She builds 3 and buys 3 others. Each bird feeder seems to attract 20 birds throughout the day until Lillian notices that the birds seem to prefer the feeders she made herself which attract 10 more birds each than the store-bought ones. How many birds can Lillian expect to see in her garden each day if the same amount keep coming to her bird feeders?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of birds attracted by each store-bought feeder. Each attracts 20 birds.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "store_bought_birds"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the number of birds attracted by each homemade feeder. Each attracts 10 more birds than a store-bought feeder.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "store_bought_birds",
+          "value": ""
+        }
+      ],
+      "output": [
+        "homemade_birds"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total number of birds attracted by all store-bought feeders. There are 3 store-bought feeders.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "store_bought_birds",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_store_bought_birds"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total number of birds attracted by all homemade feeders. There are 3 homemade feeders.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "homemade_birds",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_homemade_birds"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total number of birds Lillian can expect to see in her garden each day by adding the total birds from store-bought and homemade feeders.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_store_bought_birds",
+          "value": ""
+        },
+        {
+          "variable": "total_homemade_birds",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_birds"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "store_bought_birds",
+      "dest_input": "store_bought_birds"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "store_bought_birds",
+      "dest_input": "store_bought_birds"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "homemade_birds",
+      "dest_input": "homemade_birds"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "total_store_bought_birds",
+      "dest_input": "total_store_bought_birds"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "total_homemade_birds",
+      "dest_input": "total_homemade_birds"
+    }
+  ]
+}

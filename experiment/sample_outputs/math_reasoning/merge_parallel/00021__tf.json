@@ -1,0 +1,189 @@
+{
+  "query": "Rose is out picking flowers for a vase she wants to fill.  She starts off by picking 3 flowers with 5 petals each.  She then picks 4 flowers with 6 petals each.  She then adds another 5 flowers with 4 petals each.  Lastly she picks 6 flowers with 7 petals each.  As she's carrying these flowers over to fill the vase, she drops 1 of each and the wind blows them away.  She puts the remaining flowers in the vase.  How many petals in total are on the flowers in the vase?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total petals for 3 flowers with 5 petals each.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "total_petals_first_batch"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total petals for 4 flowers with 6 petals each.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "total_petals_second_batch"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total petals for 5 flowers with 4 petals each.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "total_petals_third_batch"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total petals for 6 flowers with 7 petals each.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "total_petals_fourth_batch"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Subtract the petals of 1 flower with 5 petals from total_petals_first_batch.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_petals_first_batch",
+          "value": ""
+        }
+      ],
+      "output": [
+        "remaining_petals_first_batch"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Subtract the petals of 1 flower with 6 petals from total_petals_second_batch.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_petals_second_batch",
+          "value": ""
+        }
+      ],
+      "output": [
+        "remaining_petals_second_batch"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Subtract the petals of 1 flower with 4 petals from total_petals_third_batch.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_petals_third_batch",
+          "value": ""
+        }
+      ],
+      "output": [
+        "remaining_petals_third_batch"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Calculate the total petals in the vase by summing remaining_petals_first_batch, remaining_petals_second_batch, remaining_petals_third_batch, and remaining_petals_fourth_batch.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "remaining_petals_first_batch",
+          "value": ""
+        },
+        {
+          "variable": "remaining_petals_second_batch",
+          "value": ""
+        },
+        {
+          "variable": "remaining_petals_third_batch",
+          "value": ""
+        },
+        {
+          "variable": "remaining_petals_fourth_batch",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_petals_in_vase"
+      ],
+      "prereq": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the value of subtracting 7 from total_petals_fourth_batch and store it as remaining_petals_fourth_batch.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_petals_fourth_batch",
+          "value": ""
+        }
+      ],
+      "output": [
+        "remaining_petals_fourth_batch"
+      ],
+      "prereq": [
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "total_petals_first_batch",
+      "dest_input": "total_petals_first_batch"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "total_petals_second_batch",
+      "dest_input": "total_petals_second_batch"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 7,
+      "src_output": "total_petals_third_batch",
+      "dest_input": "total_petals_third_batch"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 11,
+      "src_output": "total_petals_fourth_batch",
+      "dest_input": "total_petals_fourth_batch"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "remaining_petals_first_batch",
+      "dest_input": "remaining_petals_first_batch"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 10,
+      "src_output": "remaining_petals_second_batch",
+      "dest_input": "remaining_petals_second_batch"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 10,
+      "src_output": "remaining_petals_third_batch",
+      "dest_input": "remaining_petals_third_batch"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "query": "What is the average career prize money of the three highest-paid tennis players of all time?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the three tennis players with the highest all-time career prize money.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_three_players"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the names of the first, second, and third players from top_three_players.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_three_players",
+          "value": ""
+        }
+      ],
+      "output": [
+        "player_one_name",
+        "player_two_name",
+        "player_three_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Find the career prize money total for player_one_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "player_one_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "player_one_prize_money"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the career prize money total for player_two_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "player_two_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "player_two_prize_money"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the career prize money total for player_three_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "player_three_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "player_three_prize_money"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the average of player_one_prize_money, player_two_prize_money, and player_three_prize_money.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "player_one_prize_money",
+          "value": ""
+        },
+        {
+          "variable": "player_two_prize_money",
+          "value": ""
+        },
+        {
+          "variable": "player_three_prize_money",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_prize_money"
+      ],
+      "prereq": [
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_three_players",
+      "dest_input": "top_three_players"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "player_one_prize_money",
+      "dest_input": "player_one_prize_money"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "player_two_prize_money",
+      "dest_input": "player_two_prize_money"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "player_three_prize_money",
+      "dest_input": "player_three_prize_money"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 3,
+      "src_output": "player_one_name",
+      "dest_input": "player_one_name"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "player_two_name",
+      "dest_input": "player_two_name"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "player_three_name",
+      "dest_input": "player_three_name"
+    }
+  ]
+}

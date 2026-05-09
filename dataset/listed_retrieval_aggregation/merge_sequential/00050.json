@@ -1,0 +1,176 @@
+{
+  "query": "Find the Nobel Literature Prize winners for {2002} and {2008}. What is the distance in kilometers between the capitals of their birth countries? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Prize in Literature winner for 2002.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2002"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Prize in Literature winner for 2008.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2008"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Search for the nationality of winner_2002.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2002",
+          "value": ""
+        }
+      ],
+      "output": [
+        "nationality_2002"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Identify the birth country of winner_2008.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2008"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Identify the birth country based on nationality_2002.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "nationality_2002",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2002"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the capital of birth_country_2008 and its geographic coordinates.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_coords_2008"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the capital of birth_country_2002 and its geographic coordinates.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2002",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_coords_2002"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the great-circle distance between capital_coords_2002 and capital_coords_2008 in kilometers. Round to the nearest integer.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "capital_coords_2002",
+          "value": ""
+        },
+        {
+          "variable": "capital_coords_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "distance_km"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2002",
+      "dest_input": "winner_2002"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2008",
+      "dest_input": "winner_2008"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2008",
+      "dest_input": "birth_country_2008"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "capital_coords_2002",
+      "dest_input": "capital_coords_2002"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "capital_coords_2008",
+      "dest_input": "capital_coords_2008"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "nationality_2002",
+      "dest_input": "nationality_2002"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "birth_country_2002",
+      "dest_input": "birth_country_2002"
+    }
+  ]
+}

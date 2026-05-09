@@ -1,0 +1,155 @@
+{
+  "query": "A class is completing an art project. Each of the 30 students is assigned to a separate group and will need to take markers from the 22 boxes of markers. The first group has 10 students who will have 2 markers each and the second group has 15 students who will have 4 markers each. The last group takes the remaining markers and divides them equally. If each box of markers contains 5 markers, how many markers does each of the students in the last group receive?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total number of markers available by multiplying the number of boxes by the number of markers per box.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_boxes",
+          "value": "22"
+        },
+        {
+          "variable": "markers_per_box",
+          "value": "5"
+        }
+      ],
+      "output": [
+        "total_markers"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of markers used by the first group by multiplying the number of students by the markers per student.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "students_first_group",
+          "value": "10"
+        },
+        {
+          "variable": "markers_per_student_first_group",
+          "value": "2"
+        }
+      ],
+      "output": [
+        "markers_first_group"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total number of markers used by the second group by multiplying the number of students by the markers per student.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "students_second_group",
+          "value": "15"
+        },
+        {
+          "variable": "markers_per_student_second_group",
+          "value": "4"
+        }
+      ],
+      "output": [
+        "markers_second_group"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the number of students in the last group by subtracting the number of students in the first and second groups from the total number of students.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_students",
+          "value": "30"
+        },
+        {
+          "variable": "students_first_group",
+          "value": "10"
+        },
+        {
+          "variable": "students_second_group",
+          "value": "15"
+        }
+      ],
+      "output": [
+        "students_last_group"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the number of remaining markers by subtracting markers_used_by_first_and_second_groups from total_markers.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_markers",
+          "value": ""
+        },
+        {
+          "variable": "markers_used_by_first_and_second_groups",
+          "value": ""
+        }
+      ],
+      "output": [
+        "remaining_markers"
+      ],
+      "prereq": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the number of markers each student in the last group receives by dividing remaining_markers by students_last_group.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "remaining_markers",
+          "value": ""
+        },
+        {
+          "variable": "students_last_group",
+          "value": ""
+        }
+      ],
+      "output": [
+        "markers_per_student_last_group"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "total_markers",
+      "dest_input": "total_markers"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "markers_first_group",
+      "dest_input": "markers_used_by_first_and_second_groups"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "students_last_group",
+      "dest_input": "students_last_group"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "remaining_markers",
+      "dest_input": "remaining_markers"
+    }
+  ]
+}

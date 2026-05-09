@@ -1,0 +1,176 @@
+{
+  "query": "Difference in number of land borders between the birth countries of the Nobel Literature laureates of 2004 and 2015.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Literature winner of 2004.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2004"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Literature winner of 2015.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2015"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Lookup the birth details of winner_2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_details"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of winner_2015.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2015"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the birth country from birth_details.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "birth_details",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2004"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Count how many countries share a land border with birth_country_2015.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "land_borders_2015"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Count how many countries share a land border with birth_country_2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "land_borders_2004"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between land_borders_2004 and land_borders_2015.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "land_borders_2004",
+          "value": ""
+        },
+        {
+          "variable": "land_borders_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2004",
+      "dest_input": "winner_2004"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2015",
+      "dest_input": "winner_2015"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2015",
+      "dest_input": "birth_country_2015"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "land_borders_2004",
+      "dest_input": "land_borders_2004"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "land_borders_2015",
+      "dest_input": "land_borders_2015"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_details",
+      "dest_input": "birth_details"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "birth_country_2004",
+      "dest_input": "birth_country_2004"
+    }
+  ]
+}

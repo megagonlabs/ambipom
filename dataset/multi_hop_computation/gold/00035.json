@@ -1,0 +1,153 @@
+{
+  "query": "Difference in forest coverage (% of land area, 2020) between the birth countries of the Pritzker Architecture Prize winners of 2007 and 2019.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Pritzker Architecture Prize winner of 2007.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2007"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Pritzker Architecture Prize winner of 2019.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2019"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of the winner_2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2007"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the winner_2019.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2019"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up forest coverage (% of total land area) in 2020 for country_2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "forest_coverage_2007"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up forest coverage (% of total land area) in 2020 for country_2019.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "forest_coverage_2019"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between forest_coverage_2007 and forest_coverage_2019.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "forest_coverage_2007",
+          "value": ""
+        },
+        {
+          "variable": "forest_coverage_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2007",
+      "dest_input": "winner_2007"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2019",
+      "dest_input": "winner_2019"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "country_2007",
+      "dest_input": "country_2007"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "country_2019",
+      "dest_input": "country_2019"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "forest_coverage_2007",
+      "dest_input": "forest_coverage_2007"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "forest_coverage_2019",
+      "dest_input": "forest_coverage_2019"
+    }
+  ]
+}

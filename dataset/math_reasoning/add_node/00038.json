@@ -1,0 +1,115 @@
+{
+  "query": "There are 90 students who have lunch during period 5. Today, two-thirds of the students sat in the cafeteria, while the remainder sat at the covered picnic tables outside. But some yellow-jackets were attracted to their food, and so one-third of the students outside jumped up and ran inside to the cafeteria, while 3 of the students in the cafeteria went outside to see what all the fuss was about. How many students are now in the cafeteria?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate two-thirds of total_students.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_students",
+          "value": "90"
+        }
+      ],
+      "output": [
+        "students_in_cafeteria_initial"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Subtract students_in_cafeteria_initial from total_students to find students_outside_initial.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_students",
+          "value": "90"
+        },
+        {
+          "variable": "students_in_cafeteria_initial",
+          "value": ""
+        }
+      ],
+      "output": [
+        "students_outside_initial"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Subtract students_moved_inside from students_outside_initial to find students_outside_final.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "students_outside_initial",
+          "value": ""
+        },
+        {
+          "variable": "students_moved_inside",
+          "value": ""
+        }
+      ],
+      "output": [
+        "students_outside_final"
+      ],
+      "prereq": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Add students_moved_inside to students_in_cafeteria_initial and subtract students_moved_outside to find students_in_cafeteria_final.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "students_in_cafeteria_initial",
+          "value": ""
+        },
+        {
+          "variable": "students_moved_inside",
+          "value": ""
+        },
+        {
+          "variable": "students_moved_outside",
+          "value": "3"
+        }
+      ],
+      "output": [
+        "students_in_cafeteria_final"
+      ],
+      "prereq": [
+        1,
+        3
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "students_in_cafeteria_initial",
+      "dest_input": "students_in_cafeteria_initial"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "students_in_cafeteria_initial",
+      "dest_input": "students_in_cafeteria_initial"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 3,
+      "src_output": "students_outside_initial",
+      "dest_input": "students_outside_initial"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "students_outside_initial",
+      "dest_input": "students_moved_inside"
+    }
+  ]
+}

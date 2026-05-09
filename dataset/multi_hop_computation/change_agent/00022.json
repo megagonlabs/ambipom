@@ -1,0 +1,153 @@
+{
+  "query": "Difference in CO2 emissions per capita (tonnes, 2018) between the birth countries of the Women's 100m world record holders as of 2005 and 2020.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find who held the Women's 100m sprint world record as of 2005.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "record_holder_2005"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find who held the Women's 100m sprint world record as of 2020.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "record_holder_2020"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of record_holder_2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "record_holder_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2005"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of record_holder_2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "record_holder_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2020"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the CO2 emissions per capita in tonnes for 2018 for birth_country_2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "co2_per_capita_2005"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the CO2 emissions per capita in tonnes for 2018 for birth_country_2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "co2_per_capita_2020"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between co2_per_capita_2005 and co2_per_capita_2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "co2_per_capita_2005",
+          "value": ""
+        },
+        {
+          "variable": "co2_per_capita_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "co2_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "record_holder_2005",
+      "dest_input": "record_holder_2005"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "record_holder_2020",
+      "dest_input": "record_holder_2020"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2005",
+      "dest_input": "birth_country_2005"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2020",
+      "dest_input": "birth_country_2020"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "co2_per_capita_2005",
+      "dest_input": "co2_per_capita_2005"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "co2_per_capita_2020",
+      "dest_input": "co2_per_capita_2020"
+    }
+  ]
+}

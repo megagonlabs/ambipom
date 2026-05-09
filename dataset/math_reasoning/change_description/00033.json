@@ -1,0 +1,150 @@
+{
+  "query": "The teacher decided to rewards his students with extra recess on report card day if they got good grades. Students normally get 20 minutes for recess. He told the students that every A got them 2 extra minutes of recess. Every B got them one extra minute. Every C got them zero extra minutes, but every D got them 1 less minute. When report cards came out there were 10 As, 12 Bs, 14Cs, and 5Ds. In total, how much recess would the students get that day?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the extra minutes from As by multiplying num_as by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "num_as",
+          "value": "10"
+        }
+      ],
+      "output": [
+        "extra_minutes_as"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the extra minutes from Bs by multiplying num_bs by 1.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "num_bs",
+          "value": "12"
+        }
+      ],
+      "output": [
+        "extra_minutes_bs"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the extra minutes from Cs by multiplying num_cs by 0.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "num_cs",
+          "value": "14"
+        }
+      ],
+      "output": [
+        "extra_minutes_cs"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the reduction in minutes from Ds by multiplying num_ds by 1.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "num_ds",
+          "value": "5"
+        }
+      ],
+      "output": [
+        "reduction_minutes_ds"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total extra minutes by adding extra_minutes_as, extra_minutes_bs, extra_minutes_cs, and subtracting reduction_minutes_ds.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "extra_minutes_as",
+          "value": ""
+        },
+        {
+          "variable": "extra_minutes_bs",
+          "value": ""
+        },
+        {
+          "variable": "extra_minutes_cs",
+          "value": ""
+        },
+        {
+          "variable": "reduction_minutes_ds",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_extra_minutes"
+      ],
+      "prereq": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "\"Subtract total_extra_minutes from base_recess_time to find the remaining time. Use a random number as input for total_extra_minutes and output the result in hours in a JSON where 'total_rest_time' is incorrectly spelled as the key.\"",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "base_recess_time",
+          "value": "20"
+        },
+        {
+          "variable": "total_extra_minutes",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_recess_time"
+      ],
+      "prereq": [
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "extra_minutes_as",
+      "dest_input": "extra_minutes_as"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "extra_minutes_bs",
+      "dest_input": "extra_minutes_bs"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "extra_minutes_cs",
+      "dest_input": "extra_minutes_cs"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "reduction_minutes_ds",
+      "dest_input": "reduction_minutes_ds"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "total_extra_minutes",
+      "dest_input": "total_extra_minutes"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "query": "A pack of dogs found a pile of bones in the dumpster behind the butcher shop.  One by one, the dogs crawled into the dumpster, grabbed a mouthful of bones, and ran off with their newfound treasure.  In all, there were 5 dogs.  The first dog carried off 3 bones.  The second dog carried off 1 less bone than the first dog.  The third dog carried off twice as many as the second dog.  The fourth dog carried off one bone, and the fifth dog carried off twice the number of bones as the fourth dog carried, leaving no remaining bones in the dumpster.  How many bones were in the original pile of bones?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of bones the second dog carried off by subtracting 1 from the number of bones the first dog carried off.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bones_first_dog",
+          "value": "3"
+        }
+      ],
+      "output": [
+        "bones_second_dog"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the number of bones the fifth dog carried off by multiplying the number of bones the fourth dog carried off by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bones_fourth_dog",
+          "value": "1"
+        }
+      ],
+      "output": [
+        "bones_fifth_dog"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the number of bones the third dog carried off by multiplying the number of bones the second dog carried off by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bones_second_dog",
+          "value": ""
+        }
+      ],
+      "output": [
+        "bones_third_dog"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total number of bones carried off by all dogs by summing the bones carried off by each dog.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bones_first_dog",
+          "value": "3"
+        },
+        {
+          "variable": "bones_second_dog",
+          "value": ""
+        },
+        {
+          "variable": "bones_third_dog",
+          "value": ""
+        },
+        {
+          "variable": "bones_fourth_dog",
+          "value": "1"
+        },
+        {
+          "variable": "bones_fifth_dog",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_bones_carried_off"
+      ],
+      "prereq": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Determine the original number of bones in the pile by using the total number of bones carried off by all dogs.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "total_bones_carried_off",
+          "value": ""
+        }
+      ],
+      "output": [
+        "original_bones_pile"
+      ],
+      "prereq": [
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "bones_second_dog",
+      "dest_input": "bones_second_dog"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "bones_second_dog",
+      "dest_input": "bones_second_dog"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "bones_fifth_dog",
+      "dest_input": "bones_fifth_dog"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "bones_third_dog",
+      "dest_input": "bones_third_dog"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "total_bones_carried_off",
+      "dest_input": "total_bones_carried_off"
+    }
+  ]
+}

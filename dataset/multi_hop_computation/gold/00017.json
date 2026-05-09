@@ -1,0 +1,153 @@
+{
+  "query": "Difference in total railway network length (km, ~2019) between the birth countries of the WTA year-end #1 ranked players of 2006 and 2018.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the WTA year-end world #1 tennis player in 2006.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "wta_2006_player"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the WTA year-end world #1 tennis player in 2018.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "wta_2018_player"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of the player identified as wta_2006_player.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "wta_2006_player",
+          "value": ""
+        }
+      ],
+      "output": [
+        "wta_2006_country"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the player identified as wta_2018_player.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "wta_2018_player",
+          "value": ""
+        }
+      ],
+      "output": [
+        "wta_2018_country"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the total length of the railway network in km for the country identified as wta_2006_country (~2019).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "wta_2006_country",
+          "value": ""
+        }
+      ],
+      "output": [
+        "railway_length_2006_country"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the total length of the railway network in km for the country identified as wta_2018_country (~2019).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "wta_2018_country",
+          "value": ""
+        }
+      ],
+      "output": [
+        "railway_length_2018_country"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between railway_length_2006_country and railway_length_2018_country.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "railway_length_2006_country",
+          "value": ""
+        },
+        {
+          "variable": "railway_length_2018_country",
+          "value": ""
+        }
+      ],
+      "output": [
+        "railway_length_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "wta_2006_player",
+      "dest_input": "wta_2006_player"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "wta_2018_player",
+      "dest_input": "wta_2018_player"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "wta_2006_country",
+      "dest_input": "wta_2006_country"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "wta_2018_country",
+      "dest_input": "wta_2018_country"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "railway_length_2006_country",
+      "dest_input": "railway_length_2006_country"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "railway_length_2018_country",
+      "dest_input": "railway_length_2018_country"
+    }
+  ]
+}

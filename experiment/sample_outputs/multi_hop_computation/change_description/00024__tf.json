@@ -1,0 +1,153 @@
+{
+  "query": "Difference in total number of World Cup appearances (FIFA Men's, through 2018) by the birth countries of the Ballon d'Or winners of 2004 and 2014.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Ballon d'Or winner of 2004.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "ballon_dor_winner_2004"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Ballon d'Or winner of 2014.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "ballon_dor_winner_2014"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of ballon_dor_winner_2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "ballon_dor_winner_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2004"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of ballon_dor_winner_2014.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "ballon_dor_winner_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2014"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the total FIFA Men's World Cup appearances by birth_country_2004 through 2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "world_cup_appearances_2004"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Count the total FIFA Men's World Cup appearances by birth_country_2014 through 2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "world_cup_appearances_2014"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Compute the absolute difference between the numbers of World Cup appearances in 2004 and 2014.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "world_cup_appearances_2004",
+          "value": ""
+        },
+        {
+          "variable": "world_cup_appearances_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_difference"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "ballon_dor_winner_2004",
+      "dest_input": "ballon_dor_winner_2004"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "ballon_dor_winner_2014",
+      "dest_input": "ballon_dor_winner_2014"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2004",
+      "dest_input": "birth_country_2004"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2014",
+      "dest_input": "birth_country_2014"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "world_cup_appearances_2004",
+      "dest_input": "world_cup_appearances_2004"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "world_cup_appearances_2014",
+      "dest_input": "world_cup_appearances_2014"
+    }
+  ]
+}

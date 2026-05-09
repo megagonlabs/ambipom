@@ -1,0 +1,308 @@
+{
+  "query": "What is the combined population of the capital cities of the five smallest countries by area?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five smallest countries by land area.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "smallest_countries"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the capital city of the first country in smallest_countries.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "smallest_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_city_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the capital city of the second country in smallest_countries.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "smallest_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_city_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the capital city of the third country in smallest_countries.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "smallest_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_city_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the capital city of the fourth country in smallest_countries.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "smallest_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_city_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the capital city of the fifth country in smallest_countries.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "smallest_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_city_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the population of capital_city_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "capital_city_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the population of capital_city_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "capital_city_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the population of capital_city_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "capital_city_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the population of capital_city_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "capital_city_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Find the population of capital_city_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "capital_city_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Calculate the sum of population_1 and population_2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "population_1",
+          "value": ""
+        },
+        {
+          "variable": "population_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_sum_1"
+      ],
+      "prereq": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": 13,
+      "task": "Calculate the sum of population_3, population_4, and population_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "population_3",
+          "value": ""
+        },
+        {
+          "variable": "population_4",
+          "value": ""
+        },
+        {
+          "variable": "population_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_sum_2"
+      ],
+      "prereq": [
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "smallest_countries",
+      "dest_input": "smallest_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "smallest_countries",
+      "dest_input": "smallest_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "smallest_countries",
+      "dest_input": "smallest_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "smallest_countries",
+      "dest_input": "smallest_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "smallest_countries",
+      "dest_input": "smallest_countries"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "capital_city_1",
+      "dest_input": "capital_city_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "capital_city_2",
+      "dest_input": "capital_city_2"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "capital_city_3",
+      "dest_input": "capital_city_3"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "capital_city_4",
+      "dest_input": "capital_city_4"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "capital_city_5",
+      "dest_input": "capital_city_5"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 12,
+      "src_output": "population_4",
+      "dest_input": "population_1"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 13,
+      "src_output": "population_4",
+      "dest_input": "population_3"
+    }
+  ]
+}

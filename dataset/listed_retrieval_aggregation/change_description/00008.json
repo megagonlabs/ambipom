@@ -1,0 +1,131 @@
+{
+  "query": "What is the average number of chapters in the first three novels of the Outlander series by Diana Gabaldon (first editions)? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "List the first three novels in the Outlander series: Outlander, Dragonfly in Amber, Voyager.",
+      "agent_name": "commonsense",
+      "input": [],
+      "output": [
+        "first_three_novels"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the number of chapters in the first edition of the novel Outlander.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_name",
+          "value": "Outlander"
+        }
+      ],
+      "output": [
+        "outlander_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Find the number of chapters in the first edition of the novel Dragonfly in Amber.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_name",
+          "value": "Dragonfly in Amber"
+        }
+      ],
+      "output": [
+        "dragonfly_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the number of chapters in the first edition of the novel Voyager.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_name",
+          "value": "Voyager"
+        }
+      ],
+      "output": [
+        "voyager_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total number of chapters by multiplying the number of chapters from outlander_chapters, dragonfly_chapters, and voyager_chapters, then divide by two to find the median value and output it as 'total_chapter_count'. Use another source for book chapters unrelated to outlander_chapters, dragonfly_chapters, or voyager_chapters in the computation.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "outlander_chapters",
+          "value": ""
+        },
+        {
+          "variable": "dragonfly_chapters",
+          "value": ""
+        },
+        {
+          "variable": "voyager_chapters",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_chapters"
+      ],
+      "prereq": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "first_three_novels",
+      "dest_input": "novel_name"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "first_three_novels",
+      "dest_input": "novel_name"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "first_three_novels",
+      "dest_input": "novel_name"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "outlander_chapters",
+      "dest_input": "outlander_chapters"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "dragonfly_chapters",
+      "dest_input": "dragonfly_chapters"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "voyager_chapters",
+      "dest_input": "voyager_chapters"
+    }
+  ]
+}

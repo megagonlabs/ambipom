@@ -1,0 +1,174 @@
+{
+  "query": "Find the Nobel Prize in Literature winners for {2014}, {2016}, {2018}. What is the sum of the number of novels each had published at the time of the award? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Prize in Literature winner for 2014.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2014"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Prize in Literature winner for 2016.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2016"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Nobel Prize in Literature winner for 2018.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2018"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Search for a list of works by winner_2014 up to and including 2014.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "works_list_2014"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the number of novels published by winner_2016 by 2016.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novels_2016"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Count the number of novels published by winner_2018 by 2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novels_2018"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Filter the works to identify novels published by winner_2014 by 2014.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "works_list_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novels_2014"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the sum of novels_2014, novels_2016, and novels_2018.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "novels_2014",
+          "value": ""
+        },
+        {
+          "variable": "novels_2016",
+          "value": ""
+        },
+        {
+          "variable": "novels_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_novels"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_2014",
+      "dest_input": "winner_2014"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2016",
+      "dest_input": "winner_2016"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2018",
+      "dest_input": "winner_2018"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "novels_2016",
+      "dest_input": "novels_2016"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "novels_2018",
+      "dest_input": "novels_2018"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "works_list_2014",
+      "dest_input": "works_list_2014"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "novels_2014",
+      "dest_input": "novels_2014"
+    }
+  ]
+}

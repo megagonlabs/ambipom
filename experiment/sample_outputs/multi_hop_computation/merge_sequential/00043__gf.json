@@ -1,0 +1,153 @@
+{
+  "query": "Difference in internet penetration rate (%, 2019) between the birth countries of the World Snooker Championship winners of 2004 and 2016.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the World Snooker Championship winner of 2004.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2004"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the World Snooker Championship winner of 2016.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2016"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of winner_2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2004"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of winner_2016.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2016"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the internet penetration rate in 2019 for birth_country_2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "internet_rate_2004"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the internet penetration rate in 2019 for birth_country_2016.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "internet_rate_2016"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between internet_rate_2004 and internet_rate_2016.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "internet_rate_2004",
+          "value": ""
+        },
+        {
+          "variable": "internet_rate_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "internet_rate_difference"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2004",
+      "dest_input": "winner_2004"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2016",
+      "dest_input": "winner_2016"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2004",
+      "dest_input": "birth_country_2004"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2016",
+      "dest_input": "birth_country_2016"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "internet_rate_2004",
+      "dest_input": "internet_rate_2004"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "internet_rate_2016",
+      "dest_input": "internet_rate_2016"
+    }
+  ]
+}

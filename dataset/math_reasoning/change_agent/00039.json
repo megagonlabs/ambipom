@@ -1,0 +1,163 @@
+{
+  "query": "Mary is trying to get Zoom set up for the first time. She spent 10 minutes downloading the Mac version, only to realize she needed the Windows version, which took three times as long to download. During her first call, the audio glitched twice for 4 minutes each time and the video glitched once for 6 minutes. She spent twice as long talking without glitches as with glitches. How much time did Mary spend downloading Zoom and talking total?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the time spent downloading the Windows version by multiplying the time spent downloading the Mac version by 3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "mac_download_time",
+          "value": "10"
+        }
+      ],
+      "output": [
+        "windows_download_time"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total glitch time by adding the audio glitch times and the video glitch time.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "audio_glitch_time",
+          "value": "4"
+        },
+        {
+          "variable": "audio_glitch_count",
+          "value": "2"
+        },
+        {
+          "variable": "video_glitch_time",
+          "value": "6"
+        }
+      ],
+      "output": [
+        "total_glitch_time"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total download time by adding the mac_download_time and windows_download_time.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "mac_download_time",
+          "value": "10"
+        },
+        {
+          "variable": "windows_download_time",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_download_time"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the time spent talking without glitches by multiplying the total_glitch_time by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_glitch_time",
+          "value": ""
+        }
+      ],
+      "output": [
+        "talking_without_glitches_time"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total talking time by adding the total_glitch_time and talking_without_glitches_time.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_glitch_time",
+          "value": ""
+        },
+        {
+          "variable": "talking_without_glitches_time",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_talking_time"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total time spent by adding total_download_time and total_talking_time.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_download_time",
+          "value": ""
+        },
+        {
+          "variable": "total_talking_time",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_time_spent"
+      ],
+      "prereq": [
+        2,
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "windows_download_time",
+      "dest_input": "windows_download_time"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "total_glitch_time",
+      "dest_input": "total_glitch_time"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "total_glitch_time",
+      "dest_input": "total_glitch_time"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "total_download_time",
+      "dest_input": "total_download_time"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "talking_without_glitches_time",
+      "dest_input": "talking_without_glitches_time"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "total_talking_time",
+      "dest_input": "total_talking_time"
+    }
+  ]
+}

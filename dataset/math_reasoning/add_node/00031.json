@@ -1,0 +1,103 @@
+{
+  "query": "Kelly needs school supplies to teach her class for an art project. She has 8 students and they will need 3 pieces of construction paper each. In addition to the construction paper, she needs to buy 6 bottles of glue for everyone to share. After Kelly purchases these supplies, she dropped half of them down a storm drain. Class is about to start, but she manages to rush to the store and buy 5 more pieces of construction paper. How many supplies are left?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total number of pieces of construction paper needed by multiplying the number of students by the pieces each student needs.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_students",
+          "value": "8"
+        },
+        {
+          "variable": "pieces_per_student",
+          "value": "3"
+        }
+      ],
+      "output": [
+        "total_pieces_needed"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Add the number of bottles of glue needed to the total pieces of construction paper to find the total supplies needed.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_pieces_needed",
+          "value": ""
+        },
+        {
+          "variable": "bottles_of_glue",
+          "value": "6"
+        }
+      ],
+      "output": [
+        "total_supplies_needed"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Calculate the number of supplies dropped by dividing the total supplies needed by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_supplies_needed",
+          "value": ""
+        }
+      ],
+      "output": [
+        "supplies_dropped"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Add the additional pieces of construction paper bought to the remaining supplies after the drop.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "remaining_supplies_after_drop",
+          "value": ""
+        },
+        {
+          "variable": "additional_pieces",
+          "value": "5"
+        }
+      ],
+      "output": [
+        "final_supplies_left"
+      ],
+      "prereq": [
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "total_pieces_needed",
+      "dest_input": "total_pieces_needed"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 3,
+      "src_output": "total_supplies_needed",
+      "dest_input": "total_supplies_needed"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "supplies_dropped",
+      "dest_input": "remaining_supplies_after_drop"
+    }
+  ]
+}

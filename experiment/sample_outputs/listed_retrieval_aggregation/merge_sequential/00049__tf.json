@@ -1,0 +1,151 @@
+{
+  "query": "Find the Booker Prize winners for {2000}, {2003}, {2006}. What is the sum of letters in the titles of their winning novels (excluding spaces and punctuation)? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Booker Prize winner and winning novel title for 2000.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2000"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner and winning novel title for 2003.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2003"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Booker Prize winner and winning novel title for 2006.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2006"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Count the number of letters in the title of the winning novel from 2003, excluding spaces and punctuation.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_2003"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Count the number of letters in the title of the winning novel from 2006, excluding spaces and punctuation.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_2006"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the sum of count_2000, count_2003, and count_2006.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "count_2000",
+          "value": ""
+        },
+        {
+          "variable": "count_2003",
+          "value": ""
+        },
+        {
+          "variable": "count_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_letter_count"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Remove spaces and punctuation from the title of the winning novel from 2000 and count the number of letters in the cleaned title.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_2000",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_2000"
+      ],
+      "prereq": [
+        1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 9,
+      "src_output": "winner_2000",
+      "dest_input": "winner_2000"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2003",
+      "dest_input": "winner_2003"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2006",
+      "dest_input": "winner_2006"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "count_2003",
+      "dest_input": "count_2003"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "count_2006",
+      "dest_input": "count_2006"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 8,
+      "src_output": "count_2000",
+      "dest_input": "count_2000"
+    }
+  ]
+}

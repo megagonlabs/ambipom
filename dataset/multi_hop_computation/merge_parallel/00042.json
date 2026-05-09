@@ -1,0 +1,170 @@
+{
+  "query": "Difference in depth (m) of the deepest lake in the birth countries of the Nobel Physics laureates of 2008 and 2019.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Physics laureate of 2008.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "nobel_physics_2008_winner"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Physics laureate of 2019.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "nobel_physics_2019_winner"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the deepest lake in the birth country of the 2019 Nobel Physics laureate and record its maximum depth in meters.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "deepest_lake_depth_2019"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the Nobel Physics laureate of 2008.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "nobel_physics_2008_winner",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2008"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Search for the name of the Nobel Physics laureate of 2019 using the known winner information.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "nobel_physics_2019_winner",
+          "value": ""
+        }
+      ],
+      "output": [
+        "laureate_name"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Identify the birth country of the given laureate based on their name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "laureate_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2019"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the deepest lake in the birth country of the 2008 Nobel Physics laureate and record its maximum depth in meters.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "deepest_lake_depth_2008"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between deepest_lake_depth_2008 and deepest_lake_depth_2019.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "deepest_lake_depth_2008",
+          "value": ""
+        },
+        {
+          "variable": "deepest_lake_depth_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "depth_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "nobel_physics_2008_winner",
+      "dest_input": "nobel_physics_2008_winner"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "nobel_physics_2019_winner",
+      "dest_input": "nobel_physics_2019_winner"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "nobel_physics_2019_winner",
+      "dest_input": "laureate_name"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "birth_country_2008",
+      "dest_input": "birth_country_2008"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "deepest_lake_depth_2008",
+      "dest_input": "deepest_lake_depth_2008"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "deepest_lake_depth_2019",
+      "dest_input": "deepest_lake_depth_2019"
+    }
+  ]
+}

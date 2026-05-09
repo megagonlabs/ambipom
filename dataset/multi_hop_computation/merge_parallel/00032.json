@@ -1,0 +1,174 @@
+{
+  "query": "Difference in length (km) of the longest road tunnel in the birth countries of the Cannes Palme d'Or directors of 2007 and 2019.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Palme d'Or director of 2007.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "director_2007"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Palme d'Or director of 2019.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "director_2019"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of director_2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2007"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of director_2019.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2019"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Identify the longest road tunnel in country_2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "longest_tunnel_2007"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Determine the length in km of tunnel longest_tunnel_2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2007",
+          "value": ""
+        },
+        {
+          "variable": "longest_tunnel_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "tunnel_length_2007"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the longest road tunnel in country_2019 and its length in km.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "tunnel_length_2019"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between tunnel_length_2007 and tunnel_length_2019.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "tunnel_length_2007",
+          "value": ""
+        },
+        {
+          "variable": "tunnel_length_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "length_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "director_2007",
+      "dest_input": "director_2007"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "director_2019",
+      "dest_input": "director_2019"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "country_2007",
+      "dest_input": "country_2007"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "country_2007",
+      "dest_input": "country_2007"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "country_2019",
+      "dest_input": "country_2019"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "tunnel_length_2019",
+      "dest_input": "tunnel_length_2019"
+    }
+  ]
+}

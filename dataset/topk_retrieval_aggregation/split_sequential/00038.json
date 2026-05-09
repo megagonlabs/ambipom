@@ -1,0 +1,291 @@
+{
+  "query": "What is the average number of citations of the five most-cited scientific papers of all time?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five most-cited scientific papers of all time.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "most_cited_papers"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the title of the first paper from most_cited_papers.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "most_cited_papers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "paper_1_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the title of the second paper from most_cited_papers.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "most_cited_papers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "paper_2_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the title of the third paper from most_cited_papers.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "most_cited_papers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "paper_3_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the title of the fourth paper from most_cited_papers.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "most_cited_papers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "paper_4_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the title of the fifth paper from most_cited_papers and then find its citation count.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "most_cited_papers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "paper_5_citations"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the citation count for paper_1_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "paper_1_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "paper_1_citations"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the citation count for paper_2_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "paper_2_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "paper_2_citations"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the citation count for paper_3_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "paper_3_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "paper_3_citations"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the citation count for paper_4_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "paper_4_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "paper_4_citations"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the average of paper_1_citations, paper_2_citations, paper_3_citations, paper_4_citations, and paper_5_citations.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "paper_1_citations",
+          "value": ""
+        },
+        {
+          "variable": "paper_2_citations",
+          "value": ""
+        },
+        {
+          "variable": "paper_3_citations",
+          "value": ""
+        },
+        {
+          "variable": "paper_4_citations",
+          "value": ""
+        },
+        {
+          "variable": "paper_5_citations",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_citations"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "most_cited_papers",
+      "dest_input": "most_cited_papers"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "most_cited_papers",
+      "dest_input": "most_cited_papers"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "most_cited_papers",
+      "dest_input": "most_cited_papers"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "most_cited_papers",
+      "dest_input": "most_cited_papers"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "most_cited_papers",
+      "dest_input": "most_cited_papers"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "paper_1_title",
+      "dest_input": "paper_1_title"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "paper_2_title",
+      "dest_input": "paper_2_title"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "paper_3_title",
+      "dest_input": "paper_3_title"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "paper_4_title",
+      "dest_input": "paper_4_title"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 11,
+      "src_output": "paper_1_citations",
+      "dest_input": "paper_1_citations"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "paper_2_citations",
+      "dest_input": "paper_2_citations"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "paper_3_citations",
+      "dest_input": "paper_3_citations"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "paper_4_citations",
+      "dest_input": "paper_4_citations"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "paper_5_citations",
+      "dest_input": "paper_5_citations"
+    }
+  ]
+}

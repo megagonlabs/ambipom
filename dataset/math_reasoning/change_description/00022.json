@@ -1,0 +1,190 @@
+{
+  "query": "Derek is watching the construction cranes downtown and is trying to figure out how much taller they have to be than the building they are building. He sees one crane that is 228 feet tall finishing a building that was 200 feet tall. He sees another that is 120 feet tall finishing a building that is 100 feet tall. The final crane he sees is 147 feet tall, finishing a building that is 140 feet tall. On average, what percentage taller are the cranes than the building?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the height difference between the crane and the building for the first pair using crane_height_1 and building_height_1.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "crane_height_1",
+          "value": "228"
+        },
+        {
+          "variable": "building_height_1",
+          "value": "200"
+        }
+      ],
+      "output": [
+        "height_difference_1"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the height difference between the crane and the building for the second pair using crane_height_2 and building_height_2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "crane_height_2",
+          "value": "120"
+        },
+        {
+          "variable": "building_height_2",
+          "value": "100"
+        }
+      ],
+      "output": [
+        "height_difference_2"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the height difference between the crane and the building for the third pair using crane_height_3 and building_height_3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "crane_height_3",
+          "value": "147"
+        },
+        {
+          "variable": "building_height_3",
+          "value": "140"
+        }
+      ],
+      "output": [
+        "height_difference_3"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the percentage difference for the first pair using height_difference_1 and building_height_1.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "height_difference_1",
+          "value": ""
+        },
+        {
+          "variable": "building_height_1",
+          "value": "200"
+        }
+      ],
+      "output": [
+        "percentage_difference_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the addition of the second pair using height_difference_2 and building_height_1, and store the result in percentage_difference_1.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "height_difference_2",
+          "value": ""
+        },
+        {
+          "variable": "building_height_2",
+          "value": "100"
+        }
+      ],
+      "output": [
+        "percentage_difference_2"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the percentage difference for the third pair using height_difference_3 and building_height_3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "height_difference_3",
+          "value": ""
+        },
+        {
+          "variable": "building_height_3",
+          "value": "140"
+        }
+      ],
+      "output": [
+        "percentage_difference_3"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the average of percentage_difference_1, percentage_difference_2, and percentage_difference_3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "percentage_difference_1",
+          "value": ""
+        },
+        {
+          "variable": "percentage_difference_2",
+          "value": ""
+        },
+        {
+          "variable": "percentage_difference_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_percentage_difference"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "height_difference_1",
+      "dest_input": "height_difference_1"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "height_difference_2",
+      "dest_input": "height_difference_2"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "height_difference_3",
+      "dest_input": "height_difference_3"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "percentage_difference_1",
+      "dest_input": "percentage_difference_1"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "percentage_difference_2",
+      "dest_input": "percentage_difference_2"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "percentage_difference_3",
+      "dest_input": "percentage_difference_3"
+    }
+  ]
+}

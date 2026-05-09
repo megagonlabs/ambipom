@@ -1,0 +1,226 @@
+{
+  "query": "What is the average distance from Earth (in light-years) of the five nearest star systems?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five nearest star systems to Earth.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "nearest_star_systems"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the names of the first five star systems from nearest_star_systems.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "nearest_star_systems",
+          "value": ""
+        }
+      ],
+      "output": [
+        "star_system_1",
+        "star_system_2",
+        "star_system_3",
+        "star_system_4",
+        "star_system_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Find the distance in light-years of star_system_1 from Earth.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "star_system_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "distance_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the distance in light-years of star_system_2 from Earth.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "star_system_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "distance_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the distance in light-years of star_system_3 from Earth.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "star_system_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "distance_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the distance in light-years of star_system_4 from Earth.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "star_system_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "distance_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the distance in light-years of star_system_5 from Earth.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "star_system_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "distance_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the average of distance_1, distance_2, distance_3, distance_4, and distance_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "distance_1",
+          "value": ""
+        },
+        {
+          "variable": "distance_2",
+          "value": ""
+        },
+        {
+          "variable": "distance_3",
+          "value": ""
+        },
+        {
+          "variable": "distance_4",
+          "value": ""
+        },
+        {
+          "variable": "distance_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_distance"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "nearest_star_systems",
+      "dest_input": "nearest_star_systems"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "distance_1",
+      "dest_input": "distance_1"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 8,
+      "src_output": "distance_2",
+      "dest_input": "distance_2"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "distance_3",
+      "dest_input": "distance_3"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "distance_4",
+      "dest_input": "distance_4"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "distance_5",
+      "dest_input": "distance_5"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 3,
+      "src_output": "star_system_1",
+      "dest_input": "star_system_1"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "star_system_2",
+      "dest_input": "star_system_2"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "star_system_3",
+      "dest_input": "star_system_3"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "star_system_4",
+      "dest_input": "star_system_4"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "star_system_5",
+      "dest_input": "star_system_5"
+    }
+  ]
+}

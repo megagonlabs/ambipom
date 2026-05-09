@@ -1,0 +1,331 @@
+{
+  "query": "What is the average career length of the five longest-serving U.S. Supreme Court justices?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five longest-serving U.S. Supreme Court justices.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "longest_serving_justices"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the tenure length of justice_1_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "justice_1_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "justice_1_tenure"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second longest-serving justice from longest_serving_justices.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_serving_justices",
+          "value": ""
+        }
+      ],
+      "output": [
+        "justice_2_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the third longest-serving justice from longest_serving_justices.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_serving_justices",
+          "value": ""
+        }
+      ],
+      "output": [
+        "justice_3_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the name of the fourth longest-serving justice from longest_serving_justices.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_serving_justices",
+          "value": ""
+        }
+      ],
+      "output": [
+        "justice_4_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the name of the fifth longest-serving justice from longest_serving_justices.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_serving_justices",
+          "value": ""
+        }
+      ],
+      "output": [
+        "justice_5_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Select the first justice from longest_serving_justices.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_serving_justices",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_justice"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Extract the name of the justice from first_justice.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "first_justice",
+          "value": ""
+        }
+      ],
+      "output": [
+        "justice_1_name"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the tenure length of justice_2_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "justice_2_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "justice_2_tenure"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the tenure length of justice_3_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "justice_3_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "justice_3_tenure"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Find the tenure length of justice_4_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "justice_4_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "justice_4_tenure"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Find the tenure length of justice_5_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "justice_5_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "justice_5_tenure"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 13,
+      "task": "Calculate the average of justice_1_tenure, justice_2_tenure, justice_3_tenure, justice_4_tenure, and justice_5_tenure.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "justice_1_tenure",
+          "value": ""
+        },
+        {
+          "variable": "justice_2_tenure",
+          "value": ""
+        },
+        {
+          "variable": "justice_3_tenure",
+          "value": ""
+        },
+        {
+          "variable": "justice_4_tenure",
+          "value": ""
+        },
+        {
+          "variable": "justice_5_tenure",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_tenure"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "longest_serving_justices",
+      "dest_input": "longest_serving_justices"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "longest_serving_justices",
+      "dest_input": "longest_serving_justices"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "longest_serving_justices",
+      "dest_input": "longest_serving_justices"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "longest_serving_justices",
+      "dest_input": "longest_serving_justices"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 7,
+      "src_output": "longest_serving_justices",
+      "dest_input": "longest_serving_justices"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 8,
+      "src_output": "longest_serving_justices",
+      "dest_input": "first_justice"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 9,
+      "src_output": "justice_2_name",
+      "dest_input": "justice_2_name"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 10,
+      "src_output": "justice_3_name",
+      "dest_input": "justice_3_name"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 11,
+      "src_output": "justice_4_name",
+      "dest_input": "justice_4_name"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 12,
+      "src_output": "justice_5_name",
+      "dest_input": "justice_5_name"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 13,
+      "src_output": "justice_1_tenure",
+      "dest_input": "justice_1_tenure"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 13,
+      "src_output": "justice_2_tenure",
+      "dest_input": "justice_2_tenure"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 13,
+      "src_output": "justice_3_tenure",
+      "dest_input": "justice_3_tenure"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 13,
+      "src_output": "justice_4_tenure",
+      "dest_input": "justice_4_tenure"
+    },
+    {
+      "src_node": 12,
+      "dest_node": 13,
+      "src_output": "justice_5_tenure",
+      "dest_input": "justice_5_tenure"
+    }
+  ]
+}

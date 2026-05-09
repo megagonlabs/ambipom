@@ -1,0 +1,163 @@
+{
+  "query": "Alec is running for Class President. He thinks that if he can get three-quarters of the class to vote for him then there is no chance anyone else can beat him. Half of the class have already said they will vote for him but out of the remaining students, only 5 have said they are thinking about voting for him. He surveys the students who are thinking about voting for someone else, and changes his flyers to reflect the issues these students are concerned about. This results in a fifth of these students saying they'll vote for him. If Alec's class has 60 students and everyone who said they will vote for him does so, how many more votes does Alec need to reach his goal number of votes?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate three-quarters of total_students.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_students",
+          "value": "60"
+        }
+      ],
+      "output": [
+        "goal_votes"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate half of total_students.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_students",
+          "value": "60"
+        }
+      ],
+      "output": [
+        "initial_support"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Subtract initial_support and undecided_support from total_students to find remaining_students.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_students",
+          "value": "60"
+        },
+        {
+          "variable": "initial_support",
+          "value": ""
+        },
+        {
+          "variable": "undecided_support",
+          "value": "5"
+        }
+      ],
+      "output": [
+        "remaining_students"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate a fifth of remaining_students.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "remaining_students",
+          "value": ""
+        }
+      ],
+      "output": [
+        "converted_support"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Add initial_support, undecided_support, and converted_support to find total_support.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "initial_support",
+          "value": ""
+        },
+        {
+          "variable": "undecided_support",
+          "value": "5"
+        },
+        {
+          "variable": "converted_support",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_support"
+      ],
+      "prereq": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Subtract total_support from goal_votes to find additional_votes_needed.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "goal_votes",
+          "value": ""
+        },
+        {
+          "variable": "total_support",
+          "value": ""
+        }
+      ],
+      "output": [
+        "additional_votes_needed"
+      ],
+      "prereq": [
+        1,
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "goal_votes",
+      "dest_input": "goal_votes"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 3,
+      "src_output": "initial_support",
+      "dest_input": "initial_support"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "initial_support",
+      "dest_input": "initial_support"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "remaining_students",
+      "dest_input": "remaining_students"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "converted_support",
+      "dest_input": "converted_support"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "total_support",
+      "dest_input": "total_support"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "query": "Elevation difference (m) between the capital cities of the birth countries of the Nobel Peace Prize laureates of 2004 and 2014.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Peace Prize laureate of 2004.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "laureate_2004"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Peace Prize laureate of 2014.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "laureate_2014"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of laureate_2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "laureate_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2004"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of laureate_2014.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "laureate_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2014"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Verify and update the birth_country_2004 value to ensure accurate identification of the capital city and its elevation.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "verified_birth_country_2004"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the capital city of verified_birth_country_2004 and its elevation in meters.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "verified_birth_country_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_2004",
+        "elevation_2004"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the capital city of birth_country_2014 and its elevation in meters.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "capital_2014",
+        "elevation_2014"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between elevation_2004 and elevation_2014.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "elevation_2004",
+          "value": ""
+        },
+        {
+          "variable": "elevation_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "elevation_difference"
+      ],
+      "prereq": [
+        6,
+        7
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "laureate_2004",
+      "dest_input": "laureate_2004"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "laureate_2014",
+      "dest_input": "laureate_2014"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2004",
+      "dest_input": "birth_country_2004"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "birth_country_2014",
+      "dest_input": "birth_country_2014"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "verified_birth_country_2004",
+      "dest_input": "verified_birth_country_2004"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "elevation_2004",
+      "dest_input": "elevation_2004"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "elevation_2014",
+      "dest_input": "elevation_2014"
+    }
+  ]
+}

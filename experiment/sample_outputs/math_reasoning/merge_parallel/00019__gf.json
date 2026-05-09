@@ -1,0 +1,133 @@
+{
+  "query": "Miriam is trying to exercise more and figures if she counts her exercises it will be encouraging to see her numbers go up. On Monday she does 5 push-ups. On Tuesday she does 7 push-ups. On Wednesday she does twice as many push-ups as the day before. On Thursday she does half the number of total pushups she already did that week. Finally, on Friday she does as many pushups as the total number she did over the previous four days. How many pushups does Miriam do on Friday?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of pushups on Wednesday by multiplying the number of pushups on Tuesday by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pushups_tuesday",
+          "value": "7"
+        }
+      ],
+      "output": [
+        "pushups_wednesday"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the number of pushups on Friday by using the total_pushups_monday_to_thursday as the number of pushups.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_pushups_monday_to_thursday",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pushups_friday"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total number of pushups from Monday to Wednesday by summing pushups_monday, pushups_tuesday, and pushups_wednesday.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pushups_monday",
+          "value": "5"
+        },
+        {
+          "variable": "pushups_tuesday",
+          "value": "7"
+        },
+        {
+          "variable": "pushups_wednesday",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_pushups_monday_to_wednesday"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the number of pushups on Thursday by dividing total_pushups_monday_to_wednesday by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_pushups_monday_to_wednesday",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pushups_thursday"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Add pushups_thursday to total_pushups_monday_to_wednesday to calculate the total pushups from Monday to Thursday.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_pushups_monday_to_wednesday",
+          "value": ""
+        },
+        {
+          "variable": "pushups_thursday",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_pushups_monday_to_thursday"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "pushups_wednesday",
+      "dest_input": "pushups_wednesday"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "total_pushups_monday_to_wednesday",
+      "dest_input": "total_pushups_monday_to_wednesday"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "total_pushups_monday_to_wednesday",
+      "dest_input": "total_pushups_monday_to_wednesday"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "pushups_thursday",
+      "dest_input": "pushups_thursday"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 2,
+      "src_output": "total_pushups_monday_to_thursday",
+      "dest_input": "total_pushups_monday_to_thursday"
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "query": "What is the total career home run count of the three players with the most MLB MVP awards?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the three MLB players with the most career MVP awards.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_mvp_players"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the first player's name from the top_mvp_players list.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_mvp_players",
+          "value": ""
+        }
+      ],
+      "output": [
+        "player_one"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the third player's name from the top_mvp_players list.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_mvp_players",
+          "value": ""
+        }
+      ],
+      "output": [
+        "player_three"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the career home run total for player_one.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "player_one",
+          "value": ""
+        }
+      ],
+      "output": [
+        "home_runs_one"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the career home run total for player_two.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "player_two",
+          "value": ""
+        }
+      ],
+      "output": [
+        "home_runs_two"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the career home run total for player_three.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "player_three",
+          "value": ""
+        }
+      ],
+      "output": [
+        "home_runs_three"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the sum of home_runs_one, home_runs_two, and home_runs_three.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "home_runs_one",
+          "value": ""
+        },
+        {
+          "variable": "home_runs_two",
+          "value": ""
+        },
+        {
+          "variable": "home_runs_three",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_home_runs"
+      ],
+      "prereq": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Extract the second player's name from the top_mvp_players list.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "top_mvp_players",
+          "value": ""
+        }
+      ],
+      "output": [
+        "player_two"
+      ],
+      "prereq": [
+        1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_mvp_players",
+      "dest_input": "top_mvp_players"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_mvp_players",
+      "dest_input": "top_mvp_players"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 9,
+      "src_output": "top_mvp_players",
+      "dest_input": "top_mvp_players"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "player_one",
+      "dest_input": "player_one"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "player_three",
+      "dest_input": "player_three"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "home_runs_one",
+      "dest_input": "home_runs_one"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "home_runs_two",
+      "dest_input": "home_runs_two"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "home_runs_three",
+      "dest_input": "home_runs_three"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 6,
+      "src_output": "player_two",
+      "dest_input": "player_two"
+    }
+  ]
+}

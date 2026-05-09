@@ -1,0 +1,153 @@
+{
+  "query": "Founding year difference between the oldest universities in the birth countries of the Nebula Award for Best Novel winners of 2006 and 2017.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nebula Award Best Novel winner of 2006.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2006"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nebula Award Best Novel winner of 2017.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2017"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of winner_2017.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2017"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the oldest university in country_2017 and its founding year.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "founding_year_2017"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the absolute difference between founding_year_2006 and founding_year_2017.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "founding_year_2006",
+          "value": ""
+        },
+        {
+          "variable": "founding_year_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the birth country of winner_2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2006"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Determine the oldest university in birth_country_2006 along with its founding year.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "founding_year_2006"
+      ],
+      "prereq": [
+        -1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 7,
+      "src_output": "winner_2006",
+      "dest_input": "winner_2006"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2017",
+      "dest_input": "winner_2017"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "country_2017",
+      "dest_input": "country_2017"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "founding_year_2017",
+      "dest_input": "founding_year_2017"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "birth_country_2006",
+      "dest_input": "birth_country_2006"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 6,
+      "src_output": "founding_year_2006",
+      "dest_input": "founding_year_2006"
+    }
+  ]
+}

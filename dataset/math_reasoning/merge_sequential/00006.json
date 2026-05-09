@@ -1,0 +1,164 @@
+{
+  "query": "Sydney and Conner are having a three day rock collecting contest to see who can have the largest collection after adding to their existing collections. Before they start, Sydney has 837 rocks and Conner has 723. On day one, Sydney collects 4 rocks and Conner collects 8 times as many. On day two Sydney rests and Conner collects 123. On the third day, Sydney collects twice as many as Conner did on the first day. How many does Conner have to collect on day three to make sure he at least ties Sydney?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of rocks Conner collects on day one by multiplying 8 with the number of rocks Sydney collects on day one.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "sydney_day_one",
+          "value": "4"
+        }
+      ],
+      "output": [
+        "conner_day_one"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the number of rocks Sydney collects on day three by multiplying 2 with the number of rocks Conner collects on day one.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "conner_day_one",
+          "value": ""
+        }
+      ],
+      "output": [
+        "sydney_day_three"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Add Conner's initial rocks to the rocks collected on day one.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "conner_initial",
+          "value": "723"
+        },
+        {
+          "variable": "conner_day_one",
+          "value": ""
+        }
+      ],
+      "output": [
+        "conner_after_day_one"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total number of rocks Sydney has after three days by adding her initial rocks, the rocks collected on day one, and the rocks collected on day three.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "sydney_initial",
+          "value": "837"
+        },
+        {
+          "variable": "sydney_day_one",
+          "value": "4"
+        },
+        {
+          "variable": "sydney_day_three",
+          "value": ""
+        }
+      ],
+      "output": [
+        "sydney_total"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Add the rocks collected on day two to the total for the first day to get the total after two days.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "conner_after_day_one",
+          "value": ""
+        },
+        {
+          "variable": "conner_day_two",
+          "value": "123"
+        }
+      ],
+      "output": [
+        "conner_total_after_two_days"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Determine the number of rocks Conner needs to collect on day three to at least tie with Sydney by subtracting Conner's total after two days from Sydney's total.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "sydney_total",
+          "value": ""
+        },
+        {
+          "variable": "conner_total_after_two_days",
+          "value": ""
+        }
+      ],
+      "output": [
+        "conner_day_three"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "conner_day_one",
+      "dest_input": "conner_day_one"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "conner_day_one",
+      "dest_input": "conner_day_one"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "sydney_day_three",
+      "dest_input": "sydney_day_three"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "sydney_total",
+      "dest_input": "sydney_total"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "conner_after_day_one",
+      "dest_input": "conner_after_day_one"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "conner_total_after_two_days",
+      "dest_input": "conner_total_after_two_days"
+    }
+  ]
+}

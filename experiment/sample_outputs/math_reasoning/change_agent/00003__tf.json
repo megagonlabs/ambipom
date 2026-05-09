@@ -1,0 +1,143 @@
+{
+  "query": "Five food companies sponsored a local food bank. Foster Farms donated 45 dressed chickens; American Summits donated twice the number of bottled water than the number of dressed chicken donated by Foster Farms; Hormel donated three times the number of dressed chickens that Foster Farms donated; Boudin Butchers donated one-third of the number of dressed chickens that Hormel donated; Del Monte Foods donated 30 fewer bottles of water than American Summits. How many food items did the companies donate in total?",
+  "nodes": [
+    {
+      "id": 2,
+      "task": "Calculate the number of dressed chickens donated by Hormel given that it is three times the number of dressed chickens donated by Foster Farms.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "dressed_chickens_foster_farms",
+          "value": "45"
+        }
+      ],
+      "output": [
+        "dressed_chickens_hormel"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the number of bottled water donated by Del Monte Foods given that it is 30 fewer than the number of bottled water donated by American Summits.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bottled_water_american_summits",
+          "value": ""
+        }
+      ],
+      "output": [
+        "bottled_water_del_monte_foods"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the number of dressed chickens donated by Boudin Butchers given that it is one-third of the number of dressed chickens donated by Hormel.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "dressed_chickens_hormel",
+          "value": ""
+        }
+      ],
+      "output": [
+        "dressed_chickens_boudin_butchers"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total number of food items donated by all companies by summing the number of dressed chickens and bottled water donated by each company.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "dressed_chickens_foster_farms",
+          "value": "45"
+        },
+        {
+          "variable": "bottled_water_american_summits",
+          "value": ""
+        },
+        {
+          "variable": "dressed_chickens_hormel",
+          "value": ""
+        },
+        {
+          "variable": "dressed_chickens_boudin_butchers",
+          "value": ""
+        },
+        {
+          "variable": "bottled_water_del_monte_foods",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_food_items"
+      ],
+      "prereq": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Search for the number of bottled water donated by American Summits, which is twice the number of dressed chickens donated by Foster Farms.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "dressed_chickens_foster_farms",
+          "value": "45"
+        }
+      ],
+      "output": [
+        "bottled_water_american_summits"
+      ],
+      "prereq": []
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "dressed_chickens_hormel",
+      "dest_input": "dressed_chickens_hormel"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "dressed_chickens_hormel",
+      "dest_input": "dressed_chickens_hormel"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "bottled_water_del_monte_foods",
+      "dest_input": "bottled_water_del_monte_foods"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "dressed_chickens_boudin_butchers",
+      "dest_input": "dressed_chickens_boudin_butchers"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 3,
+      "src_output": "bottled_water_american_summits",
+      "dest_input": "bottled_water_american_summits"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 5,
+      "src_output": "bottled_water_american_summits",
+      "dest_input": "bottled_water_american_summits"
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "query": "Difference in average annual precipitation (mm/year) between the capital cities of the birth countries of the Hugo Award for Best Novel winners of 2005 and 2016.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Hugo Award for Best Novel winner of 2005.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2005"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Hugo Award for Best Novel winner of 2016.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2016"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country and capital city of winner_2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2005",
+        "capital_2005"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country and capital city of winner_2016.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2016",
+        "capital_2016"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the average annual precipitation in mm for capital_2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "capital_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "precipitation_2005"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the average annual precipitation in mm for capital_2016.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "capital_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "precipitation_2016"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between precipitation_2005 and precipitation_2016.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "precipitation_2005",
+          "value": ""
+        },
+        {
+          "variable": "precipitation_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "precipitation_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2005",
+      "dest_input": "winner_2005"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2016",
+      "dest_input": "winner_2016"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "capital_2005",
+      "dest_input": "capital_2005"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "capital_2016",
+      "dest_input": "capital_2016"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "precipitation_2005",
+      "dest_input": "precipitation_2005"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "precipitation_2016",
+      "dest_input": "precipitation_2016"
+    }
+  ]
+}

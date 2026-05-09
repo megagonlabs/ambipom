@@ -1,0 +1,291 @@
+{
+  "query": "What is the average price of a Big Mac in the five countries with the highest Big Mac Index value?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five countries with the highest Big Mac Index value.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_countries"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the first country name from top_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the third country name from top_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the fourth country name from top_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the fifth country name from top_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the second country name from top_countries and find the local Big Mac price in USD for that country.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "price_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the local Big Mac price in USD for country_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "price_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the local Big Mac price in USD for country_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "price_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the local Big Mac price in USD for country_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "price_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the local Big Mac price in USD for country_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "price_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the average of price_1, price_2, price_3, price_4, and price_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "price_1",
+          "value": ""
+        },
+        {
+          "variable": "price_2",
+          "value": ""
+        },
+        {
+          "variable": "price_3",
+          "value": ""
+        },
+        {
+          "variable": "price_4",
+          "value": ""
+        },
+        {
+          "variable": "price_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_price"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_countries",
+      "dest_input": "top_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_countries",
+      "dest_input": "top_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_countries",
+      "dest_input": "top_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "top_countries",
+      "dest_input": "top_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "top_countries",
+      "dest_input": "top_countries"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "country_1",
+      "dest_input": "country_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "country_3",
+      "dest_input": "country_3"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "country_4",
+      "dest_input": "country_4"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "country_5",
+      "dest_input": "country_5"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 11,
+      "src_output": "price_1",
+      "dest_input": "price_1"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "price_3",
+      "dest_input": "price_3"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "price_4",
+      "dest_input": "price_4"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "price_5",
+      "dest_input": "price_5"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "price_2",
+      "dest_input": "price_2"
+    }
+  ]
+}

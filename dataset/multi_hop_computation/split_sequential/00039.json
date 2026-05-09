@@ -1,0 +1,130 @@
+{
+  "query": "Population difference (2020) between the birth countries of the Wimbledon Men's Singles champions of 2003 and 2015.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Wimbledon Men's Singles champion of 2003.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "champion_2003"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Wimbledon Men's Singles champion of 2015.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "champion_2015"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of champion_2003 and look up its population in 2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "champion_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_2003"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of champion_2015.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "champion_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2015"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the population of country_2015 in 2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_2015"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the absolute difference between population_2003 and population_2015.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "population_2003",
+          "value": ""
+        },
+        {
+          "variable": "population_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "population_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "champion_2003",
+      "dest_input": "champion_2003"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "champion_2015",
+      "dest_input": "champion_2015"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "country_2015",
+      "dest_input": "country_2015"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "population_2015",
+      "dest_input": "population_2015"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "population_2003",
+      "dest_input": "population_2003"
+    }
+  ]
+}

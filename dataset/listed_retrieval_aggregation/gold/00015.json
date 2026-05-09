@@ -1,0 +1,120 @@
+{
+  "query": "What is the average number of parts (not chapters) in the three longest novels by Marcel Proust in In Search of Lost Time (original French editions)? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "List all seven volumes of In Search of Lost Time by Marcel Proust.",
+      "agent_name": "commonsense",
+      "input": [],
+      "output": [
+        "volume_list"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Look up the number of parts in each volume of In Search of Lost Time.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "volume_list",
+          "value": ""
+        }
+      ],
+      "output": [
+        "parts_per_volume"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Look up the word or page count for each volume of In Search of Lost Time.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "volume_list",
+          "value": ""
+        }
+      ],
+      "output": [
+        "length_per_volume"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Identify the three longest volumes by word or page count from the length_per_volume data.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "length_per_volume",
+          "value": ""
+        }
+      ],
+      "output": [
+        "three_longest_volumes"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Compute the average number of parts for the three longest volumes using parts_per_volume and three_longest_volumes.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "parts_per_volume",
+          "value": ""
+        },
+        {
+          "variable": "three_longest_volumes",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_parts"
+      ],
+      "prereq": [
+        2,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "volume_list",
+      "dest_input": "volume_list"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "volume_list",
+      "dest_input": "volume_list"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "parts_per_volume",
+      "dest_input": "parts_per_volume"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "length_per_volume",
+      "dest_input": "length_per_volume"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "three_longest_volumes",
+      "dest_input": "three_longest_volumes"
+    }
+  ]
+}

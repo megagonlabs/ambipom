@@ -1,0 +1,197 @@
+{
+  "query": "Find the Nobel Literature Prize winners for {1945}, {1955}, {1965}. What is the sum of the number of letters in their birth countries' names? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Prize in Literature winner for 1945.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1945"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Prize in Literature winner for 1955.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1955"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Nobel Prize in Literature winner for 1965.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1965"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Identify the birth country of the winner_1945.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1945",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_1945"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Identify the birth country of the winner_1955.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1955",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_1955"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Identify the birth country of the winner_1965.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1965",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_1965"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Count the number of letters in country_1945, excluding spaces and hyphens.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "country_1945",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_1945"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Count the number of letters in country_1955, excluding spaces and hyphens.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "country_1955",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_1955"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the sum of count_1945, count_1955, and count_1965.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "count_1945",
+          "value": ""
+        },
+        {
+          "variable": "count_1955",
+          "value": ""
+        },
+        {
+          "variable": "count_1965",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_letter_count"
+      ],
+      "prereq": [
+        7,
+        8,
+        9
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_1945",
+      "dest_input": "winner_1945"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_1955",
+      "dest_input": "winner_1955"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_1965",
+      "dest_input": "winner_1965"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "country_1945",
+      "dest_input": "country_1945"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "country_1955",
+      "dest_input": "country_1955"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 9,
+      "src_output": "country_1965",
+      "dest_input": "count_1965"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 9,
+      "src_output": "count_1945",
+      "dest_input": "count_1945"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 9,
+      "src_output": "count_1955",
+      "dest_input": "count_1955"
+    }
+  ]
+}

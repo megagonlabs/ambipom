@@ -1,0 +1,109 @@
+{
+  "query": "A father is building a playset for his son and needs to purchase lumber, nails, and fabric.  When he started planning the project, the necessary lumber cost $450, the nails cost $30, and the fabric cost $80.  However, recent economic inflation has caused the price of lumber to increase by 20%, the price of nails to increase by 10%, and the price of fabric to increase by 5%.  In dollars, how much more money will it cost to complete the project now (after inflation) than it would have when the father began planning?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the increased cost of lumber by applying a 20% increase to the original_lumber_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "original_lumber_cost",
+          "value": "450"
+        }
+      ],
+      "output": [
+        "increased_lumber_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the increased cost of nails by applying a 10% increase to the original_nails_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "original_nails_cost",
+          "value": "30"
+        }
+      ],
+      "output": [
+        "increased_nails_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the increased cost of fabric by applying a 5% increase to the original_fabric_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "original_fabric_cost",
+          "value": "80"
+        }
+      ],
+      "output": [
+        "increased_fabric_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the original total cost by summing original_lumber_cost, original_nails_cost, and original_fabric_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "original_lumber_cost",
+          "value": "450"
+        },
+        {
+          "variable": "original_nails_cost",
+          "value": "30"
+        },
+        {
+          "variable": "original_fabric_cost",
+          "value": "80"
+        }
+      ],
+      "output": [
+        "original_total_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the additional cost due to inflation by subtracting original_total_cost from total_increased_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_increased_cost",
+          "value": ""
+        },
+        {
+          "variable": "original_total_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "additional_cost_due_to_inflation"
+      ],
+      "prereq": [
+        4,
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "increased_lumber_cost",
+      "dest_input": "total_increased_cost"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "original_total_cost",
+      "dest_input": "original_total_cost"
+    }
+  ]
+}

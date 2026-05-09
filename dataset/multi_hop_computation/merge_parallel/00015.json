@@ -1,0 +1,170 @@
+{
+  "query": "GDP per capita difference (USD, 2018) between the birth countries of the Cannes Palme d'Or directors of 2003 and 2014.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Cannes Palme d'Or winning director of 2003.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "director_2003"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Cannes Palme d'Or winning director of 2014.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "director_2014"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Look up the GDP per capita in USD for 2018 for country_2003.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gdp_2003"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Search online databases for director_2003 to find birth country information.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_country_info_2003"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Check social media profiles for director_2003 to locate country of birth.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "social_country_info_2003"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the birth country of director_2014.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2014"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Look up the GDP per capita in USD for 2018 for country_2014.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gdp_2014"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between gdp_2003 and gdp_2014.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "gdp_2003",
+          "value": ""
+        },
+        {
+          "variable": "gdp_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gdp_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "director_2003",
+      "dest_input": "director_2003"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "director_2003",
+      "dest_input": "director_2003"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "director_2014",
+      "dest_input": "director_2014"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "country_2014",
+      "dest_input": "country_2014"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "gdp_2003",
+      "dest_input": "gdp_2003"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "gdp_2014",
+      "dest_input": "gdp_2014"
+    }
+  ]
+}

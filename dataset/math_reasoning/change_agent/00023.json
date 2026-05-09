@@ -1,0 +1,178 @@
+{
+  "query": "Josie and her family went on a safari and had an exciting time watching different animals grazing and playing together. She decided to count each animal she saw and calculated their total number. She counted 80 antelopes, 34 more rabbits than antelopes, 42 fewer hyenas than the total number of antelopes and rabbits combined, 50 more wild dogs than hyenas, and the number of leopards was half the number of rabbits. What the total number of animals that Josie counted?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of rabbits by adding 34 to the number of antelopes.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "antelopes",
+          "value": "80"
+        }
+      ],
+      "output": [
+        "rabbits"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of antelopes and rabbits by adding the number of antelopes to the number of rabbits.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "antelopes",
+          "value": "80"
+        },
+        {
+          "variable": "rabbits",
+          "value": ""
+        }
+      ],
+      "output": [
+        "antelopes_rabbits_total"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Calculate the number of leopards by dividing the number of rabbits by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "rabbits",
+          "value": ""
+        }
+      ],
+      "output": [
+        "leopards"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the number of hyenas by subtracting 42 from the total number of antelopes and rabbits.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "antelopes_rabbits_total",
+          "value": ""
+        }
+      ],
+      "output": [
+        "hyenas"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the number of wild dogs by adding 50 to the number of hyenas.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "hyenas",
+          "value": ""
+        }
+      ],
+      "output": [
+        "wild_dogs"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total number of animals by adding the number of antelopes, rabbits, hyenas, wild dogs, and leopards.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "antelopes",
+          "value": "80"
+        },
+        {
+          "variable": "rabbits",
+          "value": ""
+        },
+        {
+          "variable": "hyenas",
+          "value": ""
+        },
+        {
+          "variable": "wild_dogs",
+          "value": ""
+        },
+        {
+          "variable": "leopards",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_animals"
+      ],
+      "prereq": [
+        1,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "rabbits",
+      "dest_input": "rabbits"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "rabbits",
+      "dest_input": "rabbits"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "rabbits",
+      "dest_input": "rabbits"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "antelopes_rabbits_total",
+      "dest_input": "antelopes_rabbits_total"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "leopards",
+      "dest_input": "leopards"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "hyenas",
+      "dest_input": "hyenas"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "hyenas",
+      "dest_input": "hyenas"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "wild_dogs",
+      "dest_input": "wild_dogs"
+    }
+  ]
+}

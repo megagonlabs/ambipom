@@ -1,0 +1,332 @@
+{
+  "query": "Cary is an engineer in charge of designing an irrigation system for three farmers. Farmer Bob grows 3 acres of corn, 9 acres of cotton, and 12 acres of beans. Farmer Brenda grows 6 acres of corn, 7 acres of cotton, and 14 acres of beans. Farmer Bernie grows 2 acres of corn and 12 acres of cotton. If corn takes 20 gallons of water an acre, cotton takes 80 gallons of water an acre, and beans take twice as much water as corn, what percentage of the total water used will go to Farmer Bob's farm?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the water needed for Farmer Bob's corn using corn_acres and corn_water_per_acre.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "corn_acres",
+          "value": "3"
+        },
+        {
+          "variable": "corn_water_per_acre",
+          "value": "20"
+        }
+      ],
+      "output": [
+        "bob_corn_water"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the water needed for Farmer Bob's cotton using cotton_acres and cotton_water_per_acre.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "cotton_acres",
+          "value": "9"
+        },
+        {
+          "variable": "cotton_water_per_acre",
+          "value": "80"
+        }
+      ],
+      "output": [
+        "bob_cotton_water"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the water needed for Farmer Bob's beans using bean_acres and bean_water_per_acre.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bean_acres",
+          "value": "12"
+        },
+        {
+          "variable": "bean_water_per_acre",
+          "value": "40"
+        }
+      ],
+      "output": [
+        "bob_bean_water"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the water needed for Farmer Brenda's corn using corn_acres and corn_water_per_acre.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "corn_acres",
+          "value": "6"
+        },
+        {
+          "variable": "corn_water_per_acre",
+          "value": "20"
+        }
+      ],
+      "output": [
+        "brenda_corn_water"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the water needed for Farmer Brenda's cotton using cotton_acres and cotton_water_per_acre.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "cotton_acres",
+          "value": "7"
+        },
+        {
+          "variable": "cotton_water_per_acre",
+          "value": "80"
+        }
+      ],
+      "output": [
+        "brenda_cotton_water"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 6,
+      "task": "Calculate the water needed for Farmer Brenda's beans using bean_acres and bean_water_per_acre.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bean_acres",
+          "value": "14"
+        },
+        {
+          "variable": "bean_water_per_acre",
+          "value": "40"
+        }
+      ],
+      "output": [
+        "brenda_bean_water"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 7,
+      "task": "Calculate the water needed for Farmer Bernie's corn using corn_acres and corn_water_per_acre.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "corn_acres",
+          "value": "2"
+        },
+        {
+          "variable": "corn_water_per_acre",
+          "value": "20"
+        }
+      ],
+      "output": [
+        "bernie_corn_water"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 8,
+      "task": "Calculate the water needed for Farmer Bernie's cotton using cotton_acres and cotton_water_per_acre.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "cotton_acres",
+          "value": "12"
+        },
+        {
+          "variable": "cotton_water_per_acre",
+          "value": "80"
+        }
+      ],
+      "output": [
+        "bernie_cotton_water"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 11,
+      "task": "Calculate the total water used by Farmer Brenda using brenda_corn_water, brenda_cotton_water, and brenda_bean_water.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "brenda_corn_water",
+          "value": ""
+        },
+        {
+          "variable": "brenda_cotton_water",
+          "value": ""
+        },
+        {
+          "variable": "brenda_bean_water",
+          "value": ""
+        }
+      ],
+      "output": [
+        "brenda_total_water"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Calculate the total water used by Farmer Bernie using bernie_corn_water and bernie_cotton_water.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bernie_corn_water",
+          "value": ""
+        },
+        {
+          "variable": "bernie_cotton_water",
+          "value": ""
+        }
+      ],
+      "output": [
+        "bernie_total_water"
+      ],
+      "prereq": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": 13,
+      "task": "Calculate the total water used by all farmers using bob_total_water, brenda_total_water, and bernie_total_water.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bob_total_water",
+          "value": ""
+        },
+        {
+          "variable": "brenda_total_water",
+          "value": ""
+        },
+        {
+          "variable": "bernie_total_water",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_water"
+      ],
+      "prereq": [
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": 14,
+      "task": "Calculate the percentage of total water used by Farmer Bob using bob_total_water and total_water.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bob_total_water",
+          "value": ""
+        },
+        {
+          "variable": "total_water",
+          "value": ""
+        }
+      ],
+      "output": [
+        "bob_water_percentage"
+      ],
+      "prereq": [
+        9,
+        12
+      ]
+    },
+    {
+      "id": 15,
+      "task": "Calculate the total water by summing bob_corn_water, bob_cotton_water, and bob_bean_water.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bob_corn_water",
+          "value": ""
+        },
+        {
+          "variable": "bob_cotton_water",
+          "value": ""
+        },
+        {
+          "variable": "bob_bean_water",
+          "value": ""
+        }
+      ],
+      "output": [
+        "bob_total_water"
+      ],
+      "prereq": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 4,
+      "dest_node": 11,
+      "src_output": "brenda_corn_water",
+      "dest_input": "brenda_corn_water"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 11,
+      "src_output": "brenda_cotton_water",
+      "dest_input": "brenda_cotton_water"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "brenda_bean_water",
+      "dest_input": "brenda_bean_water"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 12,
+      "src_output": "bernie_corn_water",
+      "dest_input": "bernie_corn_water"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 12,
+      "src_output": "bernie_cotton_water",
+      "dest_input": "bernie_cotton_water"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 13,
+      "src_output": "brenda_total_water",
+      "dest_input": "brenda_total_water"
+    },
+    {
+      "src_node": 12,
+      "dest_node": 13,
+      "src_output": "bernie_total_water",
+      "dest_input": "bernie_total_water"
+    },
+    {
+      "src_node": 13,
+      "dest_node": 14,
+      "src_output": "total_water",
+      "dest_input": "total_water"
+    }
+  ]
+}

@@ -1,0 +1,380 @@
+.custom-task-node {
+  position: relative;
+  min-width: 400px;
+  max-width: 800px;
+  margin: 10px 10px 12px 10px;
+  padding: 10px;
+  border: 2px solid var(--edge-color);
+  border-radius: 8px;
+  font-size: var(--fs-xl);
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settings-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  min-width: 300px;
+  z-index: 1000;
+  padding: 12px;
+}
+
+.settings-menu-header {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: var(--bp-typography-color-default);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.settings-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+}
+
+.settings-table td {
+  padding: 8px 4px;
+  vertical-align: middle;
+}
+
+.settings-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--bp-typography-color-muted);
+  width: 40%;
+  text-align: left;
+}
+
+.settings-value {
+  width: 60%;
+}
+
+.settings-add-field {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.settings-menu-footer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ReactFlow click selection - disabled (nodes can only be selected via checkbox) */
+.custom-task-node.selected {
+  /* No special styling for ReactFlow selection */
+  border-color: var(--edge-color);
+  box-shadow: none;
+  background: white;
+}
+
+/* Checkbox selection styling - matches highlighted edge color */
+.custom-task-node.checkbox-selected {
+  border-color: var(--bp-intent-success-rest);
+  box-shadow: 0 0 0 2px rgba(35, 133, 81, 0.3);
+  background: var(--bg-node-selected);
+}
+
+.custom-task-node:hover {
+  border-color: var(--bp-typography-color-muted);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-task-node .react-flow__handle {
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.node-header {
+  background: var(--bg-muted);
+  padding: 5px 8px;
+  margin: -10px -10px 8px -10px;
+  border-radius: 6px 6px 0 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.node-header strong {
+  font-size: var(--fs-2xl);
+}
+
+.node-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Subheadings (h4 inside structured-trace/code/search/etc.) — muted, not pure black */
+.custom-task-node h4 {
+  color: var(--bp-typography-color-muted);
+}
+
+/* Force react18-json-view to use the unified content size */
+.custom-task-node .json-view,
+.custom-task-node .json-view * {
+  font-size: var(--fs-xl);
+}
+
+/* Loading animation for execute button */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.execute-button.loading svg {
+  animation: spin 1s linear infinite;
+}
+
+.node-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  z-index: 1000;
+  /* allow submenu to overflow to the right */
+  overflow: visible;
+}
+
+.node-menu-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: background-color 0.15s ease;
+}
+
+.node-menu-item:hover {
+  background-color: var(--bg-muted);
+}
+
+.node-menu-item:active {
+  background-color: rgba(143, 153, 168, 0.3);
+  /* Blueprint .bp6-menu-item:active */
+}
+
+.agent-selection {
+  margin-bottom: 8px;
+}
+
+.agent-dropdown-container {
+  margin-top: 4px;
+}
+
+.agent-dropdown-container .bp6-html-select {
+  width: 100%;
+}
+
+.agent-dropdown-container .bp6-html-select select {
+  font-size: var(--fs-xl);
+  padding: 4px 8px;
+  height: 28px;
+}
+
+.task-description-section {
+  margin-bottom: 8px;
+}
+
+/* Style for combined variables section */
+.node-variables {
+  margin-bottom: 0;
+}
+
+.variables-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: auto;
+  margin: 4px -10px -10px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  background: var(--bg-muted);
+  border-radius: 0 0 6px 6px;
+}
+
+.variables-column {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.variables-column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 4px;
+  font-weight: bold;
+  font-size: 1.125rem;
+  color: var(--bp-typography-color-muted);
+}
+
+.variables-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Handle positioning for expanded variables */
+.input-variable-with-handle,
+.output-variable-with-handle {
+  position: relative;
+}
+
+.input-variable-handle,
+.output-variable-handle {
+  border-radius: 50% !important;
+  z-index: 20;
+}
+
+/* Collapsed variables visualization — full-width footer flush with node frame */
+.collapsed-variables-handles {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 8px 4px;
+  background: var(--bg-muted);
+  border-top: 1px solid var(--border-subtle);
+  margin: 8px -10px -10px;
+  border-radius: 0 0 6px 6px;
+  position: relative;
+}
+
+.collapsed-inputs,
+.collapsed-outputs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.collapsed-inputs {
+  align-items: flex-start;
+}
+
+.collapsed-outputs {
+  align-items: flex-end;
+}
+
+.collapsed-variable-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 200px;
+  min-height: 20px;
+  padding: 4px 10px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  background: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.collapsed-variable-label {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--bp-typography-color-default);
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.collapsed-input-handle,
+.collapsed-output-handle {
+  border-radius: 50% !important;
+  z-index: 20;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: var(--fs-2xl);
+  color: var(--bp-typography-color-muted);
+}
+
+.input-item {
+  margin-bottom: 8px;
+  padding: 6px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  background: var(--bg-muted);
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.input-field {
+  margin-bottom: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-field label {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--bp-typography-color-muted);
+  margin-bottom: 2px;
+}
+
+/* Code section styling */
+.node-code {
+  margin-bottom: 8px;
+}
+
+.code-container {
+  margin: 4px 8px 8px;
+}
+
+.code-content {
+  background: white;
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.code-content pre {
+  margin: 0;
+  tab-size: 2;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+.code-content code {
+  line-height: 1.5;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}

@@ -1,0 +1,130 @@
+{
+  "query": "Difference in the year each country joined the United Nations, for the birth countries of the Nobel Medicine laureates of 2001 and 2012.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Medicine laureate of 2001.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "nobel_medicine_2001_winner"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Medicine laureate of 2012.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "nobel_medicine_2012_winner"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of the Nobel Medicine laureate identified as nobel_medicine_2001_winner and look up the year this country joined the United Nations.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "nobel_medicine_2001_winner",
+          "value": ""
+        }
+      ],
+      "output": [
+        "un_year_2001"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the Nobel Medicine laureate identified as nobel_medicine_2012_winner.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "nobel_medicine_2012_winner",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2012"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the year birth_country_2012 joined the United Nations.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2012",
+          "value": ""
+        }
+      ],
+      "output": [
+        "un_year_2012"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the absolute difference between un_year_2001 and un_year_2012.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "un_year_2001",
+          "value": ""
+        },
+        {
+          "variable": "un_year_2012",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "nobel_medicine_2001_winner",
+      "dest_input": "nobel_medicine_2001_winner"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "nobel_medicine_2012_winner",
+      "dest_input": "nobel_medicine_2012_winner"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "birth_country_2012",
+      "dest_input": "birth_country_2012"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "un_year_2012",
+      "dest_input": "un_year_2012"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "un_year_2001",
+      "dest_input": "un_year_2001"
+    }
+  ]
+}

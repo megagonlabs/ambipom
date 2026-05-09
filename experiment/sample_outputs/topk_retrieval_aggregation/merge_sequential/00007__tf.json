@@ -1,0 +1,314 @@
+{
+  "query": "What is the average depth of the five deepest lakes in the world?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five deepest lakes in the world.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "deepest_lakes"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first deepest lake from deepest_lakes.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "deepest_lakes",
+          "value": ""
+        }
+      ],
+      "output": [
+        "lake_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second deepest lake from deepest_lakes.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "deepest_lakes",
+          "value": ""
+        }
+      ],
+      "output": [
+        "lake_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the third deepest lake from deepest_lakes.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "deepest_lakes",
+          "value": ""
+        }
+      ],
+      "output": [
+        "lake_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the name of the fourth deepest lake from deepest_lakes.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "deepest_lakes",
+          "value": ""
+        }
+      ],
+      "output": [
+        "lake_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the name of the fifth deepest lake from deepest_lakes.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "deepest_lakes",
+          "value": ""
+        }
+      ],
+      "output": [
+        "lake_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the maximum depth of lake_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "lake_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "depth_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the maximum depth of lake_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "lake_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "depth_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the maximum depth of lake_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "lake_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "depth_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Find the maximum depth of lake_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "lake_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "depth_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 13,
+      "task": "Calculate the average of depth_1, depth_2, depth_3, depth_4, and depth_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "depth_1",
+          "value": ""
+        },
+        {
+          "variable": "depth_2",
+          "value": ""
+        },
+        {
+          "variable": "depth_3",
+          "value": ""
+        },
+        {
+          "variable": "depth_4",
+          "value": ""
+        },
+        {
+          "variable": "depth_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_depth"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": 14,
+      "task": "Analyze the data of lake_1 to identify measurement details and calculate the maximum depth.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "lake_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "depth_1"
+      ],
+      "prereq": [
+        2
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "deepest_lakes",
+      "dest_input": "deepest_lakes"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "deepest_lakes",
+      "dest_input": "deepest_lakes"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "deepest_lakes",
+      "dest_input": "deepest_lakes"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "deepest_lakes",
+      "dest_input": "deepest_lakes"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "deepest_lakes",
+      "dest_input": "deepest_lakes"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 14,
+      "src_output": "lake_1",
+      "dest_input": "lake_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "lake_2",
+      "dest_input": "lake_2"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "lake_3",
+      "dest_input": "lake_3"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "lake_4",
+      "dest_input": "lake_4"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "lake_5",
+      "dest_input": "lake_5"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 13,
+      "src_output": "depth_2",
+      "dest_input": "depth_2"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 13,
+      "src_output": "depth_3",
+      "dest_input": "depth_3"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 13,
+      "src_output": "depth_4",
+      "dest_input": "depth_4"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 13,
+      "src_output": "depth_5",
+      "dest_input": "depth_5"
+    },
+    {
+      "src_node": 14,
+      "dest_node": 13,
+      "src_output": "depth_1",
+      "dest_input": "depth_1"
+    }
+  ]
+}

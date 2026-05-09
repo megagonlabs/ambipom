@@ -1,0 +1,177 @@
+{
+  "query": "Find the Booker Prize winners for {1976}, {1977}, {1978}. What is the sum of the publication years of their winning novels? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Booker Prize winner and winning novel for 1976.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1976",
+        "novel_1976"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner and winning novel for 1977.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1977",
+        "novel_1977"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Booker Prize winner and winning novel for 1978.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1978",
+        "novel_1978"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Look up the publication year of the novel_1976.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_1976",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pub_year_1976"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the publication year of the novel_1977.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_1977",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pub_year_1977"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Search for the publication year of the novel specified in novel_1978.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_1978",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pub_year_info"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Extract the publication year from the obtained pub_year_info.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "pub_year_info",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pub_year_1978"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the sum of pub_year_1976, pub_year_1977, and pub_year_1978.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pub_year_1976",
+          "value": ""
+        },
+        {
+          "variable": "pub_year_1977",
+          "value": ""
+        },
+        {
+          "variable": "pub_year_1978",
+          "value": ""
+        }
+      ],
+      "output": [
+        "sum_publication_years"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "novel_1976",
+      "dest_input": "novel_1976"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "novel_1977",
+      "dest_input": "novel_1977"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "novel_1978",
+      "dest_input": "novel_1978"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 8,
+      "src_output": "pub_year_1976",
+      "dest_input": "pub_year_1976"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "pub_year_1977",
+      "dest_input": "pub_year_1977"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "pub_year_info",
+      "dest_input": "pub_year_info"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "pub_year_1978",
+      "dest_input": "pub_year_1978"
+    }
+  ]
+}

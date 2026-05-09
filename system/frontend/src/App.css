@@ -1,0 +1,212 @@
+/* App.css */
+
+/* Design tokens.
+   --bp-* tokens mirror Blueprint 6 values exactly (Blueprint doesn't expose its palette). 
+   Tokens without --bp-prefix are app-specific.
+   Intent state mapping follows Blueprint 6 palette steps: rest=3, hover=2, active=1, disabled=4. */
+:root {
+  /* Type scale */
+  --fs-xs: 11px;
+  --fs-sm: 12px;
+  --fs-md: 13px;
+  --fs-lg: 14px;
+  --fs-xl: 16px;
+  --fs-subhead: 17px; /* half-step for tighter heading→content gradient */
+  --fs-2xl: 18px;
+
+  /* Spacing */
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp-md: 12px;
+  --sp-lg: 16px;
+
+  /* Monospace font stack — for <pre>, <code>, and any code-like inline content */
+  --font-mono: "Monaco", "Menlo", "Consolas", "Ubuntu Mono", "Courier New",
+    monospace;
+
+  /* Intent colors — Blueprint 6 palette (Blue/Green/Orange/Red, steps 1-4) */
+  --bp-intent-primary-rest: #2d72d2; /* Blue3 */
+  --bp-intent-primary-hover: #215db0; /* Blue2 */
+  --bp-intent-primary-active: #184a90; /* Blue1 */
+  --bp-intent-primary-disabled: #4c90f0; /* Blue4 */
+
+  --bp-intent-success-rest: #238551; /* Green3 */
+  --bp-intent-success-hover: #1c6e42; /* Green2 */
+  --bp-intent-success-active: #165a36; /* Green1 */
+  --bp-intent-success-disabled: #32a467; /* Green4 */
+
+  --bp-intent-warning-rest: #c87619; /* Orange3 */
+  --bp-intent-warning-hover: #935610; /* Orange2 */
+  --bp-intent-warning-active: #77450d; /* Orange1 */
+  --bp-intent-warning-disabled: #ec9a3c; /* Orange4 */
+
+  --bp-intent-danger-rest: #cd4246; /* Red3 */
+  --bp-intent-danger-hover: #ac2f33; /* Red2 */
+  --bp-intent-danger-active: #8e292c; /* Red1 */
+  --bp-intent-danger-disabled: #e76a6e; /* Red4 */
+
+  /* Soft tints — for status/validation/result bgs */
+  --bp-intent-success-soft: rgba(35, 133, 81, 0.15); /* Green3 @ 15% */
+  --bp-intent-danger-soft: rgba(205, 66, 70, 0.12); /* Red3 @ 12% */
+
+  /* Typography — mirrors Blueprint 6's `body`, `.bp6-text-muted`, `.bp6-text-disabled` */
+  --bp-typography-color-default: #1c2127; /* dark-gray1 */
+  --bp-typography-color-muted: #5f6b7c; /* gray1 */
+  --bp-typography-color-disabled: rgba(95, 107, 124, 0.6);
+
+  /* App-specific tokens (no --bp- prefix) */
+  --border-subtle: rgba(17, 20, 24, 0.15); /* mirrors Blueprint .bp6-divider */
+  --bg-app: #f6f7f9; /* light-gray5 — app/panel background */
+  --bg-muted: #f9f9f9; /* very-light-gray — disabled inputs, muted surfaces */
+  --bg-card: #ffffff; /* card / canvas background */
+  --edge-color: #333; /* graph edges & connection lines (semantically distinct from text) */
+  --handle-color: #555; /* ReactFlow connection handles (the small dots on node edges) */
+  --bg-node-selected: #d1f4e0; /* checkbox-selected node bg (brighter than --bp-intent-success-soft) */
+  --bp-warning-callout: #f0b726; /* Gold4 — for the plan-modification-warning UI in ConversationPanel */
+}
+
+/* Intent text utilities. Replaces inline `style={{ color: 'var(--bp-intent-*)' }}` —
+   keeping the var() reference in CSS prevents the production minifier from stripping
+   the custom property declarations as "unused". Without these, status marks would
+   silently render as inherited (near-black) text in built bundles. */
+.intent-text-success {
+  color: var(--bp-intent-success-rest);
+}
+.intent-text-warning {
+  color: var(--bp-intent-warning-rest);
+}
+.intent-text-danger {
+  color: var(--bp-intent-danger-rest);
+}
+.intent-text-danger-strong {
+  color: var(--bp-intent-danger-active);
+}
+
+.status-mark {
+  font-size: var(--fs-2xl);
+}
+
+/* Monospace utility — applied automatically to <pre>/<code>, opt-in via .mono. */
+pre,
+code,
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Repeated layout patterns — extracted from inline styles in CustomTaskNode.jsx */
+.section-heading {
+  margin: 0 0 8px 0;
+  font-size: var(--fs-subhead);
+  font-weight: bold;
+}
+
+.empty-state-text {
+  color: var(--bp-typography-color-muted);
+  font-style: italic;
+  margin: 8px 0;
+}
+
+/* Subtle button: opacity 0.7 baseline, full on hover. Used across 4 buttons in 2 components. */
+.fade-button {
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.fade-button:hover {
+  opacity: 1;
+}
+
+/* h5 sub-section heading, muted (e.g. "Thought:", "Output Results:" inside structured-trace blocks). */
+.subsection-heading {
+  margin: 0 0 6px 0;
+  font-size: var(--fs-xl);
+  font-weight: bold;
+  color: var(--bp-typography-color-muted);
+}
+
+/* Top-right action-button overlay anchored to a relatively-positioned input/output textarea. */
+.input-value-actions {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: flex;
+  gap: 2px;
+  z-index: 10;
+}
+
+/* Input/output VALUE textarea — editing vs read-only states. The .is-readonly modifier
+   shows a muted background and trims right padding (no edit/cancel buttons in that state). */
+.value-textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 60px;
+  font-size: var(--fs-xl);
+  padding-right: 65px;
+}
+.value-textarea.is-readonly {
+  background-color: var(--bg-muted);
+  color: var(--bp-typography-color-default);
+  opacity: 1;
+  padding-right: 30px;
+}
+
+/* Single-line variable-NAME input. Same .is-readonly modifier as value-textarea.
+   Blueprint's InputGroup puts our className on the wrapper <div> — selectors below
+   target the inner <input> so the font-size and disabled-state styling actually apply. */
+.value-input,
+.value-input .bp6-input {
+  font-size: var(--fs-xl);
+}
+.value-input.is-readonly .bp6-input {
+  color: var(--bp-typography-color-default);
+  opacity: 1;
+}
+
+/* === Globals === */
+.app {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  background-color: var(--bg-app);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Suppress button focus ring after a mouse click — keep it for keyboard
+   navigation (a11y). Without this, Blueprint buttons retain focus-state
+   after onClick, which leaves them visually "stuck" highlighted. */
+.bp6-button:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}

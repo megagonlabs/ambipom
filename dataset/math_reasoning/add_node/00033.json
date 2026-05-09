@@ -1,0 +1,94 @@
+{
+  "query": "The teacher decided to rewards his students with extra recess on report card day if they got good grades. Students normally get 20 minutes for recess. He told the students that every A got them 2 extra minutes of recess. Every B got them one extra minute. Every C got them zero extra minutes, but every D got them 1 less minute. When report cards came out there were 10 As, 12 Bs, 14Cs, and 5Ds. In total, how much recess would the students get that day?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the extra minutes from As by multiplying num_as by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "num_as",
+          "value": "10"
+        }
+      ],
+      "output": [
+        "extra_minutes_as"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the extra minutes from Bs by multiplying num_bs by 1.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "num_bs",
+          "value": "12"
+        }
+      ],
+      "output": [
+        "extra_minutes_bs"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the extra minutes from Cs by multiplying num_cs by 0.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "num_cs",
+          "value": "14"
+        }
+      ],
+      "output": [
+        "extra_minutes_cs"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the reduction in minutes from Ds by multiplying num_ds by 1.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "num_ds",
+          "value": "5"
+        }
+      ],
+      "output": [
+        "reduction_minutes_ds"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total recess time by adding base_recess_time and total_extra_minutes.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "base_recess_time",
+          "value": "20"
+        },
+        {
+          "variable": "total_extra_minutes",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_recess_time"
+      ],
+      "prereq": [
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "extra_minutes_cs",
+      "dest_input": "total_extra_minutes"
+    }
+  ]
+}

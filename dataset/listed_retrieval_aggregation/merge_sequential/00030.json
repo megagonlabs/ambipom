@@ -1,0 +1,174 @@
+{
+  "query": "Find the International Booker Prize winners for {2016}, {2018}, {2020}. What is the average number of pages of the winning novels (original language editions)? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the International Booker Prize winner for 2016.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2016"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the International Booker Prize winner for 2018.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2018"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the International Booker Prize winner for 2020.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2020"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Search for the original language of the novel 'winner_2016'.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "original_language"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the page count of the novel 'winner_2018' in its original language edition.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2018"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the page count of the novel 'winner_2020' in its original language edition.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2020"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Look up the page count of 'winner_2016' in the original language edition.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "original_language",
+          "value": "original_language"
+        }
+      ],
+      "output": [
+        "pages_2016"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Compute the average of pages_2016, pages_2018, and pages_2020.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pages_2016",
+          "value": ""
+        },
+        {
+          "variable": "pages_2018",
+          "value": ""
+        },
+        {
+          "variable": "pages_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_pages"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_2016",
+      "dest_input": "winner_2016"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2018",
+      "dest_input": "winner_2018"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2020",
+      "dest_input": "winner_2020"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "pages_2018",
+      "dest_input": "pages_2018"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "pages_2020",
+      "dest_input": "pages_2020"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "original_language",
+      "dest_input": "original_language"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "pages_2016",
+      "dest_input": "pages_2016"
+    }
+  ]
+}

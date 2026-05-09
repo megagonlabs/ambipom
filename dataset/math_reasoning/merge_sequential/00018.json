@@ -1,0 +1,195 @@
+{
+  "query": "A farmer owns a hog that recently gave birth to 6 piglets.  If the farmer raises the piglets until they are fully grown, he can sell the fully grown pig for $300.  Each piglet must grow for at least 12 months before it is large enough to be sold. It costs the farmer $10 per month to feed each animal until it is sold.  If the farmer sells 3 pigs after 12 months, and the remaining 3 pigs after 16 months, how much profit did he earn in total (after deducting the cost of food)?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total revenue from selling 3 pigs at $300 each.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "revenue_3_pigs"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total revenue from selling another 3 pigs at $300 each.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "revenue_3_more_pigs"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total cost of feeding 3 pigs for 12 months at $10 per month per pig.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "cost_3_pigs_12_months"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total cost of feeding 3 pigs for 16 months at $10 per month per pig.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "cost_3_pigs_16_months"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Verify the value of revenue_3_pigs is valid.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "revenue_3_pigs",
+          "value": ""
+        }
+      ],
+      "output": [
+        "valid_revenue_3_pigs"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Verify the value of revenue_3_more_pigs is valid.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "revenue_3_more_pigs",
+          "value": ""
+        }
+      ],
+      "output": [
+        "valid_revenue_3_more_pigs"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the total cost by adding cost_3_pigs_12_months and cost_3_pigs_16_months.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "cost_3_pigs_12_months",
+          "value": ""
+        },
+        {
+          "variable": "cost_3_pigs_16_months",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_cost"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the total revenue by adding valid_revenue_3_pigs and valid_revenue_3_more_pigs.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "valid_revenue_3_pigs",
+          "value": ""
+        },
+        {
+          "variable": "valid_revenue_3_more_pigs",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_revenue"
+      ],
+      "prereq": [
+        -1,
+        -2
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the profit by subtracting total_cost from total_revenue.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_revenue",
+          "value": ""
+        },
+        {
+          "variable": "total_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "profit"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "revenue_3_pigs",
+      "dest_input": "revenue_3_pigs"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "revenue_3_more_pigs",
+      "dest_input": "revenue_3_more_pigs"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 7,
+      "src_output": "cost_3_pigs_12_months",
+      "dest_input": "cost_3_pigs_12_months"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "cost_3_pigs_16_months",
+      "dest_input": "cost_3_pigs_16_months"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 9,
+      "src_output": "total_cost",
+      "dest_input": "total_cost"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "valid_revenue_3_pigs",
+      "dest_input": "valid_revenue_3_pigs"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "valid_revenue_3_more_pigs",
+      "dest_input": "valid_revenue_3_more_pigs"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 9,
+      "src_output": "total_revenue",
+      "dest_input": "total_revenue"
+    }
+  ]
+}

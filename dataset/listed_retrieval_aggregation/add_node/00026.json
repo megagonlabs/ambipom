@@ -1,0 +1,110 @@
+{
+  "query": "What is the sum of chapters in the first, middle, and last books of the Wheel of Time series (original editions)? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "List all books in the main Wheel of Time series and identify the first, middle, and last books.",
+      "agent_name": "commonsense",
+      "input": [],
+      "output": [
+        "first_book",
+        "middle_book",
+        "last_book"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Look up the number of chapters in the book middle_book.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "middle_book",
+          "value": ""
+        }
+      ],
+      "output": [
+        "middle_book_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Look up the number of chapters in the book last_book.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "last_book",
+          "value": ""
+        }
+      ],
+      "output": [
+        "last_book_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the sum of first_book_chapters, middle_book_chapters, and last_book_chapters.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "first_book_chapters",
+          "value": ""
+        },
+        {
+          "variable": "middle_book_chapters",
+          "value": ""
+        },
+        {
+          "variable": "last_book_chapters",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_chapters"
+      ],
+      "prereq": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "middle_book",
+      "dest_input": "middle_book"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "last_book",
+      "dest_input": "last_book"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "first_book",
+      "dest_input": "first_book_chapters"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "middle_book_chapters",
+      "dest_input": "middle_book_chapters"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "last_book_chapters",
+      "dest_input": "last_book_chapters"
+    }
+  ]
+}

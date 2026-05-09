@@ -1,0 +1,176 @@
+{
+  "query": "What is the geographic distance in kilometers between the birthplaces of the Nobel Literature Prize winners in {2000} and {2010}? Return one number rounded to the nearest kilometer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Prize in Literature winner for the year 2000.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2000"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Prize in Literature winner for the year 2010.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2010"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Look up the birthplace city and country of the winner_2000.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2000",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birthplace_2000"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Look up the birthplace city and country of the winner_2010.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birthplace_2010"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the geographic coordinates (latitude, longitude) of birthplace_2000.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birthplace_2000",
+          "value": ""
+        }
+      ],
+      "output": [
+        "coordinates_2000"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the name of the city for birthplace_2010.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birthplace_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "city_name_2010"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Retrieve the geographic coordinates (latitude, longitude) for city_name_2010.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "city_name_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "coordinates_2010"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the great-circle distance in kilometers between coordinates_2000 and coordinates_2010. Round the result to the nearest kilometer.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "coordinates_2000",
+          "value": ""
+        },
+        {
+          "variable": "coordinates_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "distance_km"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2000",
+      "dest_input": "winner_2000"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2010",
+      "dest_input": "winner_2010"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birthplace_2000",
+      "dest_input": "birthplace_2000"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birthplace_2010",
+      "dest_input": "birthplace_2010"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "coordinates_2000",
+      "dest_input": "coordinates_2000"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "city_name_2010",
+      "dest_input": "city_name_2010"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "coordinates_2010",
+      "dest_input": "coordinates_2010"
+    }
+  ]
+}

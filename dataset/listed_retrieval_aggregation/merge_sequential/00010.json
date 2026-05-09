@@ -1,0 +1,177 @@
+{
+  "query": "Find the Booker Prize winners for {1986}, {1987}, {1988}. What is the sum of the number of chapters in their winning novels (first editions)? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Booker Prize winner and winning novel for 1986.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1986",
+        "novel_1986"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner and winning novel for 1987.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1987",
+        "novel_1987"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Booker Prize winner and winning novel for 1988.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1988",
+        "novel_1988"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Look up the number of chapters in the novel_1986 (first edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_1986",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_1986"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the number of chapters in the novel_1987 (first edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_1987",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_1987"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Search for the first edition publication information of novel_1988.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_1988",
+          "value": ""
+        }
+      ],
+      "output": [
+        "publication_info_1988"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Extract the number of chapters from the publication_info_1988.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "publication_info_1988",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_1988"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the sum of chapters_1986, chapters_1987, and chapters_1988.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "chapters_1986",
+          "value": ""
+        },
+        {
+          "variable": "chapters_1987",
+          "value": ""
+        },
+        {
+          "variable": "chapters_1988",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_chapters"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "novel_1986",
+      "dest_input": "novel_1986"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "novel_1987",
+      "dest_input": "novel_1987"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "novel_1988",
+      "dest_input": "novel_1988"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 8,
+      "src_output": "chapters_1986",
+      "dest_input": "chapters_1986"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "chapters_1987",
+      "dest_input": "chapters_1987"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "publication_info_1988",
+      "dest_input": "publication_info_1988"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "chapters_1988",
+      "dest_input": "chapters_1988"
+    }
+  ]
+}

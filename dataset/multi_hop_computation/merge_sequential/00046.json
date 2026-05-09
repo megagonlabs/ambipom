@@ -1,0 +1,180 @@
+{
+  "query": "Difference in average monthly wage (USD, 2019) between the birth countries of the IAAF Male Athlete of the Year of 2006 and 2018.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the IAAF/World Athletics Male Athlete of the Year for 2006.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "athlete_2006"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the IAAF/World Athletics Male Athlete of the Year for 2018.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "athlete_2018"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of athlete_2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "athlete_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2006"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of athlete_2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "athlete_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2018"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the average monthly gross wage in USD for 2019 for country_2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "wage_2006"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Determine the year prior to 2019.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "country_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_2018"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Look up the average monthly gross wage in USD for year 2018 for country_2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2018",
+          "value": ""
+        },
+        {
+          "variable": "year_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "wage_2018"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between wage_2006 and wage_2018.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "wage_2006",
+          "value": ""
+        },
+        {
+          "variable": "wage_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "wage_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "athlete_2006",
+      "dest_input": "athlete_2006"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "athlete_2018",
+      "dest_input": "athlete_2018"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "country_2006",
+      "dest_input": "country_2006"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "country_2018",
+      "dest_input": "country_2018"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "wage_2006",
+      "dest_input": "wage_2006"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "year_2018",
+      "dest_input": "year_2018"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "wage_2018",
+      "dest_input": "wage_2018"
+    }
+  ]
+}

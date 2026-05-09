@@ -1,0 +1,131 @@
+{
+  "query": "What is the total number of chapters across all books in the Maze Runner trilogy by James Dashner (original editions)? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "List the three books in the Maze Runner trilogy.",
+      "agent_name": "commonsense",
+      "input": [],
+      "output": [
+        "book_titles"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the chapter count of The Maze Runner (original edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "book_title",
+          "value": "The Maze Runner"
+        }
+      ],
+      "output": [
+        "maze_runner_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Find the chapter count of The Scorch Trials (original edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "book_title",
+          "value": "The Scorch Trials"
+        }
+      ],
+      "output": [
+        "scorch_trials_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the chapter count of The Death Cure (original edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "book_title",
+          "value": "The Death Cure"
+        }
+      ],
+      "output": [
+        "death_cure_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Sum the chapter counts: maze_runner_chapters, scorch_trials_chapters, and death_cure_chapters.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "maze_runner_chapters",
+          "value": ""
+        },
+        {
+          "variable": "scorch_trials_chapters",
+          "value": ""
+        },
+        {
+          "variable": "death_cure_chapters",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_chapters"
+      ],
+      "prereq": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "book_titles",
+      "dest_input": "book_title"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "book_titles",
+      "dest_input": "book_title"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "book_titles",
+      "dest_input": "book_title"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "maze_runner_chapters",
+      "dest_input": "maze_runner_chapters"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "scorch_trials_chapters",
+      "dest_input": "scorch_trials_chapters"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "death_cure_chapters",
+      "dest_input": "death_cure_chapters"
+    }
+  ]
+}

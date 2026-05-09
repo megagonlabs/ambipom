@@ -1,0 +1,158 @@
+{
+  "query": "Laura loves to cook. One day she decided to make dinner for her family. She bought the necessary ingredients for this occasion: two salads, 2 kilograms of beef, 1 kilogram of potatoes, and two liters of juice. One salad costs $3, and one kilogram of beef is two times more expensive. One kilogram of potatoes costs one-third of the price of one salad, and one liter of juice is $1.5. How much did Laura need to pay for all the products she bought?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the cost of one kilogram of beef given that it is two times more expensive than one salad, which costs $3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "salad_cost",
+          "value": "3"
+        }
+      ],
+      "output": [
+        "beef_cost_per_kg"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the cost of one kilogram of potatoes given that it costs one-third of the price of one salad, which costs $3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "salad_cost",
+          "value": "3"
+        }
+      ],
+      "output": [
+        "potato_cost_per_kg"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total cost of salads given that Laura bought two salads, each costing $3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "salad_cost",
+          "value": "3"
+        },
+        {
+          "variable": "number_of_salads",
+          "value": "2"
+        }
+      ],
+      "output": [
+        "total_salad_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total cost of juice given that Laura bought two liters of juice, with each liter costing $1.5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "juice_cost_per_liter",
+          "value": "1.5"
+        },
+        {
+          "variable": "juice_quantity",
+          "value": "2"
+        }
+      ],
+      "output": [
+        "total_juice_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total cost of beef given that Laura bought 2 kilograms of beef, with each kilogram costing beef_cost_per_kg.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "beef_cost_per_kg",
+          "value": ""
+        },
+        {
+          "variable": "beef_quantity",
+          "value": "2"
+        }
+      ],
+      "output": [
+        "total_beef_cost"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total cost of all products by summing total_salad_cost, total_beef_cost, total_potato_cost, and total_juice_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_salad_cost",
+          "value": ""
+        },
+        {
+          "variable": "total_beef_cost",
+          "value": ""
+        },
+        {
+          "variable": "total_potato_cost",
+          "value": ""
+        },
+        {
+          "variable": "total_juice_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_cost"
+      ],
+      "prereq": [
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "beef_cost_per_kg",
+      "dest_input": "beef_cost_per_kg"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "potato_cost_per_kg",
+      "dest_input": "total_potato_cost"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "total_salad_cost",
+      "dest_input": "total_salad_cost"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "total_juice_cost",
+      "dest_input": "total_juice_cost"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "total_beef_cost",
+      "dest_input": "total_beef_cost"
+    }
+  ]
+}

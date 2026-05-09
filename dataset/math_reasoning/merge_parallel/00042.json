@@ -1,0 +1,203 @@
+{
+  "query": "A mechanic charges different rates to repair the tires of trucks and cars.  For each truck tire that is repaired, the mechanic will charge $60 and for each car tire that is repaired, the mechanic will charge $40.  On Thursday, the mechanic repairs 6 truck tires and 4 car tires.  On Friday, the mechanic repairs 12 car tries and doesn't repair any truck tires.  How much more revenue did the mechanic earn on the day with higher revenue?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the revenue from repairing truck tires by multiplying truck_tire_rate by truck_tires_repaired_thursday.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "truck_tire_rate",
+          "value": "60"
+        },
+        {
+          "variable": "truck_tires_repaired_thursday",
+          "value": "6"
+        }
+      ],
+      "output": [
+        "revenue_truck_thursday"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the revenue from repairing car tires on Thursday by multiplying car_tire_rate by car_tires_repaired_thursday.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "car_tire_rate",
+          "value": "40"
+        },
+        {
+          "variable": "car_tires_repaired_thursday",
+          "value": "4"
+        }
+      ],
+      "output": [
+        "revenue_car_thursday"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the revenue from repairing car tires on Friday by multiplying car_tire_rate by car_tires_repaired_friday.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "car_tire_rate",
+          "value": "40"
+        },
+        {
+          "variable": "car_tires_repaired_friday",
+          "value": "12"
+        }
+      ],
+      "output": [
+        "revenue_car_friday"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Set partial_revenue_truck_thursday to revenue_truck_thursday.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "revenue_truck_thursday",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_revenue_truck_thursday"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Set partial_revenue_car_thursday to revenue_car_thursday.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "revenue_car_thursday",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_revenue_car_thursday"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate total_revenue_thursday by adding partial_revenue_truck_thursday and partial_revenue_car_thursday.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "partial_revenue_truck_thursday",
+          "value": ""
+        },
+        {
+          "variable": "partial_revenue_car_thursday",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_revenue_thursday"
+      ],
+      "prereq": [
+        -1,
+        -2
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Determine the day with higher revenue by comparing total_revenue_thursday and revenue_car_friday.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "total_revenue_thursday",
+          "value": ""
+        },
+        {
+          "variable": "revenue_car_friday",
+          "value": ""
+        }
+      ],
+      "output": [
+        "higher_revenue_day"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the difference in revenue between the higher revenue day and the other day.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_revenue_thursday",
+          "value": ""
+        },
+        {
+          "variable": "revenue_car_friday",
+          "value": ""
+        },
+        {
+          "variable": "higher_revenue_day",
+          "value": ""
+        }
+      ],
+      "output": [
+        "revenue_difference"
+      ],
+      "prereq": [
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "revenue_car_thursday",
+      "dest_input": "revenue_truck_thursday"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "revenue_car_thursday",
+      "dest_input": "revenue_car_thursday"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "revenue_car_thursday",
+      "dest_input": "partial_revenue_truck_thursday"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 7,
+      "src_output": "revenue_car_friday",
+      "dest_input": "revenue_car_friday"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "revenue_car_friday",
+      "dest_input": "revenue_car_friday"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "higher_revenue_day",
+      "dest_input": "higher_revenue_day"
+    }
+  ]
+}

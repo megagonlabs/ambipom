@@ -1,0 +1,151 @@
+{
+  "query": "Find the Booker Prize winners for {1983}, {1984}, {1985}. What is the sum of the number of letters in the titles of their winning novels (no spaces or punctuation)? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Booker Prize winner and winning novel title for 1983.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1983"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner and winning novel title for 1984.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1984"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Booker Prize winner and winning novel title for 1985.",
+      "agent_name": "code",
+      "input": [],
+      "output": [
+        "winner_1985"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Count the number of letters in the title of the winning novel from 1983, excluding spaces and punctuation.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_1983",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_1983"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the number of letters in the title of the winning novel from 1984, excluding spaces and punctuation.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_1984",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_1984"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Count the number of letters in the title of the winning novel from 1985, excluding spaces and punctuation.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "winner_1985",
+          "value": ""
+        }
+      ],
+      "output": [
+        "count_1985"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Sum the counts of letters from the titles of the winning novels from 1983, 1984, and 1985.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "count_1983",
+          "value": ""
+        },
+        {
+          "variable": "count_1984",
+          "value": ""
+        },
+        {
+          "variable": "count_1985",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_letter_count"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_1983",
+      "dest_input": "winner_1983"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_1984",
+      "dest_input": "winner_1984"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_1985",
+      "dest_input": "winner_1985"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "count_1983",
+      "dest_input": "count_1983"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "count_1984",
+      "dest_input": "count_1984"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "count_1985",
+      "dest_input": "count_1985"
+    }
+  ]
+}

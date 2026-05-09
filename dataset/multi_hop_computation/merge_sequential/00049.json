@@ -1,0 +1,176 @@
+{
+  "query": "Difference in life expectancy (years, 2019) between the birth countries of the Best Director Oscar winners of 2002 and 2011.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Best Director Oscar winner of 2002.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2002"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Best Director Oscar winner of 2011.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2011"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of winner_2002.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2002",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2002"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of winner_2011.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2011",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2011"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the life expectancy in 2019 for country_2002.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2002",
+          "value": ""
+        }
+      ],
+      "output": [
+        "life_expectancy_2002"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Search for statistics on the country by country_2011.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2011",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_statistics"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Retrieve the life expectancy from the statistics for 2019.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "country_statistics",
+          "value": ""
+        }
+      ],
+      "output": [
+        "life_expectancy_2011"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between life_expectancy_2002 and life_expectancy_2011.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "life_expectancy_2002",
+          "value": ""
+        },
+        {
+          "variable": "life_expectancy_2011",
+          "value": ""
+        }
+      ],
+      "output": [
+        "life_expectancy_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2002",
+      "dest_input": "winner_2002"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2011",
+      "dest_input": "winner_2011"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "country_2002",
+      "dest_input": "country_2002"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "country_2011",
+      "dest_input": "country_2011"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "life_expectancy_2002",
+      "dest_input": "life_expectancy_2002"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "country_statistics",
+      "dest_input": "country_statistics"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "life_expectancy_2011",
+      "dest_input": "life_expectancy_2011"
+    }
+  ]
+}

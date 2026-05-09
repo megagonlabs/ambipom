@@ -1,0 +1,153 @@
+{
+  "query": "GDP total (USD, 2019) difference between the birth countries of the Turing Award winners of 2004 and 2015.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the ACM Turing Award winner of 2004.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2004"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the ACM Turing Award winner of 2015.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2015"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of winner_2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2004"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of winner_2015.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2015"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the nominal GDP in USD for 2019 of birth_country_2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gdp_2004_country_2019"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the nominal GDP in USD for 2019 of birth_country_2015.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gdp_2015_country_2019"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between gdp_2004_country_2019 and gdp_2015_country_2019.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "gdp_2004_country_2019",
+          "value": ""
+        },
+        {
+          "variable": "gdp_2015_country_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gdp_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2004",
+      "dest_input": "winner_2004"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2015",
+      "dest_input": "winner_2015"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2004",
+      "dest_input": "birth_country_2004"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2015",
+      "dest_input": "birth_country_2015"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "gdp_2004_country_2019",
+      "dest_input": "gdp_2004_country_2019"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "gdp_2015_country_2019",
+      "dest_input": "gdp_2015_country_2019"
+    }
+  ]
+}

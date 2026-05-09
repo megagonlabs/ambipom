@@ -1,0 +1,174 @@
+{
+  "query": "Average number of chapters across the Bram Stoker Award-winning novels from {2000}, {2005}, {2010} (first editions). Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Bram Stoker Award for Superior Achievement in a Novel winner for 2000.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2000"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Bram Stoker Award for Superior Achievement in a Novel winner for 2005.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2005"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Bram Stoker Award for Superior Achievement in a Novel winner for 2010.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2010"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Look up the number of chapters in the first edition of the novel winner_2000.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2000",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_2000"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the number of chapters in the first edition of the novel winner_2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_2005"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Search for the novel specified by winner_2010.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novel_details_2010"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Extract the number of chapters from novel_details_2010.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "novel_details_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_2010"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Compute the average of chapters_2000, chapters_2005, and chapters_2010.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "chapters_2000",
+          "value": ""
+        },
+        {
+          "variable": "chapters_2005",
+          "value": ""
+        },
+        {
+          "variable": "chapters_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_chapters"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_2000",
+      "dest_input": "winner_2000"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2005",
+      "dest_input": "winner_2005"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2010",
+      "dest_input": "winner_2010"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 8,
+      "src_output": "chapters_2000",
+      "dest_input": "chapters_2000"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "chapters_2005",
+      "dest_input": "chapters_2005"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "novel_details_2010",
+      "dest_input": "novel_details_2010"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "chapters_2010",
+      "dest_input": "chapters_2010"
+    }
+  ]
+}

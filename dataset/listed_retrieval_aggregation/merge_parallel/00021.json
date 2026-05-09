@@ -1,0 +1,168 @@
+{
+  "query": "Find the Nobel Literature Prize winners for {1902}, {1912}, {1922}. What is the sum of the years they published their debut novels? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Prize in Literature winner for 1902.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1902"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Prize in Literature winner for 1912.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1912"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Nobel Prize in Literature winner for 1922.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1922"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Find the publication year of the debut novel of winner_1902.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1902",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_year_1902"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Search for the debut novel of winner_1912.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1912",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_novel_1912"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Determine the publication year of debut_novel_1912.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "debut_novel_1912",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_year_1912"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the publication year of the debut novel of winner_1922.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1922",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_year_1922"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the sum of debut_year_1902, debut_year_1912, and debut_year_1922.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "debut_year_1902",
+          "value": ""
+        },
+        {
+          "variable": "debut_year_1912",
+          "value": ""
+        },
+        {
+          "variable": "debut_year_1922",
+          "value": ""
+        }
+      ],
+      "output": [
+        "sum_of_debut_years"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_1902",
+      "dest_input": "winner_1902"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_1912",
+      "dest_input": "winner_1912"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "winner_1912",
+      "dest_input": "debut_novel_1912"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 7,
+      "src_output": "winner_1922",
+      "dest_input": "winner_1922"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 8,
+      "src_output": "debut_year_1902",
+      "dest_input": "debut_year_1902"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "debut_year_1922",
+      "dest_input": "debut_year_1922"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "query": "What is the average page count of the three Man Booker International Prize winning novels from {2007}, {2009}, {2011} (original language editions)? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Man Booker International Prize winner and winning novel for 2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2007"
+        }
+      ],
+      "output": [
+        "winner_2007"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Man Booker International Prize winner and winning novel for 2009.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2009"
+        }
+      ],
+      "output": [
+        "winner_2009"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Man Booker International Prize winner and winning novel for 2011.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2011"
+        }
+      ],
+      "output": [
+        "winner_2011"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Look up the page count of the original language edition of the novel from winner_2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "page_count_2007"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the page count of the original language edition of the novel from winner_2009.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2009",
+          "value": ""
+        }
+      ],
+      "output": [
+        "page_count_2009"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Compute the average of page_count_2007, page_count_2009, and page_count_2011.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "page_count_2007",
+          "value": ""
+        },
+        {
+          "variable": "page_count_2009",
+          "value": ""
+        },
+        {
+          "variable": "page_count_2011",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_page_count"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_2007",
+      "dest_input": "winner_2007"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2009",
+      "dest_input": "winner_2009"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2011",
+      "dest_input": "page_count_2011"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "page_count_2007",
+      "dest_input": "page_count_2007"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "page_count_2009",
+      "dest_input": "page_count_2009"
+    }
+  ]
+}

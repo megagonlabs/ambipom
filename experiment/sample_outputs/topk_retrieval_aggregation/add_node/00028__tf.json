@@ -1,0 +1,188 @@
+{
+  "query": "What is the total number of nuclear warheads held by the three countries with the largest nuclear arsenals?",
+  "nodes": [
+    {
+      "id": 2,
+      "task": "Extract the first country from top_three_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_three_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the second country from top_three_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_three_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the estimated number of nuclear warheads for country_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "warheads_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the estimated number of nuclear warheads for country_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "warheads_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the total number of nuclear warheads by summing warheads_1, warheads_2, and warheads_3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "warheads_1",
+          "value": ""
+        },
+        {
+          "variable": "warheads_2",
+          "value": ""
+        },
+        {
+          "variable": "warheads_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_warheads"
+      ],
+      "prereq": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the three countries with the largest nuclear arsenals.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_three_countries"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 9,
+      "task": "Extract the third country from the list 'top_three_countries' and assign it to 'country_3'.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "top_three_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_3"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the estimated number of nuclear warheads for 'country_3'.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "warheads_3"
+      ],
+      "prereq": [
+        -2
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "country_1",
+      "dest_input": "country_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "country_2",
+      "dest_input": "country_2"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "warheads_1",
+      "dest_input": "warheads_1"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "warheads_2",
+      "dest_input": "warheads_2"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 9,
+      "src_output": "top_three_countries",
+      "dest_input": "top_three_countries"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 10,
+      "src_output": "country_3",
+      "dest_input": "country_3"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 7,
+      "src_output": "warheads_3",
+      "dest_input": "warheads_3"
+    }
+  ]
+}

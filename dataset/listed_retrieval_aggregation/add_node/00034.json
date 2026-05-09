@@ -1,0 +1,151 @@
+{
+  "query": "What is the average age at death of Charles Dickens, Leo Tolstoy, and Victor Hugo? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the birth year and death year of Charles Dickens.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "charles_dickens_birth_year",
+        "charles_dickens_death_year"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the birth year and death year of Leo Tolstoy.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "leo_tolstoy_birth_year",
+        "leo_tolstoy_death_year"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth year and death year of Victor Hugo.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "victor_hugo_birth_year",
+        "victor_hugo_death_year"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the age at death of Charles Dickens using charles_dickens_birth_year and charles_dickens_death_year.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "charles_dickens_birth_year",
+          "value": ""
+        },
+        {
+          "variable": "charles_dickens_death_year",
+          "value": ""
+        }
+      ],
+      "output": [
+        "charles_dickens_age_at_death"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the age at death of Victor Hugo using victor_hugo_birth_year and victor_hugo_death_year.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "victor_hugo_birth_year",
+          "value": ""
+        },
+        {
+          "variable": "victor_hugo_death_year",
+          "value": ""
+        }
+      ],
+      "output": [
+        "victor_hugo_age_at_death"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the average of charles_dickens_age_at_death, leo_tolstoy_age_at_death, and victor_hugo_age_at_death.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "charles_dickens_age_at_death",
+          "value": ""
+        },
+        {
+          "variable": "leo_tolstoy_age_at_death",
+          "value": ""
+        },
+        {
+          "variable": "victor_hugo_age_at_death",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_age_at_death"
+      ],
+      "prereq": [
+        2,
+        4,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "charles_dickens_birth_year",
+      "dest_input": "charles_dickens_birth_year"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "charles_dickens_death_year",
+      "dest_input": "charles_dickens_death_year"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "leo_tolstoy_death_year",
+      "dest_input": "leo_tolstoy_age_at_death"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "victor_hugo_birth_year",
+      "dest_input": "victor_hugo_birth_year"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "victor_hugo_death_year",
+      "dest_input": "victor_hugo_death_year"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "charles_dickens_age_at_death",
+      "dest_input": "charles_dickens_age_at_death"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "victor_hugo_age_at_death",
+      "dest_input": "victor_hugo_age_at_death"
+    }
+  ]
+}

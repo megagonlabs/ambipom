@@ -1,0 +1,337 @@
+{
+  "query": "What is the average surface temperature of the five planets in our solar system closest to the Sun?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Identify the five planets closest to the Sun in our solar system.",
+      "agent_name": "commonsense",
+      "input": [],
+      "output": [
+        "closest_planets"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first planet from closest_planets.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "closest_planets",
+          "value": ""
+        }
+      ],
+      "output": [
+        "planet_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second planet from closest_planets.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "closest_planets",
+          "value": ""
+        }
+      ],
+      "output": [
+        "planet_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the fourth planet from closest_planets.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "closest_planets",
+          "value": ""
+        }
+      ],
+      "output": [
+        "planet_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the name of the fifth planet from closest_planets.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "closest_planets",
+          "value": ""
+        }
+      ],
+      "output": [
+        "planet_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Identify the first three elements in the list of closest_planets.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "closest_planets",
+          "value": ""
+        }
+      ],
+      "output": [
+        "three_planets"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the average surface temperature of planet_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "planet_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "temperature_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the average surface temperature of planet_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "planet_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "temperature_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the average surface temperature of planet_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "planet_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "temperature_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the average surface temperature of planet_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "planet_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "temperature_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Select the name of the third planet from three_planets.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "three_planets",
+          "value": ""
+        }
+      ],
+      "output": [
+        "planet_3"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Find the average surface temperature of planet_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "planet_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "temperature_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 13,
+      "task": "Calculate the average of temperature_1, temperature_2, temperature_3, temperature_4, and temperature_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "temperature_1",
+          "value": ""
+        },
+        {
+          "variable": "temperature_2",
+          "value": ""
+        },
+        {
+          "variable": "temperature_3",
+          "value": ""
+        },
+        {
+          "variable": "temperature_4",
+          "value": ""
+        },
+        {
+          "variable": "temperature_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_temperature"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "closest_planets",
+      "dest_input": "closest_planets"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "closest_planets",
+      "dest_input": "closest_planets"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "closest_planets",
+      "dest_input": "closest_planets"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "closest_planets",
+      "dest_input": "closest_planets"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "closest_planets",
+      "dest_input": "closest_planets"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "planet_1",
+      "dest_input": "planet_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "planet_2",
+      "dest_input": "planet_2"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "planet_4",
+      "dest_input": "planet_4"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "planet_5",
+      "dest_input": "planet_5"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 13,
+      "src_output": "temperature_1",
+      "dest_input": "temperature_1"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 13,
+      "src_output": "temperature_2",
+      "dest_input": "temperature_2"
+    },
+    {
+      "src_node": 12,
+      "dest_node": 13,
+      "src_output": "temperature_3",
+      "dest_input": "temperature_3"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 13,
+      "src_output": "temperature_4",
+      "dest_input": "temperature_4"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 13,
+      "src_output": "temperature_5",
+      "dest_input": "temperature_5"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "three_planets",
+      "dest_input": "three_planets"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 12,
+      "src_output": "planet_3",
+      "dest_input": "planet_3"
+    }
+  ]
+}

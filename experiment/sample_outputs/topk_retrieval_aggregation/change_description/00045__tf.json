@@ -1,0 +1,314 @@
+{
+  "query": "What is the average founding year of the five oldest universities in the world?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five oldest universities in the world.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "oldest_universities"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first university from oldest_universities.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "oldest_universities",
+          "value": ""
+        }
+      ],
+      "output": [
+        "university_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second university from oldest_universities.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "oldest_universities",
+          "value": ""
+        }
+      ],
+      "output": [
+        "university_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the third university from oldest_universities.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "oldest_universities",
+          "value": ""
+        }
+      ],
+      "output": [
+        "university_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the name of the fourth university from oldest_universities.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "oldest_universities",
+          "value": ""
+        }
+      ],
+      "output": [
+        "university_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the name of the fifth university from oldest_universities.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "oldest_universities",
+          "value": ""
+        }
+      ],
+      "output": [
+        "university_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the founding year of university_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "university_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the founding year of university_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "university_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the founding year of university_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "university_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Find the founding year of university_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "university_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Calculate the average of year_1, year_2, year_3, year_4, and year_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "year_1",
+          "value": ""
+        },
+        {
+          "variable": "year_2",
+          "value": ""
+        },
+        {
+          "variable": "year_3",
+          "value": ""
+        },
+        {
+          "variable": "year_4",
+          "value": ""
+        },
+        {
+          "variable": "year_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_founding_year"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": 13,
+      "task": "Research to determine the year in which university_2 was established. Return the year as 'year_2'.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "university_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_2"
+      ],
+      "prereq": [
+        3
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "oldest_universities",
+      "dest_input": "oldest_universities"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "oldest_universities",
+      "dest_input": "oldest_universities"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "oldest_universities",
+      "dest_input": "oldest_universities"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "oldest_universities",
+      "dest_input": "oldest_universities"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "oldest_universities",
+      "dest_input": "oldest_universities"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "university_1",
+      "dest_input": "university_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 13,
+      "src_output": "university_2",
+      "dest_input": "university_2"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "university_3",
+      "dest_input": "university_3"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "university_4",
+      "dest_input": "university_4"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "university_5",
+      "dest_input": "university_5"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 12,
+      "src_output": "year_1",
+      "dest_input": "year_1"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 12,
+      "src_output": "year_3",
+      "dest_input": "year_3"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 12,
+      "src_output": "year_4",
+      "dest_input": "year_4"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 12,
+      "src_output": "year_5",
+      "dest_input": "year_5"
+    },
+    {
+      "src_node": 13,
+      "dest_node": 12,
+      "src_output": "year_2",
+      "dest_input": "year_2"
+    }
+  ]
+}

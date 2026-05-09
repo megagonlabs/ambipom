@@ -1,0 +1,165 @@
+{
+  "query": "Difference in number of billionaires (Forbes 2020) from the birth countries of the Eurovision Song Contest winners of 2004 and 2016.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Eurovision Song Contest winner of 2004.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2004"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Eurovision Song Contest winner of 2016.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2016"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of the artist who won the Eurovision Song Contest in 2004.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2004"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the artist who won the Eurovision Song Contest in 2016.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2016"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the number of billionaires from country_2004 in the Forbes 2020 list.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "billionaires_2004"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Count the number of billionaires from country_2016 in the Forbes 2020 list.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "billionaires_2016"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute value of billionaires_2004.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "billionaires_2004",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_billionaires_2004"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute value of billionaires_2016.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "billionaires_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_billionaires_2016"
+      ],
+      "prereq": [
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2004",
+      "dest_input": "winner_2004"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2016",
+      "dest_input": "winner_2016"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "country_2004",
+      "dest_input": "country_2004"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "country_2016",
+      "dest_input": "country_2016"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "billionaires_2004",
+      "dest_input": "billionaires_2004"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "billionaires_2004",
+      "dest_input": "billionaires_2016"
+    }
+  ]
+}

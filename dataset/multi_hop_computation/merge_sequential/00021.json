@@ -1,0 +1,176 @@
+{
+  "query": "Founding-year difference between the birth countries of the Nobel Literature laureates 2001 and 2010.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Prize in Literature winner of 2001.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2001"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Prize in Literature winner of 2010.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2010"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Search for the place of birth using the provided winner_2001 name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2001",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_place_2001"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the winner_2010.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2010"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Determine the country based on the birth_place_2001.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "birth_place_2001",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2001"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the founding or independence year of country_2010.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_2010"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Look up the founding or independence year of country_2001.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2001",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_2001"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between year_2001 and year_2010.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "year_2001",
+          "value": ""
+        },
+        {
+          "variable": "year_2010",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2001",
+      "dest_input": "winner_2001"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2010",
+      "dest_input": "winner_2010"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "country_2010",
+      "dest_input": "country_2010"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "year_2001",
+      "dest_input": "year_2001"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "year_2010",
+      "dest_input": "year_2010"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_place_2001",
+      "dest_input": "birth_place_2001"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "country_2001",
+      "dest_input": "country_2001"
+    }
+  ]
+}

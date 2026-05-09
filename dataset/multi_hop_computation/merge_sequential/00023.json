@@ -1,0 +1,176 @@
+{
+  "query": "Difference in renewable energy share (% of electricity, 2019) between the birth countries of the Nobel Chemistry laureates of 2007 and 2018.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Chemistry laureate of 2007.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "nobel_chemistry_2007_winner"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Chemistry laureate of 2018.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "nobel_chemistry_2018_winner"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of nobel_chemistry_2007_winner.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "nobel_chemistry_2007_winner",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2007"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of nobel_chemistry_2018_winner.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "nobel_chemistry_2018_winner",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2018"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the renewable energy share of total electricity generation in 2019 for birth_country_2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "renewable_share_2007"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Identify reliable data sources for electricity generation statistics for birth_country_2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "data_sources"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Extract the renewable energy share of total electricity generation in 2019 from the identified data_sources.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "data_sources",
+          "value": ""
+        }
+      ],
+      "output": [
+        "renewable_share_2018"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between renewable_share_2007 and renewable_share_2018.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "renewable_share_2007",
+          "value": ""
+        },
+        {
+          "variable": "renewable_share_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "nobel_chemistry_2007_winner",
+      "dest_input": "nobel_chemistry_2007_winner"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "nobel_chemistry_2018_winner",
+      "dest_input": "nobel_chemistry_2018_winner"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2007",
+      "dest_input": "birth_country_2007"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2018",
+      "dest_input": "birth_country_2018"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "renewable_share_2007",
+      "dest_input": "renewable_share_2007"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "data_sources",
+      "dest_input": "data_sources"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "renewable_share_2018",
+      "dest_input": "renewable_share_2018"
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "query": "Founding year difference between the national airlines of the birth countries of the Nobel Physics laureates of 2006 and 2015.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Physics laureate of 2006.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "nobel_laureate_2006"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Physics laureate of 2015.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "nobel_laureate_2015"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of nobel_laureate_2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "nobel_laureate_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2006"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the national airline and founding year of birth_country_2015.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "airline_2015",
+        "founding_year_2015"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the national airline and founding year of birth_country_2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "airline_2006",
+        "founding_year_2006"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the absolute difference between founding_year_2006 and founding_year_2015.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "founding_year_2006",
+          "value": ""
+        },
+        {
+          "variable": "founding_year_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "year_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "nobel_laureate_2006",
+      "dest_input": "nobel_laureate_2006"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "nobel_laureate_2015",
+      "dest_input": "birth_country_2015"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2006",
+      "dest_input": "birth_country_2006"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "founding_year_2006",
+      "dest_input": "founding_year_2006"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "founding_year_2015",
+      "dest_input": "founding_year_2015"
+    }
+  ]
+}

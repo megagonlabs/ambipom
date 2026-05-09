@@ -1,0 +1,153 @@
+{
+  "query": "Time zone offset difference (hours) between the birth cities of the Masters Tournament golf champions of 2006 and 2019.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Masters Tournament champion of 2006.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "champion_2006"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Masters Tournament champion of 2019.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "champion_2019"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth city of champion_2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "champion_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_city_2006"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth city of champion_2019.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "champion_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_city_2019"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Determine the UTC time zone offset (standard time) for birth_city_2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_city_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "utc_offset_2006"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Determine the UTC time zone offset (standard time) for birth_city_2019.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_city_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "utc_offset_2019"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the absolute difference in hours between utc_offset_2006 and utc_offset_2019.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "utc_offset_2006",
+          "value": ""
+        },
+        {
+          "variable": "utc_offset_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "offset_difference"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "champion_2006",
+      "dest_input": "champion_2006"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "champion_2019",
+      "dest_input": "champion_2019"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_city_2006",
+      "dest_input": "birth_city_2006"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_city_2019",
+      "dest_input": "birth_city_2019"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "utc_offset_2006",
+      "dest_input": "utc_offset_2006"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "utc_offset_2019",
+      "dest_input": "utc_offset_2019"
+    }
+  ]
+}

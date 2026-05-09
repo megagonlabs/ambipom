@@ -1,0 +1,153 @@
+{
+  "query": "What is the height difference (m) between the tallest buildings in the birth cities of the NBA MVPs of 2009 and 2020?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the NBA MVP of 2009.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "mvp_2009"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the NBA MVP of 2020.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "mvp_2020"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth city of the NBA MVP identified as mvp_2009.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "mvp_2009",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_city_2009"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Task: \"Calculate the height of the tallest building in the city where the NBA MVP for the year 2020 was born. Use the year 2021 for calculation, and output the altitude in meters. Use the height of the MVP as the input.\"",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "mvp_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_city_2020"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the tallest building in birth_city_2009 and record its height in meters.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_city_2009",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_2009"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the tallest building in birth_city_2020 and record its height in meters.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_city_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_2020"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between height_2009 and height_2020.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "height_2009",
+          "value": ""
+        },
+        {
+          "variable": "height_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "mvp_2009",
+      "dest_input": "mvp_2009"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "mvp_2020",
+      "dest_input": "mvp_2020"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_city_2009",
+      "dest_input": "birth_city_2009"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_city_2020",
+      "dest_input": "birth_city_2020"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "height_2009",
+      "dest_input": "height_2009"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "height_2020",
+      "dest_input": "height_2020"
+    }
+  ]
+}

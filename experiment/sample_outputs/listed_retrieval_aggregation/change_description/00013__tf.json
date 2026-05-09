@@ -1,0 +1,220 @@
+{
+  "query": "Find the Booker Prize winners for {2001}, {2002}, {2003}. What is the average age of each winner at the time they received the prize? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Booker Prize winner for 2001.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2001"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner for 2002.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2002"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Booker Prize winner for 2003.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2003"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Look up the birth year of winner_2001.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2001",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_2001"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the birth year of winner_2002.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2002",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_2002"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the birth year of winner_2003.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_year_2003"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the age of winner_2001 at the time of the prize using birth_year_2001 and 2001.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_year_2001",
+          "value": ""
+        }
+      ],
+      "output": [
+        "age_2001"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Calculate the age of winner_2003 at the time of the prize using birth_year_2003 and 2003.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_year_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "age_2003"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Compute the average of age_2001, age_2002, and age_2003.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "age_2001",
+          "value": ""
+        },
+        {
+          "variable": "age_2002",
+          "value": ""
+        },
+        {
+          "variable": "age_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_age"
+      ],
+      "prereq": [
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Determine winner_2002's age in 2002 by subtracting birth_year_2002 from the year 2002. Store the result in age_2002.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_year_2002",
+          "value": ""
+        }
+      ],
+      "output": [
+        "age_2002"
+      ],
+      "prereq": [
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_2001",
+      "dest_input": "winner_2001"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2002",
+      "dest_input": "winner_2002"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2003",
+      "dest_input": "winner_2003"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "birth_year_2001",
+      "dest_input": "birth_year_2001"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 11,
+      "src_output": "birth_year_2002",
+      "dest_input": "birth_year_2002"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 9,
+      "src_output": "birth_year_2003",
+      "dest_input": "birth_year_2003"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 10,
+      "src_output": "age_2001",
+      "dest_input": "age_2001"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 10,
+      "src_output": "age_2003",
+      "dest_input": "age_2003"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 10,
+      "src_output": "age_2002",
+      "dest_input": "age_2002"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "query": "Difference in number of time zones spanned by the birth countries of the Olympic 100m Men's gold medalists of 2004 and 2016.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Olympic 100m Men's gold medalist at the 2004 Athens Olympics.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "athens_2004_gold_medalist"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Olympic 100m Men's gold medalist at the 2016 Rio Olympics.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "rio_2016_gold_medalist"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of the athlete identified as athens_2004_gold_medalist.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "athens_2004_gold_medalist",
+          "value": ""
+        }
+      ],
+      "output": [
+        "athens_2004_birth_country"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Count how many time zones the country rio_2016_birth_country spans.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "rio_2016_birth_country",
+          "value": ""
+        }
+      ],
+      "output": [
+        "rio_2016_time_zones"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count how many time zones the country athens_2004_birth_country spans.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "athens_2004_birth_country",
+          "value": ""
+        }
+      ],
+      "output": [
+        "athens_2004_time_zones"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the absolute difference between athens_2004_time_zones and rio_2016_time_zones.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "athens_2004_time_zones",
+          "value": ""
+        },
+        {
+          "variable": "rio_2016_time_zones",
+          "value": ""
+        }
+      ],
+      "output": [
+        "time_zone_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "athens_2004_gold_medalist",
+      "dest_input": "athens_2004_gold_medalist"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "rio_2016_gold_medalist",
+      "dest_input": "rio_2016_birth_country"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "athens_2004_birth_country",
+      "dest_input": "athens_2004_birth_country"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "athens_2004_time_zones",
+      "dest_input": "athens_2004_time_zones"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "rio_2016_time_zones",
+      "dest_input": "rio_2016_time_zones"
+    }
+  ]
+}

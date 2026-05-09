@@ -1,0 +1,152 @@
+{
+  "query": "To raise funds for her local soup kitchen, Didi enlisted the help of her family, friends, and neighbors. They donated 10 same-size cakes that she sliced into 8 slices per cake and started selling a slice for $1. A local business owner was so impressed by Didi's efforts that she offered to donate 50 cents for each slice Didi sold. A second business owner also offered to donate a quarter for each slice sold. If Didi sold all the slices, how much money did she raise?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total number of slices by multiplying the number_of_cakes by the slices_per_cake.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_cakes",
+          "value": "10"
+        },
+        {
+          "variable": "slices_per_cake",
+          "value": "8"
+        }
+      ],
+      "output": [
+        "total_slices"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Determine the total revenue from slice sales by multiplying the total_slices by the price_per_slice.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_slices",
+          "value": ""
+        },
+        {
+          "variable": "price_per_slice",
+          "value": "1"
+        }
+      ],
+      "output": [
+        "money_from_sales"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Calculate the donation from the first business owner by multiplying the total_slices by the donation_per_slice_first.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_slices",
+          "value": ""
+        },
+        {
+          "variable": "donation_per_slice_first",
+          "value": "0.5"
+        }
+      ],
+      "output": [
+        "donation_first_business"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the donation from the second business owner by multiplying the total_slices by the donation_per_slice_second.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_slices",
+          "value": ""
+        },
+        {
+          "variable": "donation_per_slice_second",
+          "value": "0.25"
+        }
+      ],
+      "output": [
+        "donation_second_business"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total money raised by adding money_from_sales, donation_first_business, and donation_second_business.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "money_from_sales",
+          "value": ""
+        },
+        {
+          "variable": "donation_first_business",
+          "value": ""
+        },
+        {
+          "variable": "donation_second_business",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_money_raised"
+      ],
+      "prereq": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "total_slices",
+      "dest_input": "total_slices"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "total_slices",
+      "dest_input": "total_slices"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "total_slices",
+      "dest_input": "total_slices"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "money_from_sales",
+      "dest_input": "money_from_sales"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "donation_first_business",
+      "dest_input": "donation_first_business"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "donation_second_business",
+      "dest_input": "donation_second_business"
+    }
+  ]
+}

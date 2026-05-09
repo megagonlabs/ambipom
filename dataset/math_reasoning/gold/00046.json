@@ -1,0 +1,146 @@
+{
+  "query": "Greta wanted brownies for her birthday.  She made a batch for herself; one dozen cream cheese swirl brownies.  At her office, they threw her a party and sent her home with 1/2 a dozen brownies.  When she arrived home, her friends were there to throw her a surprise party and had 4 dozen brownies waiting.  During the party, 1 1/2 dozen brownies were eaten.  How many individual brownies did Greta have left over from the entire day?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total number of brownies Greta made for herself by multiplying the number of dozens by 12.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "dozens_made",
+          "value": "1"
+        }
+      ],
+      "output": [
+        "brownies_made"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of brownies Greta received from her office by multiplying the number of dozens by 12.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "dozens_office",
+          "value": "0.5"
+        }
+      ],
+      "output": [
+        "brownies_office"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total number of brownies Greta received from her friends by multiplying the number of dozens by 12.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "dozens_friends",
+          "value": "4"
+        }
+      ],
+      "output": [
+        "brownies_friends"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total number of brownies eaten during the party by multiplying the number of dozens by 12.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "dozens_eaten",
+          "value": "1.5"
+        }
+      ],
+      "output": [
+        "brownies_eaten"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total number of brownies Greta had by summing brownies_made, brownies_office, and brownies_friends.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "brownies_made",
+          "value": ""
+        },
+        {
+          "variable": "brownies_office",
+          "value": ""
+        },
+        {
+          "variable": "brownies_friends",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_brownies"
+      ],
+      "prereq": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the number of brownies Greta had left over by subtracting brownies_eaten from total_brownies.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_brownies",
+          "value": ""
+        },
+        {
+          "variable": "brownies_eaten",
+          "value": ""
+        }
+      ],
+      "output": [
+        "brownies_leftover"
+      ],
+      "prereq": [
+        4,
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "brownies_made",
+      "dest_input": "brownies_made"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "brownies_office",
+      "dest_input": "brownies_office"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "brownies_friends",
+      "dest_input": "brownies_friends"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "brownies_eaten",
+      "dest_input": "brownies_eaten"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "total_brownies",
+      "dest_input": "total_brownies"
+    }
+  ]
+}

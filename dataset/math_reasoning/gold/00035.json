@@ -1,0 +1,140 @@
+{
+  "query": "A bear is preparing to hibernate for the winter and needs to gain 1000 pounds. At the end of summer, the bear feasts on berries and small woodland animals. During autumn, it devours acorns and salmon. It gained a fifth of the weight it needed from berries during summer, and during autumn, it gained twice that amount from acorns. Salmon made up half of the remaining weight it had needed to gain. How many pounds did it gain eating small animals?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the weight gained from berries as one fifth of the weight_needed.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "weight_needed",
+          "value": "1000"
+        }
+      ],
+      "output": [
+        "weight_from_berries"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the weight gained from acorns as twice the weight_from_berries.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "weight_from_berries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "weight_from_acorns"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Calculate the remaining_weight_needed as weight_needed minus weight_from_berries minus weight_from_acorns.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "weight_needed",
+          "value": "1000"
+        },
+        {
+          "variable": "weight_from_berries",
+          "value": ""
+        },
+        {
+          "variable": "weight_from_acorns",
+          "value": ""
+        }
+      ],
+      "output": [
+        "remaining_weight_needed"
+      ],
+      "prereq": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the weight gained from salmon as half of the remaining_weight_needed.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "remaining_weight_needed",
+          "value": ""
+        }
+      ],
+      "output": [
+        "weight_from_salmon"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the weight gained from small animals as remaining_weight_needed minus weight_from_salmon.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "remaining_weight_needed",
+          "value": ""
+        },
+        {
+          "variable": "weight_from_salmon",
+          "value": ""
+        }
+      ],
+      "output": [
+        "weight_from_small_animals"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "weight_from_berries",
+      "dest_input": "weight_from_berries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "weight_from_berries",
+      "dest_input": "weight_from_berries"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 3,
+      "src_output": "weight_from_acorns",
+      "dest_input": "weight_from_acorns"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "remaining_weight_needed",
+      "dest_input": "remaining_weight_needed"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "remaining_weight_needed",
+      "dest_input": "remaining_weight_needed"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "weight_from_salmon",
+      "dest_input": "weight_from_salmon"
+    }
+  ]
+}

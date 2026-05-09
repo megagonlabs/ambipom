@@ -1,0 +1,176 @@
+{
+  "query": "Difference in number of land borders between the birth countries of the Nobel Chemistry laureates of 2002 and 2014.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Chemistry winner of 2002.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2002"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Chemistry winner of 2014.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2014"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of the winner_2002.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2002",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2002"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the winner_2014.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2014"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Search for all countries that share a land border with birth_country_2002.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2002",
+          "value": ""
+        }
+      ],
+      "output": [
+        "bordering_countries"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Count the number of countries sharing a land border with birth_country_2014.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "borders_2014"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Count the number of countries in bordering_countries.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bordering_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "borders_2002"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between borders_2002 and borders_2014.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "borders_2002",
+          "value": ""
+        },
+        {
+          "variable": "borders_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2002",
+      "dest_input": "winner_2002"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2014",
+      "dest_input": "winner_2014"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2002",
+      "dest_input": "birth_country_2002"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2014",
+      "dest_input": "birth_country_2014"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "borders_2014",
+      "dest_input": "borders_2014"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "bordering_countries",
+      "dest_input": "bordering_countries"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "borders_2002",
+      "dest_input": "borders_2002"
+    }
+  ]
+}

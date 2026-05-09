@@ -1,0 +1,131 @@
+{
+  "query": "What is the total number of chapters in all the books of Philip Pullman's His Dark Materials trilogy (original UK editions)? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "List the three books in His Dark Materials: Northern Lights, The Subtle Knife, The Amber Spyglass.",
+      "agent_name": "commonsense",
+      "input": [],
+      "output": [
+        "book_titles"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Look up the number of chapters in Northern Lights (original UK edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "book_title",
+          "value": "Northern Lights"
+        }
+      ],
+      "output": [
+        "northern_lights_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Look up the number of chapters in The Subtle Knife (original UK edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "book_title",
+          "value": "The Subtle Knife"
+        }
+      ],
+      "output": [
+        "subtle_knife_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Look up the number of chapters in The Amber Spyglass (original UK edition).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "book_title",
+          "value": "The Amber Spyglass"
+        }
+      ],
+      "output": [
+        "amber_spyglass_chapters"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Sum northern_lights_chapters, subtle_knife_chapters, and amber_spyglass_chapters.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "northern_lights_chapters",
+          "value": ""
+        },
+        {
+          "variable": "subtle_knife_chapters",
+          "value": ""
+        },
+        {
+          "variable": "amber_spyglass_chapters",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_chapters"
+      ],
+      "prereq": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "book_titles",
+      "dest_input": "book_title"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "book_titles",
+      "dest_input": "book_title"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "book_titles",
+      "dest_input": "book_title"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "northern_lights_chapters",
+      "dest_input": "northern_lights_chapters"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "subtle_knife_chapters",
+      "dest_input": "subtle_knife_chapters"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "amber_spyglass_chapters",
+      "dest_input": "amber_spyglass_chapters"
+    }
+  ]
+}

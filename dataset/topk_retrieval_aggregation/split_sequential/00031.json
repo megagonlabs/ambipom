@@ -1,0 +1,177 @@
+{
+  "query": "What is the combined number of career points scored by the three highest-scoring players in NBA history?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the three highest-scoring players in NBA history by career points.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_three_players"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first player from top_three_players.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_three_players",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_player_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the third player from top_three_players.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_three_players",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_player_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the second player from top_three_players and find the career points scored by that player.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_three_players",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_player_points"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the career points scored by first_player_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "first_player_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_player_points"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the career points scored by third_player_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "third_player_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_player_points"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the sum of first_player_points, second_player_points, and third_player_points.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "first_player_points",
+          "value": ""
+        },
+        {
+          "variable": "second_player_points",
+          "value": ""
+        },
+        {
+          "variable": "third_player_points",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_career_points"
+      ],
+      "prereq": [
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_three_players",
+      "dest_input": "top_three_players"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_three_players",
+      "dest_input": "top_three_players"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_three_players",
+      "dest_input": "top_three_players"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "first_player_name",
+      "dest_input": "first_player_name"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "third_player_name",
+      "dest_input": "third_player_name"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "first_player_points",
+      "dest_input": "first_player_points"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "third_player_points",
+      "dest_input": "third_player_points"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "second_player_points",
+      "dest_input": "second_player_points"
+    }
+  ]
+}

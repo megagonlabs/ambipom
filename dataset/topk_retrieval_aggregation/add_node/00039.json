@@ -1,0 +1,291 @@
+{
+  "query": "What is the total runtime (in minutes) of the five longest films ever released?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five longest films ever released by runtime.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "longest_films"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the title of the first film from longest_films.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_films",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_1_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the title of the second film from longest_films.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_films",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_2_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the title of the third film from longest_films.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_films",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_3_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the title of the fourth film from longest_films.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_films",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_4_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the title of the fifth film from longest_films.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_films",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_5_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the runtime in minutes for film_1_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "film_1_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_1_runtime"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the runtime in minutes for film_2_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "film_2_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_2_runtime"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the runtime in minutes for film_3_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "film_3_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_3_runtime"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the runtime in minutes for film_4_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "film_4_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "film_4_runtime"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the total runtime by summing film_1_runtime, film_2_runtime, film_3_runtime, film_4_runtime, and film_5_runtime.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "film_1_runtime",
+          "value": ""
+        },
+        {
+          "variable": "film_2_runtime",
+          "value": ""
+        },
+        {
+          "variable": "film_3_runtime",
+          "value": ""
+        },
+        {
+          "variable": "film_4_runtime",
+          "value": ""
+        },
+        {
+          "variable": "film_5_runtime",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_runtime"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "longest_films",
+      "dest_input": "longest_films"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "longest_films",
+      "dest_input": "longest_films"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "longest_films",
+      "dest_input": "longest_films"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "longest_films",
+      "dest_input": "longest_films"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "longest_films",
+      "dest_input": "longest_films"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "film_1_title",
+      "dest_input": "film_1_title"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "film_2_title",
+      "dest_input": "film_2_title"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "film_3_title",
+      "dest_input": "film_3_title"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "film_4_title",
+      "dest_input": "film_4_title"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "film_5_title",
+      "dest_input": "film_5_runtime"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 11,
+      "src_output": "film_1_runtime",
+      "dest_input": "film_1_runtime"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "film_2_runtime",
+      "dest_input": "film_2_runtime"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "film_3_runtime",
+      "dest_input": "film_3_runtime"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "film_4_runtime",
+      "dest_input": "film_4_runtime"
+    }
+  ]
+}

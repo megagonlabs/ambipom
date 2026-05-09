@@ -1,0 +1,156 @@
+{
+  "query": "Andrew installed hardwood flooring in his house. His bedroom took eight wooden planks, his living room took twenty planks, and his kitchen took eleven planks. The guest bedroom took two fewer planks than Andrew’s bedroom, and each of his two hallways took four planks. He accidentally ruined three planks in each bedroom by dragging furniture over them and had to replace them. He ended up with six leftover planks at the end. How many wooden planks did Andrew buy to start with?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of planks used in the guest bedroom by subtracting 2 from bedroom_planks.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bedroom_planks",
+          "value": "8"
+        }
+      ],
+      "output": [
+        "guest_bedroom_planks"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total planks used in both hallways by multiplying hallway_planks by 2.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "hallway_planks",
+          "value": "4"
+        }
+      ],
+      "output": [
+        "total_hallway_planks"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total planks used in the bedrooms by adding 3 to each of bedroom_planks and guest_bedroom_planks, then summing the results.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bedroom_planks",
+          "value": "8"
+        },
+        {
+          "variable": "guest_bedroom_planks",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_bedroom_planks"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total planks used in the living room, kitchen, and hallways by summing living_room_planks, kitchen_planks, and total_hallway_planks.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "living_room_planks",
+          "value": "20"
+        },
+        {
+          "variable": "kitchen_planks",
+          "value": "11"
+        },
+        {
+          "variable": "total_hallway_planks",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_other_rooms_planks"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total planks bought by adding total_used_planks and leftover_planks.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_used_planks",
+          "value": ""
+        },
+        {
+          "variable": "leftover_planks",
+          "value": "6"
+        }
+      ],
+      "output": [
+        "total_planks_bought"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Sum the number of planks from total_bedroom_planks and total_other_rooms_planks to find the total planks used.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_bedroom_planks",
+          "value": ""
+        },
+        {
+          "variable": "total_other_rooms_planks",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_used_planks"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "guest_bedroom_planks",
+      "dest_input": "guest_bedroom_planks"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "total_hallway_planks",
+      "dest_input": "total_hallway_planks"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 7,
+      "src_output": "total_bedroom_planks",
+      "dest_input": "total_bedroom_planks"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "total_other_rooms_planks",
+      "dest_input": "total_other_rooms_planks"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 6,
+      "src_output": "total_used_planks",
+      "dest_input": "total_used_planks"
+    }
+  ]
+}

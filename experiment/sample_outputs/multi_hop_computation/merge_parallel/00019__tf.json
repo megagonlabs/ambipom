@@ -1,0 +1,147 @@
+{
+  "query": "Latitude difference (degrees) between the capital cities of the birth countries of the Best Actress Oscar winners of 2001 and 2014.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Best Actress Oscar winner of 2001.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "best_actress_2001"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Best Actress Oscar winner of 2014.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "best_actress_2014"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the capital city of birth_country_2014 and its latitude in decimal degrees.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "latitude_2014"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the Best Actress Oscar winner of 2001.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "best_actress_2001",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2001"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the capital city of birth_country_2001 and its latitude in decimal degrees.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2001",
+          "value": ""
+        }
+      ],
+      "output": [
+        "latitude_2001"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between latitude_2001 and latitude_2014.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "latitude_2001",
+          "value": ""
+        },
+        {
+          "variable": "latitude_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "latitude_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Identify the Best Actress Oscar winner of 2014 and find her birth country.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "best_actress_2014",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2014"
+      ],
+      "prereq": [
+        2
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "best_actress_2001",
+      "dest_input": "best_actress_2001"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 9,
+      "src_output": "best_actress_2014",
+      "dest_input": "best_actress_2014"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "latitude_2014",
+      "dest_input": "latitude_2014"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "birth_country_2001",
+      "dest_input": "birth_country_2001"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "latitude_2001",
+      "dest_input": "latitude_2001"
+    }
+  ]
+}

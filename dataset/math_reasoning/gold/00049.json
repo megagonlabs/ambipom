@@ -1,0 +1,159 @@
+{
+  "query": "Jane bought pens for her three students. Each student received 62 red pens and 43 black pens. They pooled their pens together and took them from the pool whenever they needed them. After the first month, they had taken a total of 37 pens from the pool. After the second month, they had taken another 41 pens from the pool. Then Jane decided to split the remaining pens equally among them. How many pens will each student get now?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total number of red pens by multiplying the number of students by the number of red pens each received.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_students",
+          "value": "3"
+        },
+        {
+          "variable": "red_pens_per_student",
+          "value": "62"
+        }
+      ],
+      "output": [
+        "total_red_pens"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of black pens by multiplying the number of students by the number of black pens each received.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_students",
+          "value": "3"
+        },
+        {
+          "variable": "black_pens_per_student",
+          "value": "43"
+        }
+      ],
+      "output": [
+        "total_black_pens"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total number of pens taken from the pool by adding the pens taken after the first month and the pens taken after the second month.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pens_taken_first_month",
+          "value": "37"
+        },
+        {
+          "variable": "pens_taken_second_month",
+          "value": "41"
+        }
+      ],
+      "output": [
+        "total_pens_taken"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total number of pens by adding the total red pens and total black pens.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_red_pens",
+          "value": ""
+        },
+        {
+          "variable": "total_black_pens",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_pens"
+      ],
+      "prereq": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the remaining pens by subtracting the total pens taken from the total pens.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_pens",
+          "value": ""
+        },
+        {
+          "variable": "total_pens_taken",
+          "value": ""
+        }
+      ],
+      "output": [
+        "remaining_pens"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the number of pens each student will get by dividing the remaining pens by the number of students.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "remaining_pens",
+          "value": ""
+        },
+        {
+          "variable": "number_of_students",
+          "value": "3"
+        }
+      ],
+      "output": [
+        "pens_per_student"
+      ],
+      "prereq": [
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "total_red_pens",
+      "dest_input": "total_red_pens"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "total_black_pens",
+      "dest_input": "total_black_pens"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "total_pens_taken",
+      "dest_input": "total_pens_taken"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "total_pens",
+      "dest_input": "total_pens"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "remaining_pens",
+      "dest_input": "remaining_pens"
+    }
+  ]
+}

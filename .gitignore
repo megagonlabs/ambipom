@@ -1,0 +1,24 @@
+__pycache__/
+*.py[codz]
+*.egg-info/
+.DS_Store
+.venv/
+venv/
+.env
+
+# frontend
+node_modules/
+# system/frontend/dist/ is the built bundle — shipped in the release so reviewers
+# don't need to run `npm run build`. Any other `dist/` (e.g. Python sdist) is not.
+
+# runtime
+system/logging/
+experiment/outputs/
+experiment/results.jsonl
+experiment/summary.csv
+
+# editors
+.idea/
+.vscode/
+.playwright-mcp/
+*.png

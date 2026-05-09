@@ -1,0 +1,185 @@
+{
+  "query": "The power goes out in Brianna's house one night so she and her family gather all their candles and flashlights. There are 8 rooms in the house and 4 people living there, including Brianna. There is a flashlight for every person to carry and two for each room. They have a variety of candles available; 4 small candles each for half the rooms and 5 medium candles each for the other half of the rooms. With everything combined, how many candles and flashlights are Brianna's family using when the lights go out?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total number of flashlights by multiplying the number of people by the number of flashlights per person.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_people",
+          "value": "4"
+        },
+        {
+          "variable": "flashlights_per_person",
+          "value": "1"
+        }
+      ],
+      "output": [
+        "total_flashlights"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of room flashlights by multiplying the number of rooms by the number of flashlights per room.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_rooms",
+          "value": "8"
+        },
+        {
+          "variable": "flashlights_per_room",
+          "value": "2"
+        }
+      ],
+      "output": [
+        "room_flashlights"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total number of small candles by multiplying the number of rooms with small candles by the number of small candles per room.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "rooms_with_small_candles",
+          "value": "4"
+        },
+        {
+          "variable": "small_candles_per_room",
+          "value": "4"
+        }
+      ],
+      "output": [
+        "total_small_candles"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total number of medium candles by multiplying the number of rooms with medium candles by the number of medium candles per room.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "rooms_with_medium_candles",
+          "value": "4"
+        },
+        {
+          "variable": "medium_candles_per_room",
+          "value": "5"
+        }
+      ],
+      "output": [
+        "total_medium_candles"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total number of flashlights by adding the total number of personal flashlights and the total number of room flashlights.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_flashlights",
+          "value": ""
+        },
+        {
+          "variable": "room_flashlights",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_flashlights_combined"
+      ],
+      "prereq": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total number of candles by adding the total number of small candles and the total number of medium candles.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_small_candles",
+          "value": ""
+        },
+        {
+          "variable": "total_medium_candles",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_candles"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the total number of candles and flashlights by adding the total number of candles and the total number of flashlights combined.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "total_candles",
+          "value": ""
+        },
+        {
+          "variable": "total_flashlights_combined",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_candles_and_flashlights"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "total_flashlights",
+      "dest_input": "total_flashlights"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "room_flashlights",
+      "dest_input": "room_flashlights"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "total_small_candles",
+      "dest_input": "total_small_candles"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "total_medium_candles",
+      "dest_input": "total_medium_candles"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "total_flashlights_combined",
+      "dest_input": "total_flashlights_combined"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "total_candles",
+      "dest_input": "total_candles"
+    }
+  ]
+}

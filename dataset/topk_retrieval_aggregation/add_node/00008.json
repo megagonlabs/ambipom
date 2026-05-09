@@ -1,0 +1,291 @@
+{
+  "query": "What is the average age at inauguration of the last five U.S. presidents?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the last five U.S. presidents.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "last_five_presidents"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the second president from last_five_presidents.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "last_five_presidents",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_president"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the third president from last_five_presidents.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "last_five_presidents",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_president"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the fourth president from last_five_presidents.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "last_five_presidents",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fourth_president"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the fifth president from last_five_presidents.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "last_five_presidents",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fifth_president"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the age at inauguration for first_president.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "first_president",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_president_age"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the age at inauguration for second_president.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "second_president",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_president_age"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the age at inauguration for third_president.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "third_president",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_president_age"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the age at inauguration for fourth_president.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "fourth_president",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fourth_president_age"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the age at inauguration for fifth_president.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "fifth_president",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fifth_president_age"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the average of first_president_age, second_president_age, third_president_age, fourth_president_age, and fifth_president_age.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "first_president_age",
+          "value": ""
+        },
+        {
+          "variable": "second_president_age",
+          "value": ""
+        },
+        {
+          "variable": "third_president_age",
+          "value": ""
+        },
+        {
+          "variable": "fourth_president_age",
+          "value": ""
+        },
+        {
+          "variable": "fifth_president_age",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_age"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "last_five_presidents",
+      "dest_input": "last_five_presidents"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "last_five_presidents",
+      "dest_input": "last_five_presidents"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "last_five_presidents",
+      "dest_input": "last_five_presidents"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "last_five_presidents",
+      "dest_input": "last_five_presidents"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "last_five_presidents",
+      "dest_input": "first_president"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "second_president",
+      "dest_input": "second_president"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "third_president",
+      "dest_input": "third_president"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "fourth_president",
+      "dest_input": "fourth_president"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "fifth_president",
+      "dest_input": "fifth_president"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "first_president_age",
+      "dest_input": "first_president_age"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 11,
+      "src_output": "second_president_age",
+      "dest_input": "second_president_age"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "third_president_age",
+      "dest_input": "third_president_age"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "fourth_president_age",
+      "dest_input": "fourth_president_age"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "fifth_president_age",
+      "dest_input": "fifth_president_age"
+    }
+  ]
+}

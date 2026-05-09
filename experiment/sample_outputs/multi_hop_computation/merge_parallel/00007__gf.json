@@ -1,0 +1,153 @@
+{
+  "query": "Human Development Index difference (2019) between the birth countries of the Grammy Album of the Year winners of 2008 and 2017.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Grammy Album of the Year winner of 2008.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2008"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Grammy Album of the Year winner of 2017.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2017"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the primary artist's birth country for the Grammy Album of the Year winner 2008.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2008"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the primary artist's birth country for the Grammy Album of the Year winner 2017.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2017"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the Human Development Index (HDI) for birth_country_2008 in 2019 from the UNDP.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2008",
+          "value": ""
+        }
+      ],
+      "output": [
+        "hdi_2008"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the Human Development Index (HDI) for birth_country_2017 in 2019 from the UNDP.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "hdi_2017"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Compute the absolute difference between hdi_2008 and hdi_2017.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "hdi_2008",
+          "value": ""
+        },
+        {
+          "variable": "hdi_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "hdi_difference"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2008",
+      "dest_input": "winner_2008"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2017",
+      "dest_input": "winner_2017"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2008",
+      "dest_input": "birth_country_2008"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2017",
+      "dest_input": "birth_country_2017"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "hdi_2008",
+      "dest_input": "hdi_2008"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "hdi_2017",
+      "dest_input": "hdi_2017"
+    }
+  ]
+}

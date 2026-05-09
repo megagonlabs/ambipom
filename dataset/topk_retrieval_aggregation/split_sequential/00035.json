@@ -1,0 +1,177 @@
+{
+  "query": "What is the total number of Olympic medals won by the three most decorated Olympians of all time?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the three most decorated Olympians of all time by total medal count.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_olympians"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first Olympian from top_olympians.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_olympians",
+          "value": ""
+        }
+      ],
+      "output": [
+        "olympian_1_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the third Olympian from top_olympians.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_olympians",
+          "value": ""
+        }
+      ],
+      "output": [
+        "olympian_3_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the second Olympian from top_olympians and find the total Olympic medal count for that Olympian.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_olympians",
+          "value": ""
+        }
+      ],
+      "output": [
+        "olympian_2_medals"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the total Olympic medal count for olympian_1_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "olympian_1_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "olympian_1_medals"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the total Olympic medal count for olympian_3_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "olympian_3_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "olympian_3_medals"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the sum of olympian_1_medals, olympian_2_medals, and olympian_3_medals.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "olympian_1_medals",
+          "value": ""
+        },
+        {
+          "variable": "olympian_2_medals",
+          "value": ""
+        },
+        {
+          "variable": "olympian_3_medals",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_medals"
+      ],
+      "prereq": [
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_olympians",
+      "dest_input": "top_olympians"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_olympians",
+      "dest_input": "top_olympians"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_olympians",
+      "dest_input": "top_olympians"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "olympian_1_name",
+      "dest_input": "olympian_1_name"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "olympian_3_name",
+      "dest_input": "olympian_3_name"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "olympian_1_medals",
+      "dest_input": "olympian_1_medals"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "olympian_3_medals",
+      "dest_input": "olympian_3_medals"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "olympian_2_medals",
+      "dest_input": "olympian_2_medals"
+    }
+  ]
+}

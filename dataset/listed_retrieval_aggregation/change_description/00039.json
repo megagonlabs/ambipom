@@ -1,0 +1,151 @@
+{
+  "query": "Find the Booker Prize winners for {1998}, {2002}, {2007}. What is the average number of pages of their winning novels (first editions)? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Booker Prize winner and winning novel for 1998.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1998"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner and winning novel for 2002.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2002"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Booker Prize winner and winning novel for 2007.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2007"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "\"Calculate the total word count of the latest edition of the album from winner_2022.\"",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1998",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_1998"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the page count of the first edition of the novel from winner_2002.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2002",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2002"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the page count of the first edition of the novel from winner_2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2007"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Compute the average of pages_1998, pages_2002, and pages_2007.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "pages_1998",
+          "value": ""
+        },
+        {
+          "variable": "pages_2002",
+          "value": ""
+        },
+        {
+          "variable": "pages_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_pages"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_1998",
+      "dest_input": "winner_1998"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2002",
+      "dest_input": "winner_2002"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2007",
+      "dest_input": "winner_2007"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "pages_1998",
+      "dest_input": "pages_1998"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "pages_2002",
+      "dest_input": "pages_2002"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "pages_2007",
+      "dest_input": "pages_2007"
+    }
+  ]
+}

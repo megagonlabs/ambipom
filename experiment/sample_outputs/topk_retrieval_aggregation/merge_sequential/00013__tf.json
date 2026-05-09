@@ -1,0 +1,314 @@
+{
+  "query": "What is the combined number of pages in the five longest novels ever written?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five longest novels ever written by page count.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "longest_novels"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the title of the first novel from longest_novels.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_novels",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novel_1_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the title of the second novel from longest_novels.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_novels",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novel_2_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the title of the third novel from longest_novels.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_novels",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novel_3_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the title of the fourth novel from longest_novels.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_novels",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novel_4_title"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the page count for novel_1_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_1_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novel_1_pages"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the page count for novel_2_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_2_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novel_2_pages"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the page count for novel_3_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_3_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novel_3_pages"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the page count for novel_4_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_4_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novel_4_pages"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Find the page count for novel_5_title.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_5_title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novel_5_pages"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 13,
+      "task": "Calculate the sum of novel_1_pages, novel_2_pages, novel_3_pages, novel_4_pages, and novel_5_pages.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "novel_1_pages",
+          "value": ""
+        },
+        {
+          "variable": "novel_2_pages",
+          "value": ""
+        },
+        {
+          "variable": "novel_3_pages",
+          "value": ""
+        },
+        {
+          "variable": "novel_4_pages",
+          "value": ""
+        },
+        {
+          "variable": "novel_5_pages",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_pages"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": 14,
+      "task": "Access the fifth item from the list 'longest_novels' and extract its title.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_novels",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novel_5_title"
+      ],
+      "prereq": [
+        1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "longest_novels",
+      "dest_input": "longest_novels"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "longest_novels",
+      "dest_input": "longest_novels"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "longest_novels",
+      "dest_input": "longest_novels"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "longest_novels",
+      "dest_input": "longest_novels"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 14,
+      "src_output": "longest_novels",
+      "dest_input": "longest_novels"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "novel_1_title",
+      "dest_input": "novel_1_title"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "novel_2_title",
+      "dest_input": "novel_2_title"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "novel_3_title",
+      "dest_input": "novel_3_title"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "novel_4_title",
+      "dest_input": "novel_4_title"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 13,
+      "src_output": "novel_1_pages",
+      "dest_input": "novel_1_pages"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 13,
+      "src_output": "novel_2_pages",
+      "dest_input": "novel_2_pages"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 13,
+      "src_output": "novel_3_pages",
+      "dest_input": "novel_3_pages"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 13,
+      "src_output": "novel_4_pages",
+      "dest_input": "novel_4_pages"
+    },
+    {
+      "src_node": 12,
+      "dest_node": 13,
+      "src_output": "novel_5_pages",
+      "dest_input": "novel_5_pages"
+    },
+    {
+      "src_node": 14,
+      "dest_node": 12,
+      "src_output": "novel_5_title",
+      "dest_input": "novel_5_title"
+    }
+  ]
+}

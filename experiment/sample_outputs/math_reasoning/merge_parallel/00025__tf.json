@@ -1,0 +1,136 @@
+{
+  "query": "Camille goes to the Ice Cream Palace with her husband and two children. Each one orders a different ice cream. Camille orders a banana split, her husband orders a waffle bowl, her daughter orders a single cone, and her son orders a double cone. The cone has 1 scoop of ice cream, the banana split has 3 times as many scoops of ice cream as the cone and the waffle bowl has 1 more scoop than the banana split. How many scoops of ice cream did the ice cream man serve?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Determine the number of scoops in a single cone.",
+      "agent_name": "commonsense",
+      "input": [],
+      "output": [
+        "single_cone_scoops"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the number of scoops in a banana split given that it has 3 times as many scoops as a single cone.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "single_cone_scoops",
+          "value": ""
+        }
+      ],
+      "output": [
+        "banana_split_scoops"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the number of scoops in a waffle bowl given that it has 1 more scoop than a banana split.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "banana_split_scoops",
+          "value": ""
+        }
+      ],
+      "output": [
+        "waffle_bowl_scoops"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total number of scoops served by adding the scoops from the banana split, waffle bowl, single cone, and double cone.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "banana_split_scoops",
+          "value": ""
+        },
+        {
+          "variable": "waffle_bowl_scoops",
+          "value": ""
+        },
+        {
+          "variable": "single_cone_scoops",
+          "value": ""
+        },
+        {
+          "variable": "double_cone_scoops",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_scoops"
+      ],
+      "prereq": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Receive the number of scoops in a single cone and calculate the number of scoops in a double cone by doubling the single cone scoops.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "single_cone_scoops",
+          "value": ""
+        }
+      ],
+      "output": [
+        "single_cone_scoops_value",
+        "double_cone_scoops"
+      ],
+      "prereq": [
+        1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "single_cone_scoops",
+      "dest_input": "single_cone_scoops"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "single_cone_scoops",
+      "dest_input": "single_cone_scoops"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 7,
+      "src_output": "single_cone_scoops",
+      "dest_input": "single_cone_scoops"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "banana_split_scoops",
+      "dest_input": "banana_split_scoops"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "banana_split_scoops",
+      "dest_input": "banana_split_scoops"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "waffle_bowl_scoops",
+      "dest_input": "waffle_bowl_scoops"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "query": "Difference in total number of Olympic Games hosted (Summer + Winter, through 2020) by the birth countries of the UEFA Champions League top scorers of 2006–07 and 2018–19 seasons.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the UEFA Champions League top scorer of the 2006–07 season.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_scorer_2006_07"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the UEFA Champions League top scorer of the 2018–19 season.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_scorer_2018_19"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of top_scorer_2006_07 and count the total number of Olympic Games (Summer + Winter) it has hosted through 2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "top_scorer_2006_07",
+          "value": ""
+        }
+      ],
+      "output": [
+        "olympics_hosted_2006_07"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of top_scorer_2018_19.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "top_scorer_2018_19",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2018_19"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the total number of Olympic Games (Summer + Winter) hosted by birth_country_2018_19 through 2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2018_19",
+          "value": ""
+        }
+      ],
+      "output": [
+        "olympics_hosted_2018_19"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the absolute difference between olympics_hosted_2006_07 and olympics_hosted_2018_19.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "olympics_hosted_2006_07",
+          "value": ""
+        },
+        {
+          "variable": "olympics_hosted_2018_19",
+          "value": ""
+        }
+      ],
+      "output": [
+        "olympics_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_scorer_2006_07",
+      "dest_input": "top_scorer_2006_07"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "top_scorer_2018_19",
+      "dest_input": "top_scorer_2018_19"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "birth_country_2018_19",
+      "dest_input": "birth_country_2018_19"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "olympics_hosted_2018_19",
+      "dest_input": "olympics_hosted_2018_19"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "olympics_hosted_2006_07",
+      "dest_input": "olympics_hosted_2006_07"
+    }
+  ]
+}

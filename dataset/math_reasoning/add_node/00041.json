@@ -1,0 +1,147 @@
+{
+  "query": "Jill is going to resod her front yard. The plot of land in front of her house is 200 feet wide by 50 feet. Her house has a sidewalk that is 3 feet wide and 50 feet long. There are also four flower beds: two right in front of the house that are 4 feet deep by 25 feet long, one that is 10 feet by 12 feet, and a fourth that is 7 feet by 8 feet. How many square feet of sod will she need to cover her yard, minus the sidewalk and flower beds?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total area of the plot of land using the width and length.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "width",
+          "value": "200"
+        },
+        {
+          "variable": "length",
+          "value": "50"
+        }
+      ],
+      "output": [
+        "total_land_area"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the area of the sidewalk using its width and length.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "sidewalk_width",
+          "value": "3"
+        },
+        {
+          "variable": "sidewalk_length",
+          "value": "50"
+        }
+      ],
+      "output": [
+        "sidewalk_area"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the area of the two flower beds in front of the house using their depth and length.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "flower_bed_depth",
+          "value": "4"
+        },
+        {
+          "variable": "flower_bed_length",
+          "value": "25"
+        }
+      ],
+      "output": [
+        "front_flower_beds_area"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the area of the third flower bed using its width and length.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "flower_bed_3_width",
+          "value": "10"
+        },
+        {
+          "variable": "flower_bed_3_length",
+          "value": "12"
+        }
+      ],
+      "output": [
+        "flower_bed_3_area"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the area of the fourth flower bed using its width and length.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "flower_bed_4_width",
+          "value": "7"
+        },
+        {
+          "variable": "flower_bed_4_length",
+          "value": "8"
+        }
+      ],
+      "output": [
+        "flower_bed_4_area"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total area to be resodded by subtracting the sidewalk area and the total flower beds area from the total land area.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_land_area",
+          "value": ""
+        },
+        {
+          "variable": "sidewalk_area",
+          "value": ""
+        },
+        {
+          "variable": "total_flower_beds_area",
+          "value": ""
+        }
+      ],
+      "output": [
+        "sod_area"
+      ],
+      "prereq": [
+        1,
+        2,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "total_land_area",
+      "dest_input": "total_land_area"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "sidewalk_area",
+      "dest_input": "sidewalk_area"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "flower_bed_3_area",
+      "dest_input": "total_flower_beds_area"
+    }
+  ]
+}

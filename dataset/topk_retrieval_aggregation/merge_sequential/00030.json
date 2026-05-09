@@ -1,0 +1,371 @@
+{
+  "query": "What is the average national debt (as % of GDP) of the five countries with the highest debt-to-GDP ratio?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five countries with the highest national debt-to-GDP ratio.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_five_countries"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the first country name from top_five_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_five_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the second country name from top_five_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_five_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the third country name from top_five_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_five_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the fourth country name from top_five_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_five_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the fifth country name from top_five_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_five_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the national debt-to-GDP ratio for country_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debt_gdp_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the national debt-to-GDP ratio for country_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debt_gdp_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Search for and retrieve the total national debt of country_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debt_total_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Search for and retrieve the GDP of country_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gdp_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Find the national debt-to-GDP ratio for country_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debt_gdp_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Find the national debt-to-GDP ratio for country_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debt_gdp_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 13,
+      "task": "Calculate the debt-to-GDP ratio using debt_total_3 and gdp_3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "debt_total_3",
+          "value": "output from -1"
+        },
+        {
+          "variable": "gdp_3",
+          "value": "output from -2"
+        }
+      ],
+      "output": [
+        "debt_gdp_3"
+      ],
+      "prereq": [
+        -1,
+        -2
+      ]
+    },
+    {
+      "id": 14,
+      "task": "Calculate the average of debt_gdp_1, debt_gdp_2, debt_gdp_3, debt_gdp_4, and debt_gdp_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "debt_gdp_1",
+          "value": ""
+        },
+        {
+          "variable": "debt_gdp_2",
+          "value": ""
+        },
+        {
+          "variable": "debt_gdp_3",
+          "value": ""
+        },
+        {
+          "variable": "debt_gdp_4",
+          "value": ""
+        },
+        {
+          "variable": "debt_gdp_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_debt_gdp"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_five_countries",
+      "dest_input": "top_five_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_five_countries",
+      "dest_input": "top_five_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_five_countries",
+      "dest_input": "top_five_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "top_five_countries",
+      "dest_input": "top_five_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "top_five_countries",
+      "dest_input": "top_five_countries"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "country_1",
+      "dest_input": "country_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "country_2",
+      "dest_input": "country_2"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "country_3",
+      "dest_input": "country_3"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 10,
+      "src_output": "country_3",
+      "dest_input": "country_3"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 11,
+      "src_output": "country_4",
+      "dest_input": "country_4"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 12,
+      "src_output": "country_5",
+      "dest_input": "country_5"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 14,
+      "src_output": "debt_gdp_1",
+      "dest_input": "debt_gdp_1"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 14,
+      "src_output": "debt_gdp_2",
+      "dest_input": "debt_gdp_2"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 14,
+      "src_output": "debt_gdp_4",
+      "dest_input": "debt_gdp_4"
+    },
+    {
+      "src_node": 12,
+      "dest_node": 14,
+      "src_output": "debt_gdp_5",
+      "dest_input": "debt_gdp_5"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 13,
+      "src_output": "debt_total_3",
+      "dest_input": "debt_total_3"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 13,
+      "src_output": "gdp_3",
+      "dest_input": "gdp_3"
+    },
+    {
+      "src_node": 13,
+      "dest_node": 14,
+      "src_output": "debt_gdp_3",
+      "dest_input": "debt_gdp_3"
+    }
+  ]
+}

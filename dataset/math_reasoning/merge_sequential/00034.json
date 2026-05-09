@@ -1,0 +1,196 @@
+{
+  "query": "Sam and Jeff had a skipping competition at recess. The competition was split into four rounds. Sam completed 1 more skip than Jeff in the first round. Jeff skipped 3 fewer times than Sam in the second round. Jeff skipped 4 more times than Sam in the third round. Jeff got tired and only completed half the number of skips as Sam in the last round. If Sam skipped 16 times in each round, what is the average number of skips per round completed by Jeff?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of skips Jeff completed in the first round given that Sam completed 16 skips and Sam completed 1 more skip than Jeff.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "sam_skips_first_round",
+          "value": "16"
+        }
+      ],
+      "output": [
+        "jeff_skips_first_round"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the number of skips Jeff completed in the second round given that Sam completed 16 skips and Jeff skipped 3 fewer times than Sam.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "sam_skips_second_round",
+          "value": "16"
+        }
+      ],
+      "output": [
+        "jeff_skips_second_round"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the number of skips Jeff completed in the third round given that Sam completed 16 skips and Jeff skipped 4 more times than Sam.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "sam_skips_third_round",
+          "value": "16"
+        }
+      ],
+      "output": [
+        "jeff_skips_third_round"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the number of skips Jeff completed in the last round given that Sam completed 16 skips and Jeff completed half the number of skips as Sam.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "sam_skips_last_round",
+          "value": "16"
+        }
+      ],
+      "output": [
+        "jeff_skips_last_round"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Add jeff_skips_first_round and jeff_skips_second_round to calculate the first partial total.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "jeff_skips_first_round",
+          "value": ""
+        },
+        {
+          "variable": "jeff_skips_second_round",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_total_1"
+      ],
+      "prereq": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Add jeff_skips_third_round and jeff_skips_last_round to calculate the second partial total.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "jeff_skips_third_round",
+          "value": ""
+        },
+        {
+          "variable": "jeff_skips_last_round",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_total_2"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Add partial_total_1 and partial_total_2 to get the total number of skips Jeff completed.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "partial_total_1",
+          "value": ""
+        },
+        {
+          "variable": "partial_total_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_jeff_skips"
+      ],
+      "prereq": [
+        -1,
+        -2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the average number of skips per round completed by Jeff given the total number of skips and the number of rounds.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_jeff_skips",
+          "value": ""
+        },
+        {
+          "variable": "number_of_rounds",
+          "value": "4"
+        }
+      ],
+      "output": [
+        "average_jeff_skips"
+      ],
+      "prereq": [
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "jeff_skips_first_round",
+      "dest_input": "jeff_skips_first_round"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "jeff_skips_second_round",
+      "dest_input": "jeff_skips_second_round"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "jeff_skips_third_round",
+      "dest_input": "jeff_skips_third_round"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "jeff_skips_last_round",
+      "dest_input": "jeff_skips_last_round"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "partial_total_1",
+      "dest_input": "partial_total_1"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "partial_total_2",
+      "dest_input": "partial_total_2"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "total_jeff_skips",
+      "dest_input": "total_jeff_skips"
+    }
+  ]
+}

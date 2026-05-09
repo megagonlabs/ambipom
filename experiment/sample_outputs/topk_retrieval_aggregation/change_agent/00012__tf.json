@@ -1,0 +1,200 @@
+{
+  "query": "What is the total Olympic gold medal count of the three most populous nations?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Identify the three most populous nations in the world.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "most_populous_nations"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the first nation from most_populous_nations.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "most_populous_nations",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_nation"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the second nation from most_populous_nations.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "most_populous_nations",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_nation"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the third nation from most_populous_nations.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "most_populous_nations",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_nation"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the total all-time Olympic gold medal count for first_nation.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "first_nation",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_nation_gold_count"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the total all-time Olympic gold medal count for third_nation.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "third_nation",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_nation_gold_count"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the sum of first_nation_gold_count, second_nation_gold_count, and third_nation_gold_count.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "first_nation_gold_count",
+          "value": ""
+        },
+        {
+          "variable": "second_nation_gold_count",
+          "value": ""
+        },
+        {
+          "variable": "third_nation_gold_count",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_gold_count"
+      ],
+      "prereq": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the total all-time Olympic gold medal count for second_nation.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "second_nation",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_nation_gold_count"
+      ],
+      "prereq": [
+        3
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "most_populous_nations",
+      "dest_input": "most_populous_nations"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "most_populous_nations",
+      "dest_input": "most_populous_nations"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "most_populous_nations",
+      "dest_input": "most_populous_nations"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "first_nation",
+      "dest_input": "first_nation"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 9,
+      "src_output": "second_nation",
+      "dest_input": "second_nation"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "third_nation",
+      "dest_input": "third_nation"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "first_nation_gold_count",
+      "dest_input": "first_nation_gold_count"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "third_nation_gold_count",
+      "dest_input": "third_nation_gold_count"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 8,
+      "src_output": "second_nation_gold_count",
+      "dest_input": "second_nation_gold_count"
+    }
+  ]
+}

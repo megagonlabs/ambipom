@@ -1,0 +1,120 @@
+{
+  "query": "What is the difference in chapters between the longest and shortest Discworld novels (original editions)? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "List all Discworld novels by Terry Pratchett.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "discworld_novels"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Look up the number of chapters in each novel from discworld_novels (original editions).",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "discworld_novels",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_per_novel"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Identify the novel with the most chapters from chapters_per_novel.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "chapters_per_novel",
+          "value": ""
+        }
+      ],
+      "output": [
+        "most_chapters"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Identify the novel with the fewest chapters from chapters_per_novel.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "chapters_per_novel",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fewest_chapters"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Subtract fewest_chapters from most_chapters.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "most_chapters",
+          "value": ""
+        },
+        {
+          "variable": "fewest_chapters",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapter_difference"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "discworld_novels",
+      "dest_input": "discworld_novels"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 3,
+      "src_output": "chapters_per_novel",
+      "dest_input": "chapters_per_novel"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "chapters_per_novel",
+      "dest_input": "chapters_per_novel"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "most_chapters",
+      "dest_input": "most_chapters"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "fewest_chapters",
+      "dest_input": "fewest_chapters"
+    }
+  ]
+}

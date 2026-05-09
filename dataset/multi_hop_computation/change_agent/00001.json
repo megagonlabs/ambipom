@@ -1,0 +1,153 @@
+{
+  "query": "GDP per capita difference (USD) in year 2020 between the birth countries of the Best Actor Oscar winners 2005 and 2013 — one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Best Actor Oscar winner of 2005.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "best_actor_2005"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Best Actor Oscar winner of 2013.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "best_actor_2013"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of the Best Actor Oscar winner of 2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "best_actor_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2005"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the Best Actor Oscar winner of 2013.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "best_actor_2013",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2013"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the GDP per capita in 2020 (USD) for the birth country of the Best Actor Oscar winner of 2005.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_country_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gdp_per_capita_2005"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the GDP per capita in 2020 (USD) for the birth country of the Best Actor Oscar winner of 2013.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2013",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gdp_per_capita_2013"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between gdp_per_capita_2005 and gdp_per_capita_2013.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "gdp_per_capita_2005",
+          "value": ""
+        },
+        {
+          "variable": "gdp_per_capita_2013",
+          "value": ""
+        }
+      ],
+      "output": [
+        "gdp_per_capita_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "best_actor_2005",
+      "dest_input": "best_actor_2005"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "best_actor_2013",
+      "dest_input": "best_actor_2013"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2005",
+      "dest_input": "birth_country_2005"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2013",
+      "dest_input": "birth_country_2013"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "gdp_per_capita_2005",
+      "dest_input": "gdp_per_capita_2005"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "gdp_per_capita_2013",
+      "dest_input": "gdp_per_capita_2013"
+    }
+  ]
+}

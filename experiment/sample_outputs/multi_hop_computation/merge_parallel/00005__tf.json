@@ -1,0 +1,148 @@
+{
+  "query": "Difference in inflation rate (%, 2019) between the birth countries of the Nobel Economics laureates of 2006 and 2017.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Economics winner of 2006.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2006"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Economics winner of 2017.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2017"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Look up the annual CPI inflation rate in 2019 for the birth_country_2017.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "inflation_rate_2017"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the Nobel Economics winner of 2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2006"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Look up the annual CPI inflation rate in 2019 for the birth_country_2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "inflation_rate_2006"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference in percentage points between inflation_rate_2006 and inflation_rate_2017.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "inflation_rate_2006",
+          "value": ""
+        },
+        {
+          "variable": "inflation_rate_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "inflation_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Search for the 2017 Nobel Economics winner's name using 'winner_2017' and find their birth country.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "winner_name_2017",
+        "birth_country_2017"
+      ],
+      "prereq": [
+        2
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_2006",
+      "dest_input": "winner_2006"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 9,
+      "src_output": "winner_2017",
+      "dest_input": "winner_2017"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "inflation_rate_2017",
+      "dest_input": "inflation_rate_2017"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "birth_country_2006",
+      "dest_input": "birth_country_2006"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "inflation_rate_2006",
+      "dest_input": "inflation_rate_2006"
+    }
+  ]
+}

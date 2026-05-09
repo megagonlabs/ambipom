@@ -1,0 +1,82 @@
+/* components/ResizableLayout.css */
+.resizable-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  background-color: var(--bg-app);
+}
+
+.panel {
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+  border-right: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.panel:last-child {
+  border-right: none;
+}
+
+.left-panel {
+  min-width: 250px;
+  flex-shrink: 0;
+  order: 0;
+}
+
+.center-panel {
+  min-width: 0;
+  order: 2;
+}
+
+.right-panel {
+  min-width: 250px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--border-subtle);
+  border-right: none;
+  order: 4;
+}
+
+.resizer {
+  width: 4px;
+  background-color: var(--border-subtle);
+  cursor: col-resize;
+  flex-shrink: 0;
+  position: relative;
+  transition: background-color 0.2s ease;
+  user-select: none;
+  z-index: 10;
+}
+
+.resizer:hover {
+  background-color: var(--bp-intent-primary-rest);
+  width: 6px;
+}
+
+.resizer.dragging {
+  width: 6px;
+  background-color: var(--bp-intent-primary-rest);
+  box-shadow: 0 0 0 1px rgba(45, 114, 210, 0.3);
+}
+
+.resizer::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 30px;
+  background-color: currentColor;
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+.left-resizer {
+  order: 1;
+}
+
+.right-resizer {
+  order: 3;
+}

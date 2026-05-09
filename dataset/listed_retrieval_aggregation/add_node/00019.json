@@ -1,0 +1,128 @@
+{
+  "query": "Find the Nobel Literature Prize winners for {1960}, {1970}, {1980}. What is the sum of the number of novels each had written by the time of their award? Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Prize in Literature winner for 1960.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1960"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Prize in Literature winner for 1970.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1970"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Nobel Prize in Literature winner for 1980.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1980"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Count the number of novels published by winner_1960 by the year 1960.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1960",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novels_1960"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the number of novels published by winner_1970 by the year 1970.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1970",
+          "value": ""
+        }
+      ],
+      "output": [
+        "novels_1970"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the sum of novels_1960, novels_1970, and novels_1980.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "novels_1960",
+          "value": ""
+        },
+        {
+          "variable": "novels_1970",
+          "value": ""
+        },
+        {
+          "variable": "novels_1980",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_novels"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_1960",
+      "dest_input": "winner_1960"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_1970",
+      "dest_input": "winner_1970"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_1980",
+      "dest_input": "novels_1980"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "novels_1960",
+      "dest_input": "novels_1960"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "novels_1970",
+      "dest_input": "novels_1970"
+    }
+  ]
+}

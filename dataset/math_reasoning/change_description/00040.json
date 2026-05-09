@@ -1,0 +1,144 @@
+{
+  "query": "Students in class 3B are collecting school points for behavior. If they get enough points in total, they can go on a trip. In the class, there are Adam, Martha, Betty, and Tom. Adam has collected 50 points. Betty was better than Adam and collected 30% more. Marta managed to collect 3 times more points than Tom, who has 30 points less than Betty. How many points is the class missing to go on the trip if the minimum threshold is 400 points?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the points collected by Betty using the formula: betty_points = adam_points + (0.3 * adam_points).",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "adam_points",
+          "value": "50"
+        }
+      ],
+      "output": [
+        "betty_points"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the points collected by Tom using the formula: tom_points = betty_points + 50, taking betty_points as twice its current value, and output the result as betty_points.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "betty_points",
+          "value": ""
+        }
+      ],
+      "output": [
+        "tom_points"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Calculate the points collected by Martha using the formula: martha_points = 3 * tom_points.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "tom_points",
+          "value": ""
+        }
+      ],
+      "output": [
+        "martha_points"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total points collected by the class using the formula: total_points = adam_points + betty_points + tom_points + martha_points.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "adam_points",
+          "value": "50"
+        },
+        {
+          "variable": "betty_points",
+          "value": ""
+        },
+        {
+          "variable": "tom_points",
+          "value": ""
+        },
+        {
+          "variable": "martha_points",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_points"
+      ],
+      "prereq": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the points missing to reach the threshold using the formula: points_missing = threshold - total_points.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "threshold",
+          "value": "400"
+        },
+        {
+          "variable": "total_points",
+          "value": ""
+        }
+      ],
+      "output": [
+        "points_missing"
+      ],
+      "prereq": [
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "betty_points",
+      "dest_input": "betty_points"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "betty_points",
+      "dest_input": "betty_points"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 3,
+      "src_output": "tom_points",
+      "dest_input": "tom_points"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "tom_points",
+      "dest_input": "tom_points"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "martha_points",
+      "dest_input": "martha_points"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "total_points",
+      "dest_input": "total_points"
+    }
+  ]
+}

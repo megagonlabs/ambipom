@@ -1,0 +1,153 @@
+{
+  "query": "Difference in number of national parks between the birth countries of the César Award for Best Film directors of 2005 and 2018.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the César Award Best Film of 2005.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "best_film_2005"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the César Award Best Film of 2018.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "best_film_2018"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the director of the film best_film_2005 and their birth country.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "best_film_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "director_birth_country_2005"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the director of the film best_film_2018 and their birth country.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "best_film_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "director_birth_country_2018"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the number of national parks in director_birth_country_2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_birth_country_2005",
+          "value": ""
+        }
+      ],
+      "output": [
+        "national_parks_2005"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "\"Determine the height of the tallest mountain in director_birth_country_2018 and output the number of waterfalls in the director's birth country.\"",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "director_birth_country_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "national_parks_2018"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between national_parks_2005 and national_parks_2018.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "national_parks_2005",
+          "value": ""
+        },
+        {
+          "variable": "national_parks_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "best_film_2005",
+      "dest_input": "best_film_2005"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "best_film_2018",
+      "dest_input": "best_film_2018"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "director_birth_country_2005",
+      "dest_input": "director_birth_country_2005"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "director_birth_country_2018",
+      "dest_input": "director_birth_country_2018"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "national_parks_2005",
+      "dest_input": "national_parks_2005"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "national_parks_2018",
+      "dest_input": "national_parks_2018"
+    }
+  ]
+}

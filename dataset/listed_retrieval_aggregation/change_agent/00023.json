@@ -1,0 +1,166 @@
+{
+  "query": "Find the Pulitzer Prize for Fiction winners for {2018}, {2019}, {2020}. What is the average number of pages of their winning novels (first editions)? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Pulitzer Prize for Fiction winner and winning novel for 2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2018"
+        }
+      ],
+      "output": [
+        "winner_2018"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Pulitzer Prize for Fiction winner and winning novel for 2019.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2019"
+        }
+      ],
+      "output": [
+        "winner_2019"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Pulitzer Prize for Fiction winner and winning novel for 2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2020"
+        }
+      ],
+      "output": [
+        "winner_2020"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Look up the page count of the first edition of the novel from winner_2018.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2018",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2018"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the page count of the first edition of the novel from winner_2019.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2019"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Look up the page count of the first edition of the novel from winner_2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "pages_2020"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Compute the average of pages_2018, pages_2019, and pages_2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "pages_2018",
+          "value": ""
+        },
+        {
+          "variable": "pages_2019",
+          "value": ""
+        },
+        {
+          "variable": "pages_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_pages"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_2018",
+      "dest_input": "winner_2018"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2019",
+      "dest_input": "winner_2019"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2020",
+      "dest_input": "winner_2020"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "pages_2018",
+      "dest_input": "pages_2018"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "pages_2019",
+      "dest_input": "pages_2019"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "pages_2020",
+      "dest_input": "pages_2020"
+    }
+  ]
+}

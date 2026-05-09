@@ -1,0 +1,200 @@
+{
+  "query": "What is the combined market capitalization of the three most valuable sports franchises in the world?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the three most valuable sports franchises in the world.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_three_franchises"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first franchise from top_three_franchises.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_three_franchises",
+          "value": ""
+        }
+      ],
+      "output": [
+        "franchise_1_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second franchise from top_three_franchises.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "top_three_franchises",
+          "value": ""
+        }
+      ],
+      "output": [
+        "franchise_2_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the third franchise from top_three_franchises.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "top_three_franchises",
+          "value": ""
+        }
+      ],
+      "output": [
+        "franchise_3_name"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the estimated market capitalization of franchise_1_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "franchise_1_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "franchise_1_market_cap"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the estimated market capitalization of franchise_2_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "franchise_2_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "franchise_2_market_cap"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the estimated market capitalization of franchise_3_name.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "franchise_3_name",
+          "value": ""
+        }
+      ],
+      "output": [
+        "franchise_3_market_cap"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the sum of franchise_1_market_cap, franchise_2_market_cap, and franchise_3_market_cap.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "franchise_1_market_cap",
+          "value": ""
+        },
+        {
+          "variable": "franchise_2_market_cap",
+          "value": ""
+        },
+        {
+          "variable": "franchise_3_market_cap",
+          "value": ""
+        }
+      ],
+      "output": [
+        "combined_market_cap"
+      ],
+      "prereq": [
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "top_three_franchises",
+      "dest_input": "top_three_franchises"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_three_franchises",
+      "dest_input": "top_three_franchises"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "top_three_franchises",
+      "dest_input": "top_three_franchises"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "franchise_1_name",
+      "dest_input": "franchise_1_name"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "franchise_2_name",
+      "dest_input": "franchise_2_name"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "franchise_3_name",
+      "dest_input": "franchise_3_name"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "franchise_1_market_cap",
+      "dest_input": "franchise_1_market_cap"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 8,
+      "src_output": "franchise_2_market_cap",
+      "dest_input": "franchise_2_market_cap"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "franchise_3_market_cap",
+      "dest_input": "franchise_3_market_cap"
+    }
+  ]
+}

@@ -1,0 +1,314 @@
+{
+  "query": "What is the average boiling point (in °C) of the five most abundant elements in Earth's crust?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five most abundant elements in Earth's crust.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "abundant_elements"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the first element from abundant_elements.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "abundant_elements",
+          "value": ""
+        }
+      ],
+      "output": [
+        "element_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the second element from abundant_elements.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "abundant_elements",
+          "value": ""
+        }
+      ],
+      "output": [
+        "element_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the third element from abundant_elements.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "abundant_elements",
+          "value": ""
+        }
+      ],
+      "output": [
+        "element_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the fourth element from abundant_elements.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "abundant_elements",
+          "value": ""
+        }
+      ],
+      "output": [
+        "element_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the fifth element from abundant_elements.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "abundant_elements",
+          "value": ""
+        }
+      ],
+      "output": [
+        "element_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the boiling point in °C of element_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "element_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "boiling_point_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the boiling point in °C of element_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "element_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "boiling_point_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the boiling point in °C of element_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "element_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "boiling_point_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the boiling point in °C of element_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "element_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "boiling_point_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Find the boiling point in °C of element_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "element_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "boiling_point_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Calculate the average of boiling_point_1, boiling_point_2, boiling_point_3, boiling_point_4, and boiling_point_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "boiling_point_1",
+          "value": ""
+        },
+        {
+          "variable": "boiling_point_2",
+          "value": ""
+        },
+        {
+          "variable": "boiling_point_3",
+          "value": ""
+        },
+        {
+          "variable": "boiling_point_4",
+          "value": ""
+        },
+        {
+          "variable": "boiling_point_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_boiling_point"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "abundant_elements",
+      "dest_input": "abundant_elements"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "abundant_elements",
+      "dest_input": "abundant_elements"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "abundant_elements",
+      "dest_input": "abundant_elements"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "abundant_elements",
+      "dest_input": "abundant_elements"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "abundant_elements",
+      "dest_input": "abundant_elements"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "element_1",
+      "dest_input": "element_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "element_2",
+      "dest_input": "element_2"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "element_3",
+      "dest_input": "element_3"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "element_4",
+      "dest_input": "element_4"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "element_5",
+      "dest_input": "element_5"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 12,
+      "src_output": "boiling_point_1",
+      "dest_input": "boiling_point_1"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 12,
+      "src_output": "boiling_point_2",
+      "dest_input": "boiling_point_2"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 12,
+      "src_output": "boiling_point_3",
+      "dest_input": "boiling_point_3"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 12,
+      "src_output": "boiling_point_4",
+      "dest_input": "boiling_point_4"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 12,
+      "src_output": "boiling_point_5",
+      "dest_input": "boiling_point_5"
+    }
+  ]
+}

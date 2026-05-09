@@ -1,0 +1,153 @@
+{
+  "query": "Difference in number of UNESCO Intangible Cultural Heritage elements (2020) between the birth countries of the Pritzker Architecture Prize winners of 2003 and 2015.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Pritzker Architecture Prize winner of 2003.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2003"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Pritzker Architecture Prize winner of 2015.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2015"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of winner_2003.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2003"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of winner_2015.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2015"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the UNESCO Intangible Cultural Heritage elements from birth_country_2003 on the 2020 list.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "ich_count_2003"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Count the UNESCO Intangible Cultural Heritage elements from birth_country_2015 on the 2020 list.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "ich_count_2015"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between ich_count_2003 and ich_count_2015.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "ich_count_2003",
+          "value": ""
+        },
+        {
+          "variable": "ich_count_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2003",
+      "dest_input": "winner_2003"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2015",
+      "dest_input": "winner_2015"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2003",
+      "dest_input": "birth_country_2003"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2015",
+      "dest_input": "birth_country_2015"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "ich_count_2003",
+      "dest_input": "ich_count_2003"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "ich_count_2015",
+      "dest_input": "ich_count_2015"
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "query": "Generally, a 5-year-old avocado tree produces 50 fruits, a 6-year-old one produces 3 times the initial amount of fruits, a 7-year-old one produces 7 times the initial amount, and an 8-year-old produces 200 fruits less than a 10-year-old one. During the ninth year, the avocado tree doesn't produce any fruit, and then a 10-year-old tree produces 20 times the initial amount of fruits. How many total fruits can an avocado tree produce during its 10 years of life?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of fruits produced by a 6-year-old avocado tree by multiplying the initial_amount by 3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "initial_amount",
+          "value": "50"
+        }
+      ],
+      "output": [
+        "fruits_6_year_old"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the number of fruits produced by a 7-year-old avocado tree by multiplying the initial_amount by 7.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "initial_amount",
+          "value": "50"
+        }
+      ],
+      "output": [
+        "fruits_7_year_old"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the number of fruits produced by a 10-year-old avocado tree by multiplying the initial_amount by 20.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "initial_amount",
+          "value": "50"
+        }
+      ],
+      "output": [
+        "fruits_10_year_old"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Retrieve the number of fruits from a 10-year-old avocado tree.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "fruits_10_year_old",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fruits_10_year_old_collected"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the number of fruits produced by an 8-year-old avocado tree by subtracting 200 from fruits_10_year_old_collected.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "fruits_10_year_old_collected",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fruits_8_year_old"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total number of fruits produced over 10 years by summing initial_amount, fruits_6_year_old, fruits_7_year_old, fruits_8_year_old, and fruits_10_year_old.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "initial_amount",
+          "value": "50"
+        },
+        {
+          "variable": "fruits_6_year_old",
+          "value": ""
+        },
+        {
+          "variable": "fruits_7_year_old",
+          "value": ""
+        },
+        {
+          "variable": "fruits_8_year_old",
+          "value": ""
+        },
+        {
+          "variable": "fruits_10_year_old",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_fruits"
+      ],
+      "prereq": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "fruits_6_year_old",
+      "dest_input": "fruits_6_year_old"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "fruits_7_year_old",
+      "dest_input": "fruits_7_year_old"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "fruits_10_year_old",
+      "dest_input": "fruits_10_year_old"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "fruits_10_year_old",
+      "dest_input": "fruits_10_year_old"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "fruits_10_year_old_collected",
+      "dest_input": "fruits_10_year_old_collected"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "fruits_8_year_old",
+      "dest_input": "fruits_8_year_old"
+    }
+  ]
+}

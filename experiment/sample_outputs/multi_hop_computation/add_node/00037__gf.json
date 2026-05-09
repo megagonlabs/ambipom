@@ -1,0 +1,153 @@
+{
+  "query": "Difference in length (km) of the longest suspension bridge main span in the birth countries of the ACM Turing Award winners of 2006 and 2017.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the ACM Turing Award winner of 2006.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2006"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the ACM Turing Award winner of 2017.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2017"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Determine the birth country of winner_2006.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2006"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the longest suspension bridge by main span in country_2006 and record its span in kilometers.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2006",
+          "value": ""
+        }
+      ],
+      "output": [
+        "span_2006_km"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the birth country of winner_2017.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2017"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Find the longest suspension bridge by main span in country_2017 and record its span in kilometers.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2017",
+          "value": ""
+        }
+      ],
+      "output": [
+        "span_2017_km"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between span_2006_km and span_2017_km.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "span_2006_km",
+          "value": ""
+        },
+        {
+          "variable": "span_2017_km",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_difference_km"
+      ],
+      "prereq": [
+        4,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2006",
+      "dest_input": "winner_2006"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2017",
+      "dest_input": "winner_2017"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "country_2006",
+      "dest_input": "country_2006"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "span_2006_km",
+      "dest_input": "span_2006_km"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "country_2017",
+      "dest_input": "country_2017"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "span_2017_km",
+      "dest_input": "span_2017_km"
+    }
+  ]
+}

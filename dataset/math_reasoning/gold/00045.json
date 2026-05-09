@@ -1,0 +1,148 @@
+{
+  "query": "When Billy was first hired, he was paid at a rate of $10 per hour.  After 2 months, he was given a raise of $0.50 per hour.  On his first anniversary at work, he was given a raise of $1.00 per hour.  Sally just started working at a different business, and her starting salary is $0.50 more per hour than Billy's starting salary was.  If both Billy and Sally work 20 hours, how much more money will Billy earn than Sally, in dollars?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate Billy's initial hourly rate plus $0.50.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "billy_initial_rate",
+          "value": "10"
+        }
+      ],
+      "output": [
+        "billy_rate_after_2_months"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate Sally's starting hourly rate by adding $0.50 to billy_initial_rate.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "billy_initial_rate",
+          "value": "10"
+        }
+      ],
+      "output": [
+        "sally_starting_rate"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate Billy's rate after 1 year by adding $1.00 to billy_rate_after_2_months.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "billy_rate_after_2_months",
+          "value": ""
+        }
+      ],
+      "output": [
+        "billy_rate_after_1_year"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate Sally's total earnings for 20 hours at sally_starting_rate.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "sally_starting_rate",
+          "value": ""
+        },
+        {
+          "variable": "hours_worked",
+          "value": "20"
+        }
+      ],
+      "output": [
+        "sally_total_earnings"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate Billy's total earnings for 20 hours at billy_rate_after_1_year.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "billy_rate_after_1_year",
+          "value": ""
+        },
+        {
+          "variable": "hours_worked",
+          "value": "20"
+        }
+      ],
+      "output": [
+        "billy_total_earnings"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the difference between billy_total_earnings and sally_total_earnings.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "billy_total_earnings",
+          "value": ""
+        },
+        {
+          "variable": "sally_total_earnings",
+          "value": ""
+        }
+      ],
+      "output": [
+        "earnings_difference"
+      ],
+      "prereq": [
+        4,
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "billy_rate_after_2_months",
+      "dest_input": "billy_rate_after_2_months"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "sally_starting_rate",
+      "dest_input": "sally_starting_rate"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "billy_rate_after_1_year",
+      "dest_input": "billy_rate_after_1_year"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "sally_total_earnings",
+      "dest_input": "sally_total_earnings"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "billy_total_earnings",
+      "dest_input": "billy_total_earnings"
+    }
+  ]
+}

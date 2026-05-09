@@ -1,0 +1,166 @@
+{
+  "query": "James started a food fight in his school's cafeteria, and the school administration is making him work off the cost of all the food he wasted at minimum wage ($8). James has to pay for 20 wasted pounds of meat at $5/pound, 15 wasted pounds of fruits and vegetables at $4/pound, 60 wasted pounds of bread products at $1.50/pound, and 10 hours of time-and-a-half pay for the janitorial staff, who normally make $10/hour. How many hours will James have to work to pay for everything?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the cost of the wasted meat by multiplying the meat_pounds by meat_cost_per_pound.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "meat_pounds",
+          "value": "20"
+        },
+        {
+          "variable": "meat_cost_per_pound",
+          "value": "5"
+        }
+      ],
+      "output": [
+        "meat_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the cost of the wasted fruits and vegetables by multiplying the fruits_vegetables_pounds by fruits_vegetables_cost_per_pound.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "fruits_vegetables_pounds",
+          "value": "15"
+        },
+        {
+          "variable": "fruits_vegetables_cost_per_pound",
+          "value": "4"
+        }
+      ],
+      "output": [
+        "fruits_vegetables_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the cost of the wasted bread products by multiplying the bread_pounds by bread_cost_per_pound.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bread_pounds",
+          "value": "60"
+        },
+        {
+          "variable": "bread_cost_per_pound",
+          "value": "1.5"
+        }
+      ],
+      "output": [
+        "bread_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the cost of the janitorial staff by multiplying the janitorial_hours by janitorial_hourly_rate and then by 1.5 for time-and-a-half pay.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "janitorial_hours",
+          "value": "10"
+        },
+        {
+          "variable": "janitorial_hourly_rate",
+          "value": "10"
+        }
+      ],
+      "output": [
+        "janitorial_cost"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total_cost by summing meat_cost, fruits_vegetables_cost, bread_cost, and janitorial_cost.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "meat_cost",
+          "value": ""
+        },
+        {
+          "variable": "fruits_vegetables_cost",
+          "value": ""
+        },
+        {
+          "variable": "bread_cost",
+          "value": ""
+        },
+        {
+          "variable": "janitorial_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_cost"
+      ],
+      "prereq": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total_hours by dividing total_cost by minimum_wage.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_cost",
+          "value": ""
+        },
+        {
+          "variable": "minimum_wage",
+          "value": "8"
+        }
+      ],
+      "output": [
+        "total_hours"
+      ],
+      "prereq": [
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "meat_cost",
+      "dest_input": "meat_cost"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "fruits_vegetables_cost",
+      "dest_input": "fruits_vegetables_cost"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "bread_cost",
+      "dest_input": "bread_cost"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "janitorial_cost",
+      "dest_input": "janitorial_cost"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "total_cost",
+      "dest_input": "total_cost"
+    }
+  ]
+}

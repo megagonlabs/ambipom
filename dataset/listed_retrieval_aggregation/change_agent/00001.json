@@ -1,0 +1,220 @@
+{
+  "query": "Average number of chapters across the debut novels of the Booker Prize winners in {1996}, {2001}, {2003}. Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Booker Prize winner for the year 1996.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_1996"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Booker Prize winner for the year 2001.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2001"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Booker Prize winner for the year 2003.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2003"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Identify the debut novel of the author winner_1996.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_1996",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_novel_1996"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Identify the debut novel of the author winner_2001.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2001",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_novel_2001"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Identify the debut novel of the author winner_2003.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "debut_novel_2003"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Look up the number of chapters in the novel debut_novel_1996.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "debut_novel_1996",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_1996"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Look up the number of chapters in the novel debut_novel_2001.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "debut_novel_2001",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_2001"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Look up the number of chapters in the novel debut_novel_2003.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "debut_novel_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "chapters_2003"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Calculate the average of chapters_1996, chapters_2001, and chapters_2003.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "chapters_1996",
+          "value": ""
+        },
+        {
+          "variable": "chapters_2001",
+          "value": ""
+        },
+        {
+          "variable": "chapters_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_chapters"
+      ],
+      "prereq": [
+        7,
+        8,
+        9
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_1996",
+      "dest_input": "winner_1996"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2001",
+      "dest_input": "winner_2001"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2003",
+      "dest_input": "winner_2003"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "debut_novel_1996",
+      "dest_input": "debut_novel_1996"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "debut_novel_2001",
+      "dest_input": "debut_novel_2001"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 9,
+      "src_output": "debut_novel_2003",
+      "dest_input": "debut_novel_2003"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 10,
+      "src_output": "chapters_1996",
+      "dest_input": "chapters_1996"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 10,
+      "src_output": "chapters_2001",
+      "dest_input": "chapters_2001"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 10,
+      "src_output": "chapters_2003",
+      "dest_input": "chapters_2003"
+    }
+  ]
+}

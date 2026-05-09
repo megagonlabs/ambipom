@@ -1,0 +1,291 @@
+{
+  "query": "What is the average life expectancy of the five countries with the lowest infant mortality rates?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five countries with the lowest infant mortality rates.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "countries_with_lowest_infant_mortality"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the first country name from countries_with_lowest_infant_mortality.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "countries_with_lowest_infant_mortality",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the third country name from countries_with_lowest_infant_mortality.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "countries_with_lowest_infant_mortality",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the fourth country name from countries_with_lowest_infant_mortality.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "countries_with_lowest_infant_mortality",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the fifth country name from countries_with_lowest_infant_mortality.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "countries_with_lowest_infant_mortality",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the second country name from countries_with_lowest_infant_mortality and find its average life expectancy.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "countries_with_lowest_infant_mortality",
+          "value": ""
+        }
+      ],
+      "output": [
+        "life_expectancy_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the average life expectancy for country_1.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_1",
+          "value": ""
+        }
+      ],
+      "output": [
+        "life_expectancy_1"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the average life expectancy for country_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "life_expectancy_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the average life expectancy for country_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "life_expectancy_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the average life expectancy for country_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "life_expectancy_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Calculate the average of life_expectancy_1, life_expectancy_2, life_expectancy_3, life_expectancy_4, and life_expectancy_5.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "life_expectancy_1",
+          "value": ""
+        },
+        {
+          "variable": "life_expectancy_2",
+          "value": ""
+        },
+        {
+          "variable": "life_expectancy_3",
+          "value": ""
+        },
+        {
+          "variable": "life_expectancy_4",
+          "value": ""
+        },
+        {
+          "variable": "life_expectancy_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_life_expectancy"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "countries_with_lowest_infant_mortality",
+      "dest_input": "countries_with_lowest_infant_mortality"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "countries_with_lowest_infant_mortality",
+      "dest_input": "countries_with_lowest_infant_mortality"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "countries_with_lowest_infant_mortality",
+      "dest_input": "countries_with_lowest_infant_mortality"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "countries_with_lowest_infant_mortality",
+      "dest_input": "countries_with_lowest_infant_mortality"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "countries_with_lowest_infant_mortality",
+      "dest_input": "countries_with_lowest_infant_mortality"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "country_1",
+      "dest_input": "country_1"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "country_3",
+      "dest_input": "country_3"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "country_4",
+      "dest_input": "country_4"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "country_5",
+      "dest_input": "country_5"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 11,
+      "src_output": "life_expectancy_1",
+      "dest_input": "life_expectancy_1"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 11,
+      "src_output": "life_expectancy_3",
+      "dest_input": "life_expectancy_3"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 11,
+      "src_output": "life_expectancy_4",
+      "dest_input": "life_expectancy_4"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 11,
+      "src_output": "life_expectancy_5",
+      "dest_input": "life_expectancy_5"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "life_expectancy_2",
+      "dest_input": "life_expectancy_2"
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "query": "Ziggy is a club DJ. Typically, Ziggy gets 30 song requests every night. Half the songs requested are electropop. A third of that amount are requests for dance music. Five song requests are rock music, and song requests for oldies are three less in number than rock requests. Ziggy plays a DJ’s choice song half the number of times he plays an oldie. Ziggy also sometimes gets rap song requests. Typically, how many rap songs does Ziggy get requested every night?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate half of total_requests.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_requests",
+          "value": "30"
+        }
+      ],
+      "output": [
+        "half_requests"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate oldies_requests as rock_requests minus 3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "rock_requests",
+          "value": "5"
+        }
+      ],
+      "output": [
+        "oldies_requests"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate a third of electropop_requests.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "electropop_requests",
+          "value": ""
+        }
+      ],
+      "output": [
+        "dance_requests"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Calculate dj_choice_requests as half of oldies_requests.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "oldies_requests",
+          "value": ""
+        }
+      ],
+      "output": [
+        "dj_choice_requests"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate rap_requests as total_requests minus (electropop_requests + dance_requests + rock_requests + oldies_requests + dj_choice_requests).",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_requests",
+          "value": "30"
+        },
+        {
+          "variable": "electropop_requests",
+          "value": ""
+        },
+        {
+          "variable": "dance_requests",
+          "value": ""
+        },
+        {
+          "variable": "rock_requests",
+          "value": "5"
+        },
+        {
+          "variable": "oldies_requests",
+          "value": ""
+        },
+        {
+          "variable": "dj_choice_requests",
+          "value": ""
+        }
+      ],
+      "output": [
+        "rap_requests"
+      ],
+      "prereq": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "half_requests",
+      "dest_input": "electropop_requests"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "half_requests",
+      "dest_input": "electropop_requests"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "oldies_requests",
+      "dest_input": "oldies_requests"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "oldies_requests",
+      "dest_input": "oldies_requests"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "dance_requests",
+      "dest_input": "dance_requests"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "dj_choice_requests",
+      "dest_input": "dj_choice_requests"
+    }
+  ]
+}

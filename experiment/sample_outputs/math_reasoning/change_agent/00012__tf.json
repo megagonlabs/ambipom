@@ -1,0 +1,163 @@
+{
+  "query": "Each of the three Morales sisters owns an orange grove that has 110 trees. Each orange tree produces medium-sized oranges. At harvest time, Gabriela's grove produced 600 oranges per tree, while Alba harvested 400 per tree. Each of Maricela's trees produced 500 oranges. With such a huge harvest, the sisters are thinking of making orange juice for sale. If it takes three medium-sized oranges to make 1 cup of juice, and then they sell each cup for $4, how much money will they make?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total number of oranges produced by Gabriela's grove. Use the formula: total_oranges_gabriela = number_of_trees * oranges_per_tree.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_trees",
+          "value": "110"
+        },
+        {
+          "variable": "oranges_per_tree",
+          "value": "600"
+        }
+      ],
+      "output": [
+        "total_oranges_gabriela"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total number of oranges produced by Alba's grove. Use the formula: total_oranges_alba = number_of_trees * oranges_per_tree.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_trees",
+          "value": "110"
+        },
+        {
+          "variable": "oranges_per_tree",
+          "value": "400"
+        }
+      ],
+      "output": [
+        "total_oranges_alba"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total number of oranges produced by Maricela's grove. Use the formula: total_oranges_maricela = number_of_trees * oranges_per_tree.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_trees",
+          "value": "110"
+        },
+        {
+          "variable": "oranges_per_tree",
+          "value": "500"
+        }
+      ],
+      "output": [
+        "total_oranges_maricela"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total number of oranges produced by all three groves. Use the formula: total_oranges = total_oranges_gabriela + total_oranges_alba + total_oranges_maricela.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_oranges_gabriela",
+          "value": ""
+        },
+        {
+          "variable": "total_oranges_alba",
+          "value": ""
+        },
+        {
+          "variable": "total_oranges_maricela",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_oranges"
+      ],
+      "prereq": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total revenue from selling the juice. Use the formula: total_revenue = total_cups * price_per_cup.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_cups",
+          "value": ""
+        },
+        {
+          "variable": "price_per_cup",
+          "value": "4"
+        }
+      ],
+      "output": [
+        "total_revenue"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the total number of cups of juice that can be made using the formula: total_cups = total_oranges / oranges_per_cup.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "total_oranges",
+          "value": ""
+        },
+        {
+          "variable": "oranges_per_cup",
+          "value": "3"
+        }
+      ],
+      "output": [
+        "total_cups"
+      ],
+      "prereq": [
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "total_oranges_gabriela",
+      "dest_input": "total_oranges_gabriela"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "total_oranges_alba",
+      "dest_input": "total_oranges_alba"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "total_oranges_maricela",
+      "dest_input": "total_oranges_maricela"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "total_oranges",
+      "dest_input": "total_oranges"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 6,
+      "src_output": "total_cups",
+      "dest_input": "total_cups"
+    }
+  ]
+}

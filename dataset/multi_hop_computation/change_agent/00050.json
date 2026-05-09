@@ -1,0 +1,153 @@
+{
+  "query": "Difference in number of UNESCO World Heritage Sites between the birth countries of the Nobel Physics laureates of 2003 and 2013.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Physics Prize winner of 2003.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "nobel_winner_2003"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Physics Prize winner of 2013.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "nobel_winner_2013"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of nobel_winner_2003.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "nobel_winner_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2003"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of nobel_winner_2013.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "nobel_winner_2013",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2013"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the number of UNESCO World Heritage Sites in birth_country_2003.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "birth_country_2003",
+          "value": ""
+        }
+      ],
+      "output": [
+        "unesco_sites_2003"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Count the number of UNESCO World Heritage Sites in birth_country_2013.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2013",
+          "value": ""
+        }
+      ],
+      "output": [
+        "unesco_sites_2013"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between unesco_sites_2003 and unesco_sites_2013.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "unesco_sites_2003",
+          "value": ""
+        },
+        {
+          "variable": "unesco_sites_2013",
+          "value": ""
+        }
+      ],
+      "output": [
+        "unesco_sites_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "nobel_winner_2003",
+      "dest_input": "nobel_winner_2003"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "nobel_winner_2013",
+      "dest_input": "nobel_winner_2013"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2003",
+      "dest_input": "birth_country_2003"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2013",
+      "dest_input": "birth_country_2013"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "unesco_sites_2003",
+      "dest_input": "unesco_sites_2003"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "unesco_sites_2013",
+      "dest_input": "unesco_sites_2013"
+    }
+  ]
+}

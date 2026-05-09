@@ -1,0 +1,189 @@
+{
+  "query": "Sum of publication years of the debut novels of Nobel Literature Prize winners {1950}, {1960}, {1970}. Return one integer.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Prize in Literature winner for the year 1950.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "1950"
+        }
+      ],
+      "output": [
+        "winner_1950"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Prize in Literature winner for the year 1960.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "1960"
+        }
+      ],
+      "output": [
+        "winner_1960"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Nobel Prize in Literature winner for the year 1970.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "1970"
+        }
+      ],
+      "output": [
+        "winner_1970"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Find the debut novel and its year of publication for the author winner_1950.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "author",
+          "value": "winner_1950"
+        }
+      ],
+      "output": [
+        "debut_year_1950"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the debut novel and its year of publication for the author winner_1960.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "author",
+          "value": "winner_1960"
+        }
+      ],
+      "output": [
+        "debut_year_1960"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Search for the first novel written by the author winner_1970.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "author",
+          "value": "winner_1970"
+        }
+      ],
+      "output": [
+        "novel_title_1970"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Determine the year of publication for the novel novel_title_1970.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "novel_title_1970",
+          "value": "novel_title_1970"
+        }
+      ],
+      "output": [
+        "debut_year_1970"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the sum of debut_year_1950, debut_year_1960, and debut_year_1970.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "debut_year_1950",
+          "value": ""
+        },
+        {
+          "variable": "debut_year_1960",
+          "value": ""
+        },
+        {
+          "variable": "debut_year_1970",
+          "value": ""
+        }
+      ],
+      "output": [
+        "sum_of_years"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_1950",
+      "dest_input": "author"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_1960",
+      "dest_input": "author"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_1970",
+      "dest_input": "author"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 8,
+      "src_output": "debut_year_1950",
+      "dest_input": "debut_year_1950"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 8,
+      "src_output": "debut_year_1960",
+      "dest_input": "debut_year_1960"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "novel_title_1970",
+      "dest_input": "novel_title_1970"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "debut_year_1970",
+      "dest_input": "debut_year_1970"
+    }
+  ]
+}

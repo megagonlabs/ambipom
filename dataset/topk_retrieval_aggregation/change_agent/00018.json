@@ -1,0 +1,314 @@
+{
+  "query": "What is the combined length of the five longest rivers in Africa?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the five longest rivers in Africa.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "longest_rivers"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the first longest river from longest_rivers.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_rivers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_longest_river"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the second longest river from longest_rivers.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_rivers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_longest_river"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the third longest river from longest_rivers.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_rivers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_longest_river"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the name of the fourth longest river from longest_rivers.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_rivers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fourth_longest_river"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the name of the fifth longest river from longest_rivers.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "longest_rivers",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fifth_longest_river"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Find the length of the river named first_longest_river.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "first_longest_river",
+          "value": ""
+        }
+      ],
+      "output": [
+        "first_river_length"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Find the length of the river named second_longest_river.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "second_longest_river",
+          "value": ""
+        }
+      ],
+      "output": [
+        "second_river_length"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the length of the river named third_longest_river.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "third_longest_river",
+          "value": ""
+        }
+      ],
+      "output": [
+        "third_river_length"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the length of the river named fourth_longest_river.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "fourth_longest_river",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fourth_river_length"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Find the length of the river named fifth_longest_river.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "fifth_longest_river",
+          "value": ""
+        }
+      ],
+      "output": [
+        "fifth_river_length"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Calculate the sum of first_river_length, second_river_length, third_river_length, fourth_river_length, and fifth_river_length.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "first_river_length",
+          "value": ""
+        },
+        {
+          "variable": "second_river_length",
+          "value": ""
+        },
+        {
+          "variable": "third_river_length",
+          "value": ""
+        },
+        {
+          "variable": "fourth_river_length",
+          "value": ""
+        },
+        {
+          "variable": "fifth_river_length",
+          "value": ""
+        }
+      ],
+      "output": [
+        "combined_length"
+      ],
+      "prereq": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "longest_rivers",
+      "dest_input": "longest_rivers"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "longest_rivers",
+      "dest_input": "longest_rivers"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "longest_rivers",
+      "dest_input": "longest_rivers"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "longest_rivers",
+      "dest_input": "longest_rivers"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "longest_rivers",
+      "dest_input": "longest_rivers"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 7,
+      "src_output": "first_longest_river",
+      "dest_input": "first_longest_river"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 8,
+      "src_output": "second_longest_river",
+      "dest_input": "second_longest_river"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 9,
+      "src_output": "third_longest_river",
+      "dest_input": "third_longest_river"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 10,
+      "src_output": "fourth_longest_river",
+      "dest_input": "fourth_longest_river"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 11,
+      "src_output": "fifth_longest_river",
+      "dest_input": "fifth_longest_river"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 12,
+      "src_output": "first_river_length",
+      "dest_input": "first_river_length"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 12,
+      "src_output": "second_river_length",
+      "dest_input": "second_river_length"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 12,
+      "src_output": "third_river_length",
+      "dest_input": "third_river_length"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 12,
+      "src_output": "fourth_river_length",
+      "dest_input": "fourth_river_length"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 12,
+      "src_output": "fifth_river_length",
+      "dest_input": "fifth_river_length"
+    }
+  ]
+}

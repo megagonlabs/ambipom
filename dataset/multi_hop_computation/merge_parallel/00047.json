@@ -1,0 +1,174 @@
+{
+  "query": "Difference in the number of named peaks over 4,000 m in the birth countries of the Nobel Literature laureates of 2007 and 2016.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Nobel Literature winner of 2007.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2007"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Nobel Literature winner of 2016.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "winner_2016"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of winner_2007.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2007"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of winner_2016.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "winner_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2016"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Identify peaks in country_2007 that are named.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "named_peaks"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Filter named_peaks to find those exceeding 4,000 m.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2007",
+          "value": ""
+        },
+        {
+          "variable": "named_peaks",
+          "value": ""
+        }
+      ],
+      "output": [
+        "peaks_2007"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Count the named peaks exceeding 4,000 m in country_2016.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "peaks_2016"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the absolute difference between peaks_2007 and peaks_2016.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "peaks_2007",
+          "value": ""
+        },
+        {
+          "variable": "peaks_2016",
+          "value": ""
+        }
+      ],
+      "output": [
+        "absolute_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "winner_2007",
+      "dest_input": "winner_2007"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "winner_2016",
+      "dest_input": "winner_2016"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "country_2007",
+      "dest_input": "country_2007"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "country_2007",
+      "dest_input": "country_2007"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "country_2016",
+      "dest_input": "country_2016"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "peaks_2016",
+      "dest_input": "peaks_2016"
+    }
+  ]
+}

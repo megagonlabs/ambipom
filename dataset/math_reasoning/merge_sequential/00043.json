@@ -1,0 +1,204 @@
+{
+  "query": "Kendra wants enough shirts that she only has to do laundry once every two weeks. She wears one shirt to school for each of the five weekdays. Three days a week, she changes into a different shirt for an after-school club. On Saturday, she wears one shirt all day. On Sunday, she wears a different shirt to church than she does for the rest of the day. How many shirts does she need to be able to only do laundry once every two weeks?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of shirts Kendra wears to school in one week. Multiply the number of weekdays by the number of shirts worn each day.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "weekdays",
+          "value": "5"
+        },
+        {
+          "variable": "shirts_per_weekday",
+          "value": "1"
+        }
+      ],
+      "output": [
+        "school_shirts_per_week"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the number of shirts Kendra wears for after-school clubs in one week. Multiply the number of club days by the number of shirts worn each day.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "club_days",
+          "value": "3"
+        },
+        {
+          "variable": "shirts_per_club_day",
+          "value": "1"
+        }
+      ],
+      "output": [
+        "club_shirts_per_week"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the number of shirts Kendra wears on Saturday in one week.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "saturday_shirts",
+          "value": "1"
+        }
+      ],
+      "output": [
+        "saturday_shirts_per_week"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the number of shirts Kendra wears on Sunday in one week. Add the number of shirts worn to church and the number worn for the rest of the day.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "sunday_church_shirts",
+          "value": "1"
+        },
+        {
+          "variable": "sunday_rest_shirts",
+          "value": "1"
+        }
+      ],
+      "output": [
+        "sunday_shirts_per_week"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Add the number of school shirts and club shirts Kendra wears in one week.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "school_shirts_per_week",
+          "value": ""
+        },
+        {
+          "variable": "club_shirts_per_week",
+          "value": ""
+        }
+      ],
+      "output": [
+        "weekday_shirts_per_week"
+      ],
+      "prereq": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Add the number of Saturday shirts and Sunday shirts Kendra wears in one week.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "saturday_shirts_per_week",
+          "value": ""
+        },
+        {
+          "variable": "sunday_shirts_per_week",
+          "value": ""
+        }
+      ],
+      "output": [
+        "weekend_shirts_per_week"
+      ],
+      "prereq": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Add the weekday shirts and weekend shirts to find the total number of shirts Kendra wears in one week.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "weekday_shirts_per_week",
+          "value": ""
+        },
+        {
+          "variable": "weekend_shirts_per_week",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_shirts_per_week"
+      ],
+      "prereq": [
+        -1,
+        -2
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Calculate the total number of shirts Kendra needs for two weeks. Multiply the total number of shirts per week by two.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_shirts_per_week",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_shirts_needed"
+      ],
+      "prereq": [
+        5
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "school_shirts_per_week",
+      "dest_input": "school_shirts_per_week"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "club_shirts_per_week",
+      "dest_input": "club_shirts_per_week"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "saturday_shirts_per_week",
+      "dest_input": "saturday_shirts_per_week"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "sunday_shirts_per_week",
+      "dest_input": "sunday_shirts_per_week"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "weekday_shirts_per_week",
+      "dest_input": "weekday_shirts_per_week"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "weekend_shirts_per_week",
+      "dest_input": "weekend_shirts_per_week"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 8,
+      "src_output": "total_shirts_per_week",
+      "dest_input": "total_shirts_per_week"
+    }
+  ]
+}

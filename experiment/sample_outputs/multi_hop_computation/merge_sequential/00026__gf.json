@@ -1,0 +1,153 @@
+{
+  "query": "Difference in population density (people/km², 2020) between the birth countries of the Academy Award Best Picture producers of 2009 and 2020.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Best Picture Oscar winning film of 2009.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "best_picture_2009"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Best Picture Oscar winning film of 2020.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "best_picture_2020"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the lead producer's birth country for the film best_picture_2009.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "best_picture_2009",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2009"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the lead producer's birth country for the film best_picture_2020.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "best_picture_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2020"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Look up the population density in 2020 for birth_country_2009.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2009",
+          "value": ""
+        }
+      ],
+      "output": [
+        "density_2009"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the population density for birth_country_2020 in 2020 using its population and area.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "density_2020"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the absolute difference between density_2009 and density_2020.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "density_2009",
+          "value": ""
+        },
+        {
+          "variable": "density_2020",
+          "value": ""
+        }
+      ],
+      "output": [
+        "density_difference"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "best_picture_2009",
+      "dest_input": "best_picture_2009"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "best_picture_2020",
+      "dest_input": "best_picture_2020"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 5,
+      "src_output": "birth_country_2009",
+      "dest_input": "birth_country_2009"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "birth_country_2020",
+      "dest_input": "birth_country_2020"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "density_2009",
+      "dest_input": "density_2009"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "density_2020",
+      "dest_input": "density_2020"
+    }
+  ]
+}

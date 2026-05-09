@@ -1,0 +1,166 @@
+{
+  "query": "Five food companies sponsored a local food bank. Foster Farms donated 45 dressed chickens; American Summits donated twice the number of bottled water than the number of dressed chicken donated by Foster Farms; Hormel donated three times the number of dressed chickens that Foster Farms donated; Boudin Butchers donated one-third of the number of dressed chickens that Hormel donated; Del Monte Foods donated 30 fewer bottles of water than American Summits. How many food items did the companies donate in total?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the number of bottled water donated by American Summits given that it is twice the number of dressed chickens donated by Foster Farms.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "dressed_chickens_foster_farms",
+          "value": "45"
+        }
+      ],
+      "output": [
+        "bottled_water_american_summits"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the number of dressed chickens donated by Hormel given that it is three times the number of dressed chickens donated by Foster Farms.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "dressed_chickens_foster_farms",
+          "value": "45"
+        }
+      ],
+      "output": [
+        "dressed_chickens_hormel"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the number of bottled water donated by Del Monte Foods given that it is 30 fewer than the number of bottled water donated by American Summits.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "bottled_water_american_summits",
+          "value": ""
+        }
+      ],
+      "output": [
+        "bottled_water_del_monte_foods"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Divide the number of dressed chickens from Hormel by 3.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "dressed_chickens_hormel",
+          "value": ""
+        }
+      ],
+      "output": [
+        "dressed_chickens_divided"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Assign the divided result as the dressed chickens donated by Boudin Butchers.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "dressed_chickens_divided",
+          "value": ""
+        }
+      ],
+      "output": [
+        "dressed_chickens_boudin_butchers"
+      ],
+      "prereq": [
+        -1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the total number of food items donated by all companies by summing the number of dressed chickens and bottled water donated by each company.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "dressed_chickens_foster_farms",
+          "value": "45"
+        },
+        {
+          "variable": "bottled_water_american_summits",
+          "value": ""
+        },
+        {
+          "variable": "dressed_chickens_hormel",
+          "value": ""
+        },
+        {
+          "variable": "dressed_chickens_boudin_butchers",
+          "value": ""
+        },
+        {
+          "variable": "bottled_water_del_monte_foods",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_food_items"
+      ],
+      "prereq": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "bottled_water_american_summits",
+      "dest_input": "bottled_water_american_summits"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "bottled_water_american_summits",
+      "dest_input": "bottled_water_american_summits"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 6,
+      "src_output": "dressed_chickens_hormel",
+      "dest_input": "dressed_chickens_hormel"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "dressed_chickens_hormel",
+      "dest_input": "dressed_chickens_hormel"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "bottled_water_del_monte_foods",
+      "dest_input": "bottled_water_del_monte_foods"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "dressed_chickens_divided",
+      "dest_input": "dressed_chickens_divided"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "dressed_chickens_boudin_butchers",
+      "dest_input": "dressed_chickens_boudin_butchers"
+    }
+  ]
+}

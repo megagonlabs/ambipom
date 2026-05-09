@@ -1,0 +1,166 @@
+{
+  "query": "Find the Pulitzer Prize for Fiction winners for {1995}, {2005}, {2015}. What is the average number of characters (excluding spaces) in the winning novel titles? Return one number.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the Pulitzer Prize for Fiction winner and winning novel title for 1995.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "1995"
+        }
+      ],
+      "output": [
+        "winner_1995"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the Pulitzer Prize for Fiction winner and winning novel title for 2005.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2005"
+        }
+      ],
+      "output": [
+        "winner_2005"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the Pulitzer Prize for Fiction winner and winning novel title for 2015.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "year",
+          "value": "2015"
+        }
+      ],
+      "output": [
+        "winner_2015"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Count the number of characters (excluding spaces) in the title of the novel from winner_1995.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "char_count_1995"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Count the number of characters (excluding spaces) in the title of the novel from winner_2005.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "char_count_2005"
+      ],
+      "prereq": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Count the number of characters (excluding spaces) in the title of the novel from winner_2015.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "title",
+          "value": ""
+        }
+      ],
+      "output": [
+        "char_count_2015"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Calculate the average of char_count_1995, char_count_2005, and char_count_2015.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "char_count_1995",
+          "value": ""
+        },
+        {
+          "variable": "char_count_2005",
+          "value": ""
+        },
+        {
+          "variable": "char_count_2015",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_char_count"
+      ],
+      "prereq": [
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "winner_1995",
+      "dest_input": "title"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "winner_2005",
+      "dest_input": "title"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "winner_2015",
+      "dest_input": "title"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "char_count_1995",
+      "dest_input": "char_count_1995"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 7,
+      "src_output": "char_count_2005",
+      "dest_input": "char_count_2005"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 7,
+      "src_output": "char_count_2015",
+      "dest_input": "char_count_2015"
+    }
+  ]
+}

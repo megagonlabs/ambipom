@@ -1,0 +1,166 @@
+{
+  "query": "Javier is having an eating contest with his brother. It's ravioli night and there is meat ravioli, pumpkin ravioli, and cheese ravioli. The meat ravioli weighs 1.5 ounces each. The pumpkin ravioli is 1.25 ounces each. The cheese ravioli is one ounce. Javier eats 5 meat ravioli, 2 pumpkin ravioli, and 4 cheese ravioli. His brother just ate pumpkin ravioli and had 12 of them. What is the total amount of ounces eaten by the winner?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total weight of meat ravioli eaten by multiplying the number of meat ravioli by the weight per ravioli.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_meat_ravioli",
+          "value": "5"
+        },
+        {
+          "variable": "weight_per_meat_ravioli",
+          "value": "1.5"
+        }
+      ],
+      "output": [
+        "total_meat_weight"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total weight of pumpkin ravioli eaten by Javier by multiplying the number of pumpkin ravioli by the weight per ravioli.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_pumpkin_ravioli_javier",
+          "value": "2"
+        },
+        {
+          "variable": "weight_per_pumpkin_ravioli",
+          "value": "1.25"
+        }
+      ],
+      "output": [
+        "total_pumpkin_weight_javier"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total weight of cheese ravioli eaten by multiplying the number of cheese ravioli by the weight per ravioli.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_cheese_ravioli",
+          "value": "4"
+        },
+        {
+          "variable": "weight_per_cheese_ravioli",
+          "value": "1"
+        }
+      ],
+      "output": [
+        "total_cheese_weight"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total weight of pumpkin ravioli eaten by Javier's brother by multiplying the number of pumpkin ravioli by the weight per ravioli.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "number_of_pumpkin_ravioli_brother",
+          "value": "12"
+        },
+        {
+          "variable": "weight_per_pumpkin_ravioli",
+          "value": "1.25"
+        }
+      ],
+      "output": [
+        "total_pumpkin_weight_brother"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Add total_meat_weight and total_pumpkin_weight_javier to calculate partial_weight_1.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_meat_weight",
+          "value": ""
+        },
+        {
+          "variable": "total_pumpkin_weight_javier",
+          "value": ""
+        }
+      ],
+      "output": [
+        "partial_weight_1"
+      ],
+      "prereq": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Add total_cheese_weight to partial_weight_1 to calculate total_weight_javier.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "partial_weight_1",
+          "value": ""
+        },
+        {
+          "variable": "total_cheese_weight",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_weight_javier"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Determine the winner by comparing total_weight_javier and total_pumpkin_weight_brother. Output the greater weight.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "total_weight_javier",
+          "value": ""
+        },
+        {
+          "variable": "total_pumpkin_weight_brother",
+          "value": ""
+        }
+      ],
+      "output": [
+        "winner_total_weight"
+      ],
+      "prereq": [
+        5,
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "total_meat_weight",
+      "dest_input": "total_meat_weight"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "total_meat_weight",
+      "dest_input": "partial_weight_1"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 7,
+      "src_output": "total_pumpkin_weight_brother",
+      "dest_input": "total_pumpkin_weight_brother"
+    }
+  ]
+}

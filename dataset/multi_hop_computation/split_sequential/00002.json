@@ -1,0 +1,130 @@
+{
+  "query": "Height difference (m) between the highest mountains in the birth countries of the FIFA Women's World Cup top scorers of 2007 and 2019.",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Find the top scorer (Golden Boot) of the 2007 FIFA Women's World Cup.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_scorer_2007"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Find the top scorer (Golden Boot) of the 2019 FIFA Women's World Cup.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "top_scorer_2019"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Find the birth country of the top_scorer_2007 and then find the highest mountain in that country, recording its elevation in meters.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "top_scorer_2007",
+          "value": ""
+        }
+      ],
+      "output": [
+        "highest_mountain_2007"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Find the birth country of the top_scorer_2019.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "top_scorer_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "birth_country_2019"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Find the highest mountain in birth_country_2019 and record its elevation in meters.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "birth_country_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "highest_mountain_2019"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the absolute difference between highest_mountain_2007 and highest_mountain_2019.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "highest_mountain_2007",
+          "value": ""
+        },
+        {
+          "variable": "highest_mountain_2019",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_difference"
+      ],
+      "prereq": [
+        3,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "top_scorer_2007",
+      "dest_input": "top_scorer_2007"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "top_scorer_2019",
+      "dest_input": "top_scorer_2019"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "birth_country_2019",
+      "dest_input": "birth_country_2019"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "highest_mountain_2019",
+      "dest_input": "highest_mountain_2019"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "highest_mountain_2007",
+      "dest_input": "highest_mountain_2007"
+    }
+  ]
+}

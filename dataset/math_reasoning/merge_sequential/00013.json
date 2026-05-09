@@ -1,0 +1,158 @@
+{
+  "query": "James was doing some shopping in his favorite shop and he saw an offer on shoes that give him a second pair of shoes for half off the original price. He took the offer and took the first pair of shoes for $40 and the second one for $60. At the cashier, the lady told him that the offer applies strictly to the cheaper pair of shoes, and also that he was selected for an extra discount of a fourth off the total amount. How much money did James end up paying for both pairs of shoes?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Identify the cheaper pair of shoes between first_price and second_price.",
+      "agent_name": "commonsense",
+      "input": [
+        {
+          "variable": "first_price",
+          "value": "40"
+        },
+        {
+          "variable": "second_price",
+          "value": "60"
+        }
+      ],
+      "output": [
+        "cheaper_price"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Add first_price and second_price.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "first_price",
+          "value": "40"
+        },
+        {
+          "variable": "second_price",
+          "value": "60"
+        }
+      ],
+      "output": [
+        "subtotal"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the discount amount for the cheaper_price at half off.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "cheaper_price",
+          "value": ""
+        }
+      ],
+      "output": [
+        "discounted_price"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Subtract discounted_price from subtotal.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "subtotal",
+          "value": ""
+        },
+        {
+          "variable": "discounted_price",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_price_before_extra_discount"
+      ],
+      "prereq": [
+        -1,
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Calculate the extra discount amount as a fourth off the total_price_before_extra_discount.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_price_before_extra_discount",
+          "value": ""
+        }
+      ],
+      "output": [
+        "extra_discount_amount"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the final amount James pays by subtracting extra_discount_amount from total_price_before_extra_discount.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_price_before_extra_discount",
+          "value": ""
+        },
+        {
+          "variable": "extra_discount_amount",
+          "value": ""
+        }
+      ],
+      "output": [
+        "final_amount_paid"
+      ],
+      "prereq": [
+        4
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "cheaper_price",
+      "dest_input": "cheaper_price"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 4,
+      "src_output": "discounted_price",
+      "dest_input": "discounted_price"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "extra_discount_amount",
+      "dest_input": "extra_discount_amount"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 4,
+      "src_output": "subtotal",
+      "dest_input": "subtotal"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 5,
+      "src_output": "total_price_before_extra_discount",
+      "dest_input": "total_price_before_extra_discount"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 6,
+      "src_output": "total_price_before_extra_discount",
+      "dest_input": "total_price_before_extra_discount"
+    }
+  ]
+}

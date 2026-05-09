@@ -1,0 +1,115 @@
+{
+  "query": "A farmer owns a hog that recently gave birth to 6 piglets.  If the farmer raises the piglets until they are fully grown, he can sell the fully grown pig for $300.  Each piglet must grow for at least 12 months before it is large enough to be sold. It costs the farmer $10 per month to feed each animal until it is sold.  If the farmer sells 3 pigs after 12 months, and the remaining 3 pigs after 16 months, how much profit did he earn in total (after deducting the cost of food)?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Calculate the total revenue from selling 3 pigs at $300 each.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "revenue_3_pigs"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Calculate the total revenue from selling another 3 pigs at $300 each.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "revenue_3_more_pigs"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 3,
+      "task": "Calculate the total cost of feeding 3 pigs for 12 months at $10 per month per pig.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "cost_3_pigs_12_months"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 4,
+      "task": "Calculate the total cost of feeding 3 pigs for 16 months at $10 per month per pig.",
+      "agent_name": "math",
+      "input": [],
+      "output": [
+        "cost_3_pigs_16_months"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 5,
+      "task": "Calculate the total revenue by adding revenue_3_pigs and revenue_3_more_pigs.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "revenue_3_pigs",
+          "value": ""
+        },
+        {
+          "variable": "revenue_3_more_pigs",
+          "value": ""
+        }
+      ],
+      "output": [
+        "total_revenue"
+      ],
+      "prereq": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Calculate the profit by subtracting total_cost from total_revenue.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "total_revenue",
+          "value": ""
+        },
+        {
+          "variable": "total_cost",
+          "value": ""
+        }
+      ],
+      "output": [
+        "profit"
+      ],
+      "prereq": [
+        5,
+        6
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "revenue_3_pigs",
+      "dest_input": "revenue_3_pigs"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 5,
+      "src_output": "revenue_3_more_pigs",
+      "dest_input": "revenue_3_more_pigs"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 6,
+      "src_output": "cost_3_pigs_12_months",
+      "dest_input": "total_cost"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 6,
+      "src_output": "total_revenue",
+      "dest_input": "total_revenue"
+    }
+  ]
+}

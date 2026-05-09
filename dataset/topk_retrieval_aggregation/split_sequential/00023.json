@@ -1,0 +1,405 @@
+{
+  "query": "What is the average height of the tallest building in each of the G7 countries?",
+  "nodes": [
+    {
+      "id": 1,
+      "task": "Identify the G7 countries.",
+      "agent_name": "search",
+      "input": [],
+      "output": [
+        "g7_countries"
+      ],
+      "prereq": []
+    },
+    {
+      "id": 2,
+      "task": "Extract the name of the second country from g7_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "g7_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_2"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "task": "Extract the name of the third country from g7_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "g7_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_3"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "task": "Extract the name of the fourth country from g7_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "g7_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_4"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "task": "Extract the name of the fifth country from g7_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "g7_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_5"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "task": "Extract the name of the sixth country from g7_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "g7_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_6"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "task": "Extract the name of the seventh country from g7_countries.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "g7_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "country_7"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "task": "Extract the first country's name from g7_countries and find its tallest building and height.",
+      "agent_name": "code",
+      "input": [
+        {
+          "variable": "g7_countries",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_1"
+      ],
+      "prereq": [
+        1
+      ]
+    },
+    {
+      "id": 9,
+      "task": "Find the tallest building and its height in country_2.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_2",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_2"
+      ],
+      "prereq": [
+        3
+      ]
+    },
+    {
+      "id": 10,
+      "task": "Find the tallest building and its height in country_3.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_3",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_3"
+      ],
+      "prereq": [
+        4
+      ]
+    },
+    {
+      "id": 11,
+      "task": "Find the tallest building and its height in country_4.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_4",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_4"
+      ],
+      "prereq": [
+        5
+      ]
+    },
+    {
+      "id": 12,
+      "task": "Find the tallest building and its height in country_5.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_5",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_5"
+      ],
+      "prereq": [
+        6
+      ]
+    },
+    {
+      "id": 13,
+      "task": "Find the tallest building and its height in country_6.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_6",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_6"
+      ],
+      "prereq": [
+        7
+      ]
+    },
+    {
+      "id": 14,
+      "task": "Find the tallest building and its height in country_7.",
+      "agent_name": "search",
+      "input": [
+        {
+          "variable": "country_7",
+          "value": ""
+        }
+      ],
+      "output": [
+        "height_7"
+      ],
+      "prereq": [
+        8
+      ]
+    },
+    {
+      "id": 15,
+      "task": "Calculate the average of height_1, height_2, height_3, height_4, height_5, height_6, and height_7.",
+      "agent_name": "math",
+      "input": [
+        {
+          "variable": "height_1",
+          "value": ""
+        },
+        {
+          "variable": "height_2",
+          "value": ""
+        },
+        {
+          "variable": "height_3",
+          "value": ""
+        },
+        {
+          "variable": "height_4",
+          "value": ""
+        },
+        {
+          "variable": "height_5",
+          "value": ""
+        },
+        {
+          "variable": "height_6",
+          "value": ""
+        },
+        {
+          "variable": "height_7",
+          "value": ""
+        }
+      ],
+      "output": [
+        "average_height"
+      ],
+      "prereq": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src_node": 1,
+      "dest_node": 2,
+      "src_output": "g7_countries",
+      "dest_input": "g7_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 3,
+      "src_output": "g7_countries",
+      "dest_input": "g7_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 4,
+      "src_output": "g7_countries",
+      "dest_input": "g7_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 5,
+      "src_output": "g7_countries",
+      "dest_input": "g7_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 6,
+      "src_output": "g7_countries",
+      "dest_input": "g7_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 7,
+      "src_output": "g7_countries",
+      "dest_input": "g7_countries"
+    },
+    {
+      "src_node": 1,
+      "dest_node": 8,
+      "src_output": "g7_countries",
+      "dest_input": "g7_countries"
+    },
+    {
+      "src_node": 2,
+      "dest_node": 9,
+      "src_output": "country_2",
+      "dest_input": "country_2"
+    },
+    {
+      "src_node": 3,
+      "dest_node": 10,
+      "src_output": "country_3",
+      "dest_input": "country_3"
+    },
+    {
+      "src_node": 4,
+      "dest_node": 11,
+      "src_output": "country_4",
+      "dest_input": "country_4"
+    },
+    {
+      "src_node": 5,
+      "dest_node": 12,
+      "src_output": "country_5",
+      "dest_input": "country_5"
+    },
+    {
+      "src_node": 6,
+      "dest_node": 13,
+      "src_output": "country_6",
+      "dest_input": "country_6"
+    },
+    {
+      "src_node": 7,
+      "dest_node": 14,
+      "src_output": "country_7",
+      "dest_input": "country_7"
+    },
+    {
+      "src_node": 9,
+      "dest_node": 15,
+      "src_output": "height_2",
+      "dest_input": "height_2"
+    },
+    {
+      "src_node": 10,
+      "dest_node": 15,
+      "src_output": "height_3",
+      "dest_input": "height_3"
+    },
+    {
+      "src_node": 11,
+      "dest_node": 15,
+      "src_output": "height_4",
+      "dest_input": "height_4"
+    },
+    {
+      "src_node": 12,
+      "dest_node": 15,
+      "src_output": "height_5",
+      "dest_input": "height_5"
+    },
+    {
+      "src_node": 13,
+      "dest_node": 15,
+      "src_output": "height_6",
+      "dest_input": "height_6"
+    },
+    {
+      "src_node": 14,
+      "dest_node": 15,
+      "src_output": "height_7",
+      "dest_input": "height_7"
+    },
+    {
+      "src_node": 8,
+      "dest_node": 15,
+      "src_output": "height_1",
+      "dest_input": "height_1"
+    }
+  ]
+}
