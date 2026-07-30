@@ -5,7 +5,6 @@ import os
 import time
 import uuid
 from enum import Enum
-from graphlib import TopologicalSorter
 
 from fireworks.client import Fireworks
 from openai import OpenAI
@@ -106,18 +105,9 @@ class InteractionType(str, Enum):
 
 
 # helper functions
-def current_time() -> str:
-    return time.strftime("%T")
-
-
 def current_exact_time() -> str:
     return time.strftime("%Y-%m-%d %H:%M:%S")
 
 
 def create_uuid() -> str:
     return str(uuid.uuid4())[:8]
-
-
-def topo_sort(graph: dict) -> list:
-    sorter = TopologicalSorter(graph)
-    return list(sorter.static_order())

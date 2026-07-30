@@ -6,9 +6,9 @@ Run from the repo root:
 Asserts:
   - All paths in items.jsonl resolve to plan files on disk
   - Every plan file conforms to LLMPlan shape
-  - All gold plans have >= 5 nodes and >= 5 edges (paper §4.2 threshold)
+  - All gold plans have >= 5 nodes and >= 5 edges (paper §6.2 threshold)
   - target_nodes referenced in feedback exist in the corresponding p_initial
-  - operation_type / subset coverage matches paper §4.2
+  - operation_type / subset coverage matches paper §6.2
   - math_reasoning/answers.json covers every math gold id
 
 Exits non-zero on any failure.
@@ -18,7 +18,6 @@ from __future__ import annotations
 
 import json
 import sys
-from collections import defaultdict
 from pathlib import Path
 
 DATA = Path(__file__).parent
@@ -34,7 +33,7 @@ REQUIRED_ITEM_FIELDS = {
 }
 REQUIRED_FEEDBACK_FIELDS = {"global", "targeted", "target_nodes"}
 
-# Paper §4.2: split_sequential only in multi_hop_computation + listed_retrieval_aggregation;
+# Paper §6.2: split_sequential only in multi_hop_computation + listed_retrieval_aggregation;
 # split_parallel only in topk_retrieval_aggregation. (Note: paper text references the
 # pre-rename subsets; the new names map 1:1.)
 EXPECTED_COVERAGE = {
@@ -151,11 +150,11 @@ def main() -> int:
                 continue
             if len(gold["nodes"]) < 5:
                 fail(
-                    f"{gp.relative_to(DATA)}: only {len(gold['nodes'])} nodes (paper §4.2 requires ≥5)"
+                    f"{gp.relative_to(DATA)}: only {len(gold['nodes'])} nodes (paper §6.2 requires ≥5)"
                 )
             if len(gold["edges"]) < 5:
                 fail(
-                    f"{gp.relative_to(DATA)}: only {len(gold['edges'])} edges (paper §4.2 requires ≥5)"
+                    f"{gp.relative_to(DATA)}: only {len(gold['edges'])} edges (paper §6.2 requires ≥5)"
                 )
 
         # 5. Each op dir: count + plan shape

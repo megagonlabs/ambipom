@@ -1,9 +1,9 @@
 # AMBIPOM
 
-[![Conference](https://img.shields.io/badge/ACM_CAIS-2026-cornflowerblue)](TBA)
-[![arXiv](https://img.shields.io/badge/arxiv-XXXX.XXXXX-firebrick)](https://arxiv.org/abs/TBA)
+[![Conference](https://img.shields.io/badge/ACM_CAIS-2026-cornflowerblue)](https://www.caisconf.org/program/2026/recap/)
+[![arXiv](https://img.shields.io/badge/arxiv-2605.23023-firebrick)](https://arxiv.org/abs/2605.23023)
 
-**A**gent-aware **M**ixed-initiative **B**lock-level **I**nteractive **P**lanning for **O**rchestrated **M**ulti-agent systems — a prototype that demonstrates the interaction design space introduced in *How to Steer Your Multi-Agent System: Human-LLM Collaborative Planning* (ACM CAIS 2026). A user describes a task; an LLM-backed planner breaks it into a directed graph of sub-tasks, each assigned to one of four executable agents — `math`, `code`, `search`, or `commonsense` — connected by typed data flows. The system instantiates the paper's three interaction axes: **mode** (semantic ↔ structural), **scope** (global ↔ targeted), and **level** (low-level ↔ high-level).
+**A**gent-aware **M**ixed-initiative **B**lock-level **I**nteractive **P**lanning for **O**rchestrated **M**ulti-agent systems — a prototype that demonstrates the interaction design space introduced in *How to Steer Your Multi-Agent System: Human-LLM Collaborative Planning* (ACM CAIS 2026 - 🏆 Best Artifact Award). A user describes a task; an LLM-backed planner breaks it into a directed graph of sub-tasks, each assigned to one of four executable agents — `math`, `code`, `search`, or `commonsense` — connected by typed data flows. The system instantiates the paper's three interaction axes: **mode** (semantic ↔ structural), **scope** (global ↔ targeted), and **level** (low-level ↔ high-level).
 
 This repository contains the prototype, the dataset, and the reproduction pipeline:
 
@@ -54,7 +54,7 @@ Set as environment variables before launching.
 **Web search tool for `search` agent** — required to execute search nodes:
 - **`BRAVE_API_KEY`**
 
-`experiment/evaluate.py` is local-only and needs no key. Get keys at <https://platform.openai.com/api-keys> and <https://brave.com/search/api/>.
+Get keys at <https://platform.openai.com/api-keys> and <https://brave.com/search/api/>.
 
 ## 🖥️ Local LM Mode (no API key)
 
@@ -69,14 +69,22 @@ export LOCAL_LLM_MODEL="qwen3:1.7b"                   # default
 # export LOCAL_LLM_API_KEY="..."                      # only if your backend requires auth
 ```
 
-Then run as in Quickstart step 3. Select **Local (LOCAL_LLM_MODEL)** from the model dropdown in the UI. We have validated `qwen3:1.7b` as the default (~1.4 GB on disk, ~2 GB RAM, ~17 s per plan with the model pre-loaded). Override `LOCAL_LLM_MODEL` to try any other model available on your local server.
+Then run as in Quickstart step 3. Select **Local (LOCAL_LLM_MODEL)** in **both** the top-left Settings (plan generation) and each node's Agent Settings (execution) — these dropdowns are independent.
+
+The default `qwen3:1.7b` prioritizes laptop-portability (~1.4 GB, ~2 GB RAM, ~17 s/plan) over plan quality. Smaller models may produce plans with missing edges or suboptimal agent assignments; override `LOCAL_LLM_MODEL` for a stronger one.
+
+### Troubleshooting
+
+- **No Brave key for search nodes?** Switch the node's agent to `commonsense` or fill its output manually to bypass execution.
+- **Ollama 0.5+ required.** Structured outputs (`response_format=json_schema`) need it; older versions return HTTP 502.
+- **Proxy interference.** If `HTTP_PROXY` / `HTTPS_PROXY` are set, localhost requests may be routed through the proxy and fail with HTTP 502. Fix: `export NO_PROXY="localhost,127.0.0.1"` before launching the server.
 
 ## ⚠️ Caveats
 
-- **Responsible use.** Tasks typed in the UI become LLM prompts, and the `code` agent runs the resulting Python via `subprocess` with no sandboxing. Don't execute plans built from prompts you don't trust, and review outputs before acting on them — standard LLM-tool caveats apply.
+- **Responsible use.** Tasks typed in the UI become LLM prompts, and the `code` agent runs the resulting Python via `subprocess` with no sandboxing. Don't execute plans built from prompts you don't trust, and review outputs before acting on them — standard LLM-tool caveats apply. The server listens on localhost only; set `AMBIPOM_HOST=0.0.0.0` only if you deliberately want to expose the (unauthenticated) API to your network.
 - **First-run download.** `experiment/evaluate.py` downloads a sentence-transformer model (~100 MB) on first run.
 - **LLM nondeterminism.** Outputs vary across runs even at `temperature=0`; affects both the UI and the experiment pipeline.
-- **Rate limits.** A full experiment run (`python experiment/run.py --all`) issues roughly 2,300 OpenAI calls. Lower-tier accounts may hit rate limits; use `--all --n 5` for a tiny sample, or split runs by `--condition` / `--subset`.
+- **Rate limits.** A full experiment run (`python experiment/run.py --all`) issues roughly 2,300 OpenAI calls. Lower-tier accounts may hit rate limits; use `--all --n 5` for a sanity sample, or split runs by `--condition` / `--subset`.
 - **Verbose stdout.** Backend and frontend both log progress to stdout / the browser console during use. That's intentional and informational, not an error.
 
 ## 🗂️ Repository Layout
@@ -118,7 +126,7 @@ npm run dev        # serves at :5173, proxies /api to the backend at :8000
 
 This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
 
-## Disclosures:
+## Disclosures
 
 This software may include, incorporate, or access open source software (OSS) components, datasets and other third party components, including those identified below. The license terms respectively governing the datasets and third-party components continue to govern those portions, and you agree to those license terms may limit any distribution, use, and copying. You may use any OSS components under the terms of their respective licenses, which may include BSD 3, Apache 2.0, and other licenses. In the event of conflicts between Megagon Labs, Inc. ("Megagon") license conditions and the OSS license conditions, the applicable OSS conditions governing the corresponding OSS components shall prevail. You agree not to, and are not permitted to, distribute actual datasets used with the OSS components listed below. You agree and are limited to distribute only links to datasets from known sources by listing them in the datasets overview table below. You agree that any right to modify datasets originating from parties other than Megagon are governed by the respective third party's license conditions. You agree that Megagon grants no license as to any of its intellectual property and patent rights. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS (INCLUDING MEGAGON) "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. You agree to cease using, incorporating, and distributing any part of the provided materials if you do not agree with the terms or the lack of any warranty herein. While Megagon makes commercially reasonable efforts to ensure that citations in this document are complete and accurate, errors may occur. If you see any error or omission, please help us improve this document by sending information to contact_oss@megagon.ai.
 
@@ -133,17 +141,55 @@ For Datasets having different portions released under different licenses, please
 
 | ID  | OSS Component Name | Modified | Copyright Holder | Upstream Link | License  |
 |-----|----------------------------------|----------|------------------|-----------------------------------------------------------------------------------------------------------|--------------------|
-| 1 | Grade School Math GSM8K | No | Copyright (c) 2021 OpenAI | [link](https://github.com/openai/grade-school-math) | MIT License
+| 1 | Grade School Math GSM8K | No | OpenAI | [link](https://github.com/openai/grade-school-math) | MIT License |
 
 The `math_reasoning/` subset is derivative work built on GSM8K; see [`dataset/math_reasoning/LICENSE`](dataset/math_reasoning/LICENSE) for the dual-license file preserving GSM8K's MIT notice alongside the BSD-3-Clause for our additions.
+
+### Open Source Software (OSS) Components
+
+All OSS components used within the product are listed below (including their copyright holders and the license information).
+
+For OSS components having different portions released under different licenses, please refer to the included Upstream link(s) specified for each of the respective OSS components for identifications of code files released under the identified licenses.
+
+</br>
+
+| ID  | OSS Component Name | Modified | Copyright Holder | Upstream Link | License  |
+|-----|----------------------------------|----------|------------------|-----------------------------------------------------------------------------------------------------------|--------------------|
+| 1 | @blueprintjs/core | No | Palantir Technologies, Inc. | [link](https://github.com/palantir/blueprint) | Apache Software License |
+| 2 | @blueprintjs/icons | No | Palantir Technologies, Inc. | [link](https://github.com/palantir/blueprint) | Apache Software License |
+| 3 | @xyflow/react | No | webkid GmbH | [link](https://github.com/xyflow/xyflow) | MIT License |
+| 4 | beautifulsoup4 | No | Leonard Richardson | [link](https://www.crummy.com/software/BeautifulSoup/) | MIT License |
+| 5 | fastapi | No | Sebastián Ramírez | [link](https://github.com/fastapi/fastapi) | MIT License |
+| 6 | fireworks-ai | No | Fireworks AI | [link](https://pypi.org/project/fireworks-ai/) | MIT License |
+| 7 | networkx | No | NetworkX Developers | [link](https://github.com/networkx/networkx) | BSD License |
+| 8 | numpy | No | NumPy Developers | [link](https://github.com/numpy/numpy) | BSD License |
+| 9 | openai | No | OpenAI | [link](https://github.com/openai/openai-python) | Apache Software License |
+| 10 | pydantic | No | Pydantic Services Inc. and individual contributors | [link](https://github.com/pydantic/pydantic) | MIT License |
+| 11 | react | No | Facebook, Inc. and its affiliates | [link](https://github.com/facebook/react) | MIT License |
+| 12 | react-dom | No | Facebook, Inc. and its affiliates | [link](https://github.com/facebook/react) | MIT License |
+| 13 | react18-json-view | No | Suni | [link](https://github.com/YYsuni/react18-json-view) | MIT License |
+| 14 | requests | No | Kenneth Reitz | [link](https://github.com/psf/requests) | Apache Software License |
+| 15 | scipy | No | Enthought, Inc., SciPy Developers | [link](https://github.com/scipy/scipy) | BSD License |
+| 16 | sentence-transformers | No | Nils Reimers | [link](https://github.com/huggingface/sentence-transformers) | Apache Software License |
+| 17 | sympy | No | SymPy Development Team | [link](https://github.com/sympy/sympy) | BSD License |
+| 18 | typing-extensions | No | Python Software Foundation | [link](https://github.com/python/typing_extensions) | Python Software Foundation License |
+| 19 | uvicorn | No | Encode OSS Ltd. | [link](https://github.com/encode/uvicorn) | BSD License |
 
 ## 📚 Citation
 
 ```bibtex
 @inproceedings{he-etal-2026-ambipom,
-  title     = {How to Steer Your Multi-Agent System: Human-LLM Collaborative Planning},
-  author    = {He, Zeyu and Kim, Hannah and Zhang, Dan and Hruschka, Estevam},
-  booktitle = {Proceedings of the ACM Conference on AI and Agentic Systems (CAIS)},
-  year      = {2026}
+  author = {He, Zeyu and Kim, Hannah and Zhang, Dan and Hruschka, Estevam},
+  title = {How to Steer Your Multi-Agent System: Human-LLM Collaborative Planning},
+  year = {2026},
+  isbn = {9798400724152},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/3786335.3813144},
+  doi = {10.1145/3786335.3813144},
+  booktitle = {Proceedings of the ACM Conference on AI and Agentic Systems},
+  pages = {330–347},
+  numpages = {18},
+  series = {CAIS '26}
 }
 ```

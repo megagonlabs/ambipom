@@ -20,7 +20,7 @@ Set `OPENAI_API_KEY` (and optionally `OPENAI_ORGANIZATION`) before running.
 ## ▶️ Running
 
 ```bash
-# Sanity check: 5 items per operation_type per subset, both conditions (~230 items, ~$2.50, ~20 min)
+# Sanity sample: 5 items per operation_type per subset, both conditions (~230 items, ~$2.50, ~20 min)
 python experiment/run.py --all --n 5 --seed 0
 python experiment/evaluate.py
 
@@ -39,14 +39,14 @@ Outputs are written incrementally; re-running skips items that already have outp
 
 ## 📦 Pre-Computed Sample (No API Key Needed for Reviewers)
 
-The artifact ships pre-computed revisions for the `--n 10 --seed 0` sanity sample (~460 plans, both conditions × all subsets) under `experiment/sample_outputs/`. Reviewers without an OpenAI key — or who don't want to spend the ~$5 of API budget — can reproduce the paper §6.5 plan-revision results by replaying these:
+The artifact ships pre-computed revisions for the `--n 10 --seed 0` sanity sample (~460 items, both conditions × all subsets) under `experiment/sample_outputs/`. Reviewers without an OpenAI key — or who don't want to spend the ~$5 of API budget — can reproduce the paper §6.5 plan-revision results by replaying these:
 
 ```bash
 cp -r experiment/sample_outputs/. experiment/outputs/
 python experiment/evaluate.py
 ```
 
-`evaluate.py` makes no API calls. To re-run from scratch instead, delete `experiment/outputs/` and call `experiment/run.py` as below.
+`evaluate.py` makes no API calls. To re-run from scratch instead, delete `experiment/outputs/` and call `experiment/run.py` as in **Running** above.
 
 ## 📝 What Gets Written
 

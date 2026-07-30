@@ -234,7 +234,7 @@ def print_paper_table(rows: list[dict]) -> None:
     sep = "-" * len(header_sub)
 
     print()
-    print("Paper §6.4 / Table 1 view (averaged across subsets):")
+    print("Paper §6.5 / Table 1 view (averaged across subsets):")
     print(sep)
     print(header_top)
     print(header_sub)

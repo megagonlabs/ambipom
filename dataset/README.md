@@ -16,13 +16,15 @@ dataset/
 │   ├── gold/<NNNNN>.json
 │   ├── <operation_type>/<NNNNN>.json
 │   └── items.jsonl
-└── math_reasoning/answers.json
+├── math_reasoning/answers.json
+└── validate.py
 ```
 
 - **`gold/<NNNNN>.json`** — one gold plan per file. One file per task; 50 tasks per subset.
 - **`<operation_type>/<NNNNN>.json`** — one broken plan (`p_initial`) per file, paired with the same-`<NNNNN>` gold. 50 per op.
 - **`items.jsonl`** — one item per line. Each line references a gold file and a `p_initial` file, plus carries the instruction text and `target_nodes`.
 - **`answers.json`** — math only. Ground-truth numeric answer per task, used for execution-accuracy evaluation.
+- **`validate.py`** — sanity-check script that counts gold plans and items.jsonl entries against expected totals (200 gold plans, 1,150 items). No API key required; inspects on-disk files only.
 
 Each plan JSON conforms to the AMBIPOM library's `LLMPlan` schema and loads directly via the system's UI **Load Plan** button.
 

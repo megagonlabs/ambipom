@@ -1,5 +1,6 @@
 import json
 import subprocess
+import sys
 
 from ambipom.agents.base_agent import BaseAgent
 from ambipom.prompts.agents import PROMPT_CODE
@@ -72,7 +73,7 @@ class CodeAgent(BaseAgent):
     def call_code_tool(self, code_clean_result: str, dict_result: dict) -> dict:
         try:
             code_execution_result = subprocess.run(
-                ["python", "-c", code_clean_result], capture_output=True, text=True
+                [sys.executable, "-c", code_clean_result], capture_output=True, text=True
             )
             self.append_log("code_result_raw", str(code_execution_result))
 

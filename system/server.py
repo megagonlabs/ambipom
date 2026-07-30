@@ -574,4 +574,5 @@ app.mount("/", StaticFiles(directory=str(_dist_dir), html=True), name="frontend"
 
 
 if __name__ == "__main__":
-    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
+    # loopback by default: /api/* has no auth and the `code` agent runs unsandboxed Python
+    uvicorn.run("server:app", host=os.environ.get("AMBIPOM_HOST", "127.0.0.1"), port=8000, reload=True)
